@@ -173,7 +173,7 @@ export default class BatteryIcon extends React.Component {
 				<Liquid
 					{...this.config}
 					color={this.color()}
-					percent={this.state.data}
+					percent={this.props.percent}//{this.state.data}
 					width={this.props.width}
 					height={this.props.height}
 					statistic={this.statistic}
