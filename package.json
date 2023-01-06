@@ -2,7 +2,7 @@
     "name": "cedri-ugv-dashboard",
     "version": "0.0.1",
     "private": true,
-    "homepage": "http://alf767443.github.io/Thesis",
+    "homepage": "http://alf767443.github.io/UGV-dashboard",
     "dependencies": {
         "@ant-design/colors": "^6.0.0",
         "@ant-design/icons": "^4.8.0",
