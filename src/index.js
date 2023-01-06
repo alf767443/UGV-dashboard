@@ -23,7 +23,7 @@ const root = createRoot(container); // createRoot(container!) if you use TypeScr
 root.render(
     <StrictMode>
         <ReduxProvider store={store}>
-            <BrowserRouter basename="/UGV">
+            <BrowserRouter basename="/UGV-dashboard">
                 <App />
             </BrowserRouter>
         </ReduxProvider>
