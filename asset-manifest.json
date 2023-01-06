@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/UGV-dashboard/static/css/main.c6efb68b.css",
-    "main.js": "/UGV-dashboard/static/js/main.7d120ab3.js",
+    "main.js": "/UGV-dashboard/static/js/main.29bf6021.js",
     "static/js/243.f8feef78.chunk.js": "/UGV-dashboard/static/js/243.f8feef78.chunk.js",
     "static/js/758.a8f23bc4.chunk.js": "/UGV-dashboard/static/js/758.a8f23bc4.chunk.js",
-    "static/js/943.286acc89.chunk.js": "/UGV-dashboard/static/js/943.286acc89.chunk.js",
+    "static/js/943.33084d22.chunk.js": "/UGV-dashboard/static/js/943.33084d22.chunk.js",
     "static/js/503.7929143c.chunk.js": "/UGV-dashboard/static/js/503.7929143c.chunk.js",
     "static/js/423.9ce7ad3d.chunk.js": "/UGV-dashboard/static/js/423.9ce7ad3d.chunk.js",
     "static/js/569.be476239.chunk.js": "/UGV-dashboard/static/js/569.be476239.chunk.js",
@@ -36,6 +36,6 @@
   },
   "entrypoints": [
     "static/css/main.c6efb68b.css",
-    "static/js/main.7d120ab3.js"
+    "static/js/main.29bf6021.js"
   ]
 }
