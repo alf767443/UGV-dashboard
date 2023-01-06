@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/Thesis/static/css/main.e1f2bb6b.css",
+    "main.js": "/Thesis/static/js/main.dec1874a.js",
+    "static/js/243.401e6b8a.chunk.js": "/Thesis/static/js/243.401e6b8a.chunk.js",
+    "static/js/758.5a12aa7e.chunk.js": "/Thesis/static/js/758.5a12aa7e.chunk.js",
+    "static/js/943.2ae6a3d1.chunk.js": "/Thesis/static/js/943.2ae6a3d1.chunk.js",
+    "static/js/503.7929143c.chunk.js": "/Thesis/static/js/503.7929143c.chunk.js",
+    "static/js/423.b996a53b.chunk.js": "/Thesis/static/js/423.b996a53b.chunk.js",
+    "static/js/569.51dca5f8.chunk.js": "/Thesis/static/js/569.51dca5f8.chunk.js",
+    "static/js/35.0a5f228c.chunk.js": "/Thesis/static/js/35.0a5f228c.chunk.js",
+    "static/js/615.b29852bf.chunk.js": "/Thesis/static/js/615.b29852bf.chunk.js",
+    "static/js/188.91155d93.chunk.js": "/Thesis/static/js/188.91155d93.chunk.js",
+    "static/js/184.0abe0ee7.chunk.js": "/Thesis/static/js/184.0abe0ee7.chunk.js",
+    "static/js/259.4160c455.chunk.js": "/Thesis/static/js/259.4160c455.chunk.js",
+    "static/js/934.87f51e8f.chunk.js": "/Thesis/static/js/934.87f51e8f.chunk.js",
+    "static/js/536.7ee63442.chunk.js": "/Thesis/static/js/536.7ee63442.chunk.js",
+    "static/js/822.4386f701.chunk.js": "/Thesis/static/js/822.4386f701.chunk.js",
+    "static/js/846.6f140a1d.chunk.js": "/Thesis/static/js/846.6f140a1d.chunk.js",
+    "static/js/194.9f7c1062.chunk.js": "/Thesis/static/js/194.9f7c1062.chunk.js",
+    "static/js/525.c224a11f.chunk.js": "/Thesis/static/js/525.c224a11f.chunk.js",
+    "static/js/893.2d767b10.chunk.js": "/Thesis/static/js/893.2d767b10.chunk.js",
+    "static/js/165.4baa65e1.chunk.js": "/Thesis/static/js/165.4baa65e1.chunk.js",
+    "static/js/346.02c88946.chunk.js": "/Thesis/static/js/346.02c88946.chunk.js",
+    "static/js/819.bee14153.chunk.js": "/Thesis/static/js/819.bee14153.chunk.js",
+    "static/js/522.ffdb8448.chunk.js": "/Thesis/static/js/522.ffdb8448.chunk.js",
+    "static/js/672.dca94fd5.chunk.js": "/Thesis/static/js/672.dca94fd5.chunk.js",
+    "static/js/266.52c3bc1c.chunk.js": "/Thesis/static/js/266.52c3bc1c.chunk.js",
+    "static/js/37.abdad78a.chunk.js": "/Thesis/static/js/37.abdad78a.chunk.js",
+    "static/js/416.81038e6e.chunk.js": "/Thesis/static/js/416.81038e6e.chunk.js",
+    "static/js/634.2ccf71f1.chunk.js": "/Thesis/static/js/634.2ccf71f1.chunk.js",
+    "static/media/logo_CeDRI.png": "/Thesis/static/media/logo_CeDRI.35cc9641999496b689b0.png",
+    "index.html": "/Thesis/index.html",
+    "static/media/google.svg": "/Thesis/static/media/google.a025da87054139fc16b3b9b7ed0a2724.svg",
+    "static/media/twitter.svg": "/Thesis/static/media/twitter.3e49f64208e00f377e9c3dbeaed797ce.svg",
+    "static/media/facebook.svg": "/Thesis/static/media/facebook.eb4c069b746811e7b3a7ddf099989a69.svg"
+  },
+  "entrypoints": [
+    "static/css/main.e1f2bb6b.css",
+    "static/js/main.dec1874a.js"
+  ]
+}
