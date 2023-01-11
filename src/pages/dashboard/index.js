@@ -3,6 +3,7 @@ import { Grid } from '@mui/material';
 
 // project import
 import BatteryIcon from 'graphs/battery/batteryIcon';
+import DBSwitch from 'components/Switch/DBSwitch';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
@@ -12,10 +13,7 @@ const DashboardDefault = () => {
             {/* Main block */}
             <BatteryIcon percent={0.2} />
             <BatteryIcon percent={0.4} />
-            <BatteryIcon percent={0.6} />
-            <BatteryIcon percent={0.8} />
-            <Grid item sx={{ mb: -2.25 }} direction={'row'}>
-            </Grid>
+            <DBSwitch />
         </Grid>
     );
 };

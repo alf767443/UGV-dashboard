@@ -4,7 +4,7 @@ import React from "react";
 import { Liquid } from "@ant-design/plots";
 
 // Import from project
-import { url } from 'djangoAPI/url';
+import { url } from 'API/url';
 import { round } from "lodash";
 
 const urls = 'battery/query=1';

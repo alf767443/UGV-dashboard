@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 
 
 // Import from project
-import { url } from 'djangoAPI/url';
+import { url } from 'API/url';
 
 const urls = 'actions/queue';
 

@@ -5,7 +5,7 @@ import { Area } from '@ant-design/plots';
 
 
 // Import from project
-import { url } from 'djangoAPI/url';
+import { url } from 'API/url';
 import MainCard from "components/MainCard";
 
 import styles from "graphs/styles";

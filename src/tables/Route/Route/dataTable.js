@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { Table } from 'antd';
 
 // Import from project
-import { url } from 'djangoAPI/url';
+import { url } from 'API/url';
 
 // Define columns
 const columns = [

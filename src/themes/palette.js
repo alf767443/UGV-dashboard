@@ -52,6 +52,14 @@ const Palette = (mode) => {
             background: {
                 paper: paletteColor.grey[0],
                 default: paletteColor.grey.A50
+            },
+            mongo: {
+                // Mongo green color
+                main: '#00684a',
+            },
+            success: {
+                // Mongo green color
+                main: '#00684a',
             }
         }
     });
