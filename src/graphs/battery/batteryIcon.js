@@ -4,7 +4,7 @@ import React from "react";
 import { Liquid } from "@ant-design/plots";
 
 // Import from project
-import { url } from 'API/url';
+import { url, GetData } from 'API/url';
 import { round } from "lodash";
 
 const urls = 'battery/query=1';
@@ -27,6 +27,9 @@ export default class BatteryIcon extends React.Component {
 			.catch((error) => {
 				console.log(error)
 			});
+		console.log("-----------------------------")
+		console.log(GetData())
+		console.log("-----------------------------")
     }
 
     componentDidMount = () => {
@@ -41,7 +44,7 @@ export default class BatteryIcon extends React.Component {
 	timer = () => {
 		setInterval(() => {
 			this.refreshList();
-		}, 5000)
+		}, 1000000)
 	}
 	pallet = [
 		"#b60000",
@@ -154,6 +157,9 @@ export default class BatteryIcon extends React.Component {
 			border: 1,
 			distance: 0,
 		},
+		wave: {
+			length: 20
+		},
 	};
 
 	statistic = [null];
@@ -173,7 +179,7 @@ export default class BatteryIcon extends React.Component {
 				<Liquid
 					{...this.config}
 					color={this.color()}
-					percent={this.props.percent}//{this.state.data}
+					percent={this.state.data}
 					width={this.props.width}
 					height={this.props.height}
 					statistic={this.statistic}
