@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcedri_ugv_dashboard=self.webpackChunkcedri_ugv_dashboard||[]).push([[119],{11119:function(n,c,r){r.r(c);var a=r(82937),e=r(39456),s=r(62198),u=r(46417);c.default=function(){return(0,u.jsxs)(a.ZP,{container:!0,rowSpacing:1.75,columnSpacing:2,children:[(0,u.jsx)(e.Z,{}),(0,u.jsx)(s.Z,{})]})}}}]);
