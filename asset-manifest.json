@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/UGV-dashboard/static/css/main.c6efb68b.css",
-    "main.js": "/UGV-dashboard/static/js/main.d647525d.js",
+    "main.js": "/UGV-dashboard/static/js/main.ef4d8a0d.js",
     "static/js/243.22ab03cd.chunk.js": "/UGV-dashboard/static/js/243.22ab03cd.chunk.js",
     "static/js/954.fb5967f5.chunk.js": "/UGV-dashboard/static/js/954.fb5967f5.chunk.js",
     "static/js/119.fc93559a.chunk.js": "/UGV-dashboard/static/js/119.fc93559a.chunk.js",
@@ -35,6 +35,6 @@
   },
   "entrypoints": [
     "static/css/main.c6efb68b.css",
-    "static/js/main.d647525d.js"
+    "static/js/main.ef4d8a0d.js"
   ]
 }
