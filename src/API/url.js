@@ -1,18 +1,31 @@
-export const url = {
-    API: 'http://127.0.0.1:8000/'
-};
+export const requestOptions = function(raw = ""){
+    var myHeaders = new Headers();
+    if (!JSON.parse(window.localStorage.getItem('fromLocal'))) {
+    // From MongoDB cloud
+        myHeaders.append("Content-Type", "application/{{CONTENT_TYPE}}");
+        myHeaders.append("Access-Control-Request-Headers", "*");
+        myHeaders.append("api-key", "p4ys6trtqQgRhGraItZr6pDdA15TQB7Ch9mtWErYmsuzMSFs7a9djw7nChAFBeE1");
+        myHeaders.append("Accept", "application/{{CONTENT_TYPE}}");
+    }
+    else{
+        myHeaders.append("Content-Type", "application/json");
+    }
 
-
-export function GetData() {
-    const response = {}
-    fetch('http://127.0.0.1:8000/battery/query=1')
-        .then((json) => {
-            this.response = json
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-    return response
-
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+      
+    return requestOptions
 }
 
+export const url = function(){
+    if (!JSON.parse(window.localStorage.getItem('fromLocal'))) {
+    // From MongoDB cloud
+       return ''//'https://data.mongodb-api.com/app/data-ykwug/endpoint/data/v1/action/aggregate'
+    } else{
+        return 'http://127.0.0.1:8000/query/'
+    }
+}

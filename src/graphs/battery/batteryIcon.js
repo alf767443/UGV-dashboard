@@ -4,10 +4,16 @@ import React from "react";
 import { Liquid } from "@ant-design/plots";
 
 // Import from project
-import { url, GetData } from 'API/url';
+import { url, requestOptions } from 'API/url';
 import { round } from "lodash";
 
-const urls = 'battery/query=1';
+
+var raw = JSON.stringify({
+	"dataSource": "CeDRI",
+	"database": "CeDRI_UGV_dashboard",
+	"collection": "ActualBattery",
+	"pipeline": []
+   });
 
 export default class BatteryIcon extends React.Component {
 	constructor(props) {
@@ -19,17 +25,15 @@ export default class BatteryIcon extends React.Component {
     }
 
     refreshList() {
-        fetch(url.API + urls)
+        fetch(url(), requestOptions(raw))
             .then((response) => response.json())
             .then((json) => {
-                this.setState({ data: json[0]['Calculate']['Percent'] });
+				console.log(json)
+                this.setState({ data: json[0]['Percent'] });
             })
 			.catch((error) => {
 				console.log(error)
 			});
-		console.log("-----------------------------")
-		console.log(GetData())
-		console.log("-----------------------------")
     }
 
     componentDidMount = () => {
