@@ -11,15 +11,20 @@ function DBSwitch() {
 
   React.useEffect(() => {
     setfromLocal(JSON.parse(window.localStorage.getItem('fromLocal')));
-    console.log(fromLocal)
-    console.log(JSON.parse(window.localStorage.getItem('fromLocal')))
   }, []);
 
   React.useEffect(() => {
     window.localStorage.setItem('fromLocal', fromLocal);
-    console.log(fromLocal)
-    console.log(JSON.parse(window.localStorage.getItem('fromLocal')))
   }, [fromLocal]);
+
+  function refreshPage() {
+    //window.location.reload(false);
+  }
+
+  function onChange(event){
+    setfromLocal(event.target.checked);
+    refreshPage();
+  }
 
   return (
     <StyledEngineProvider injectFirst>
@@ -36,7 +41,7 @@ function DBSwitch() {
             <StorageIcon sx={{ color: fromLocal ? 'primary.500' : 'text.tertiary', fontSize: 28 }} />
         }
         checked={fromLocal}
-        onChange={(event) => setfromLocal(event.target.checked)}
+        onChange={onChange}
         />
       </CssVarsProvider>
     </StyledEngineProvider>

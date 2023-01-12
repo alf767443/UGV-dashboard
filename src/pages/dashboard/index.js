@@ -2,8 +2,6 @@
 import { Grid } from '@mui/material';
 
 // project import
-import DBSwitch from 'components/Switch/DBSwitch';
-import BatteryIcon from 'graphs/battery/batteryIcon';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
@@ -11,8 +9,6 @@ const DashboardDefault = () => {
     return (
         <Grid container rowSpacing={1.75} columnSpacing={2}>
             {/* Main block */}
-            <DBSwitch />
-            <BatteryIcon />
         </Grid>
     );
 };

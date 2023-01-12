@@ -11,7 +11,7 @@ import { round } from "lodash";
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_dashboard",
-	"collection": "ActualBattery",
+	"collection": "Battery_actual",
 	"pipeline": []
    });
 
@@ -20,24 +20,35 @@ export default class BatteryIcon extends React.Component {
 		super(props);
 
 		this.state = {
-            data: []
+            data: [],
+			ticks: 0
         };
     }
 
+	canUpdate(){
+		console.log(this.state.ticks)
+		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
+			this.setState({ ticks: 10})
+			this.refreshList()
+		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
+			// From MongoDB cloud
+			this.setState({ ticks: this.state.ticks - 1})
+		}
+	}
+
     refreshList() {
-        fetch(url(), requestOptions(raw))
-            .then((response) => response.json())
-            .then((json) => {
-				console.log(json)
-                this.setState({ data: json[0]['Percent'] });
-            })
-			.catch((error) => {
-				console.log(error)
-			});
+		fetch(url(), requestOptions(raw))
+		.then((response) => response.json())
+		.then((json) => {
+			this.setState({ data: json[0]['Percent'] });
+			console.log('here')
+		})
+		.catch((error) => {
+			console.log(error)
+		});
     }
 
     componentDidMount = () => {
-		this.refreshList();
 		this.timer();
     }
 
@@ -47,9 +58,10 @@ export default class BatteryIcon extends React.Component {
 
 	timer = () => {
 		setInterval(() => {
-			this.refreshList();
-		}, 1000000)
+			this.canUpdate();
+		}, 1000)
 	}
+
 	pallet = [
 		"#b60000",
 		"#b80600",
