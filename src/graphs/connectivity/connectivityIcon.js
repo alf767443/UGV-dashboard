@@ -21,7 +21,7 @@ export default class ConnectivityIcon extends React.Component {
 
 		this.state = {
             data: [],
-			ticks: 0,
+			ticks: -1,
 			quality: 0
         };
     }

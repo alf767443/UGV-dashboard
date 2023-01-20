@@ -17,11 +17,74 @@ var raw = JSON.stringify({
 	"collection": "Battery_Data",
 	"pipeline": [
 		{
-			'$limit': 200
-		},
-		{
+		'$project': {
+			'dateTime': {
+			'$dateTrunc': {
+				'date': '$dateTime', 
+				'unit': 'minute'
+			}
+			}, 
+			'voltage': {
+			'$cond': [
+				{
+				'$eq': [
+					'NaN', '$voltage'
+				]
+				}, null, '$voltage'
+			]
+			}, 
+			'current': {
+			'$cond': [
+				{
+				'$eq': [
+					'NaN', '$current'
+				]
+				}, null, '$current'
+			]
+			}, 
+			'percentage': {
+			'$cond': [
+				{
+				'$eq': [
+					'NaN', '$percentage'
+				]
+				}, null, '$percentage'
+			]
+			}
+		}
+		}, {
+		'$densify': {
+			'field': 'dateTime', 
+			'range': {
+			'step': 1, 
+			'unit': 'minute', 
+			'bounds': 'full'
+			}
+		}
+		}, {
+		'$group': {
+			'_id': '$dateTime', 
+			'percentage': {
+				'$avg': '$percentage'
+			}, 
+			'current': {
+				'$avg': '$current'
+			}, 
+			'voltage': {
+				'$avg': '$voltage'
+			}, 
+			'count': {
+				'$sum': 1
+			}
+		}
+		}, {
+			'$sort': {
+				'_id': -1
+			}
+		}, {
+			'$limit': 100
+		}, {
 			'$project': {
-				'dateTime': 1,
 				'percentage': {
 					'$multiply': [
 						'$percentage', 100
@@ -32,19 +95,19 @@ var raw = JSON.stringify({
 	]
 });
 
-export default class BatteryTimePlot extends React.Component {
+export default class PercentageDatetimeArea extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
             data: [],
-			ticks: 0
+			ticks: -1
         };
     }
 
 	canUpdate(){
 		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
-			this.setState({ ticks: 10})
+			this.setState({ ticks: 100})
 			this.refreshList()
 		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
 			// From MongoDB cloud
@@ -79,7 +142,7 @@ export default class BatteryTimePlot extends React.Component {
 
 	config = {
 		padding: 'auto',
-		xField: 'dateTime',
+		xField: '_id',
 		yField: 'percentage',
 		xAxis: {
 			tickCount: 5,
@@ -94,6 +157,13 @@ export default class BatteryTimePlot extends React.Component {
 			title: {
 				text: "Battery percentage [%]"
 			}
+		},tooltip: {
+			formatter: (data) => {
+				if (data['percentage'] != null){
+					return { name: 'Percentage', value: data['percentage'].toFixed(1) + '%' };
+				}
+				return {};
+			},	
 		},
 		//seriesField: 'Status',
 		smooth: true
