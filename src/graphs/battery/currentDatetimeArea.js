@@ -24,14 +24,14 @@ var raw = JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'percentage': {
-				'$cond': [
-					{
-					'$eq': [
-						'NaN', '$percentage'
+				'current': {
+					'$cond': [
+						{
+							'$eq': [
+								'NaN', '$current'
+							]
+						}, null, '$current'
 					]
-					}, null, '$percentage'
-				]
 				}
 			}
 		}, {
@@ -46,8 +46,8 @@ var raw = JSON.stringify({
 		}, {
 			'$group': {
 				'_id': '$dateTime', 
-				'percentage': {
-					'$avg': '$percentage'
+				'current': {
+					'$avg': '$current'
 				}
 			}
 		}, {
@@ -56,14 +56,6 @@ var raw = JSON.stringify({
 			}
 		}, {
 			'$limit': 100
-		}, {
-			'$project': {
-				'percentage': {
-					'$multiply': [
-						'$percentage', 100
-					]
-				}
-			}
 		}
 	]
 });
@@ -129,12 +121,12 @@ export default class CurrentDatetimeArea extends React.Component {
 		yAxis:{
 			tickCount: 10,
 			title: {
-				text: "Battery current [%]"
+				text: "Battery current [A]"
 			}
 		},tooltip: {
 			formatter: (data) => {
 				if (data['current'] != null){
-					return { name: 'Current', value: data['current'].toFixed(1) + '%' };
+					return { name: 'Current', value: data['current'].toFixed(1) + ' A' };
 				}
 				return {};
 			},	
