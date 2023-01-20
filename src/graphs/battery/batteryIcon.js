@@ -10,9 +10,22 @@ import { round } from "lodash";
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_dashboard",
-	"collection": "Battery_actual",
-	"pipeline": []
+	"database": "CeDRI_UGV_buffer",
+	"collection": "Battery_Data",
+	"pipeline": [
+		{
+			'$project': {
+				'dateTime': 1,
+				'percentage': 1
+			}
+		}, {
+			'$sort': {
+				'dateTime': -1
+				}
+		}, {
+			'$limit': 1
+		}
+	]
    });
 
 export default class BatteryIcon extends React.Component {

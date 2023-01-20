@@ -17,66 +17,39 @@ var raw = JSON.stringify({
 	"collection": "Battery_Data",
 	"pipeline": [
 		{
-		'$project': {
-			'dateTime': {
-			'$dateTrunc': {
-				'date': '$dateTime', 
-				'unit': 'minute'
+			'$project': {
+				'dateTime': {
+					'$dateTrunc': {
+						'date': '$dateTime', 
+						'unit': 'minute'
+					}
+				}, 
+				'percentage': {
+				'$cond': [
+					{
+					'$eq': [
+						'NaN', '$percentage'
+					]
+					}, null, '$percentage'
+				]
+				}
 			}
-			}, 
-			'voltage': {
-			'$cond': [
-				{
-				'$eq': [
-					'NaN', '$voltage'
-				]
-				}, null, '$voltage'
-			]
-			}, 
-			'current': {
-			'$cond': [
-				{
-				'$eq': [
-					'NaN', '$current'
-				]
-				}, null, '$current'
-			]
-			}, 
-			'percentage': {
-			'$cond': [
-				{
-				'$eq': [
-					'NaN', '$percentage'
-				]
-				}, null, '$percentage'
-			]
-			}
-		}
 		}, {
-		'$densify': {
-			'field': 'dateTime', 
-			'range': {
-			'step': 1, 
-			'unit': 'minute', 
-			'bounds': 'full'
+			'$densify': {
+				'field': 'dateTime', 
+				'range': {
+					'step': 1, 
+					'unit': 'minute', 
+					'bounds': 'full'
+				}
 			}
-		}
 		}, {
-		'$group': {
-			'_id': '$dateTime', 
-			'percentage': {
-				'$avg': '$percentage'
-			}, 
-			'current': {
-				'$avg': '$current'
-			}, 
-			'voltage': {
-				'$avg': '$voltage'
-			}, 
-			'count': {
-				'$sum': 1
+			'$group': {
+				'_id': '$dateTime', 
+				'percentage': {
+					'$avg': '$percentage'
+				}
 			}
-		}
 		}, {
 			'$sort': {
 				'_id': -1
