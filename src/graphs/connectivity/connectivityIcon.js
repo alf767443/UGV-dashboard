@@ -10,9 +10,23 @@ import styles from './styles';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_dashboard",
-	"collection": "Connection_actual",
-	"pipeline": []
+	"database": "CeDRI_UGV_buffer",
+	"collection": "UGV_connection",
+	"pipeline": [
+		{
+			'$project': {
+				'dateTime': 1,
+				'RTT': 1,
+				'Connect': 1
+			}
+		}, {
+			'$sort': {
+				'dateTime': -1
+				}
+		}, {
+			'$limit': 1
+		}
+	]
    });
 
 export default class ConnectivityIcon extends React.Component {
