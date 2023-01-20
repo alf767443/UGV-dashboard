@@ -11,7 +11,7 @@ import styles from './styles';
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_buffer",
-	"collection": "UGV_connection",
+	"collection": "UGV_Connection",
 	"pipeline": [
 		{
 			'$project': {
