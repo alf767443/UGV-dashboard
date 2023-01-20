@@ -105,7 +105,7 @@ export default class BatteryTimePlot extends React.Component {
 				<Box sx={styles.box.sx}>
 					<Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
 						<Typography variant={styles.typography.variant} color={styles.typography.color}>
-							Battery charge by time
+							Battery percentage by time
 						</Typography>
 						<Area 
 							{...this.config} 
