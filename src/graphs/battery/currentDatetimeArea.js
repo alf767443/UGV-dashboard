@@ -13,7 +13,7 @@ import { Box, Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_dashboard",
+	"database": "CeDRI_UGV_buffer",
 	"collection": "Battery_Data",
 	"pipeline": [
 		{
@@ -24,13 +24,13 @@ var raw = JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'current': {
+				'percentage': {
 				'$cond': [
 					{
 					'$eq': [
-						'NaN', '$current'
+						'NaN', '$percentage'
 					]
-					}, null, '$current'
+					}, null, '$percentage'
 				]
 				}
 			}
@@ -46,8 +46,8 @@ var raw = JSON.stringify({
 		}, {
 			'$group': {
 				'_id': '$dateTime', 
-				'current': {
-					'$avg': '$current'
+				'percentage': {
+					'$avg': '$percentage'
 				}
 			}
 		}, {
@@ -58,9 +58,9 @@ var raw = JSON.stringify({
 			'$limit': 100
 		}, {
 			'$project': {
-				'current': {
+				'percentage': {
 					'$multiply': [
-						'$current', 100
+						'$percentage', 100
 					]
 				}
 			}
@@ -93,6 +93,7 @@ export default class CurrentDatetimeArea extends React.Component {
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ data: json });
+			console.log(this.state.data)
 		})
 		.catch((error) => {
 			console.log(error);

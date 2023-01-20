@@ -13,7 +13,7 @@ import { Box, Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_dashboard",
+	"database": "CeDRI_UGV_buffer",
 	"collection": "Battery_Data",
 	"pipeline": [
 		{
