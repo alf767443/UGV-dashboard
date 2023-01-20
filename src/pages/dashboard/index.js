@@ -1,5 +1,6 @@
 // material-ui
 import { Grid } from '@mui/material';
+import BatteryTimePlot from 'graphs/battery/batteryTimePlot';
 
 // project import
 
@@ -9,6 +10,7 @@ const DashboardDefault = () => {
     return (
         <Grid container rowSpacing={1.75} columnSpacing={2}>
             {/* Main block */}
+            <BatteryTimePlot />
         </Grid>
     );
 };

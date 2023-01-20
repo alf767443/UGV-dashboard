@@ -24,7 +24,7 @@ export const requestOptions = function(raw = ""){
 export const url = function(){
     if (!JSON.parse(window.localStorage.getItem('fromLocal'))) {
     // From MongoDB cloud
-       return 'https://data.mongodb-api.com/app/data-ykwug/endpoint/data/v1/action/aggregate'
+       return 'https://127.0.0.1:8000/query/'
     } else{
         return 'http://127.0.0.1:8000/query/'
     }

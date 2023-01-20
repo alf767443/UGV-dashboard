@@ -26,7 +26,6 @@ export default class BatteryIcon extends React.Component {
     }
 
 	canUpdate(){
-		console.log(this.state.ticks)
 		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
 			this.setState({ ticks: 10})
 			this.refreshList()
@@ -40,11 +39,10 @@ export default class BatteryIcon extends React.Component {
 		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json[0]['Percent'] });
-			console.log('here')
+			this.setState({ data: json[0]['percentage'] });
 		})
 		.catch((error) => {
-			console.log(error)
+			console.log(error);
 		});
     }
 
