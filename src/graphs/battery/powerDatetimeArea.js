@@ -134,7 +134,7 @@ export default class PowerDatetimeArea extends React.Component {
 	config = {
 		padding: 'auto',
 		xField: '_id',
-		yField: 'current',
+		yField: 'power',
 		xAxis: {
 			tickCount: 5,
 			type: 'time',
@@ -150,7 +150,7 @@ export default class PowerDatetimeArea extends React.Component {
 			}
 		},tooltip: {
 			formatter: (data) => {
-				if (data['current'] != null){
+				if (data['power'] != null){
 					return { name: 'Power', value: data['power'].toFixed(1) + ' W' };
 				}
 				return {};
@@ -166,7 +166,7 @@ export default class PowerDatetimeArea extends React.Component {
 				<Box sx={styles.box.sx}>
 					<Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
 						<Typography variant={styles.typography.variant} color={styles.typography.color}>
-							Battery current by time
+							Battery power by time
 						</Typography>
 						<Area 
 							{...this.config} 
