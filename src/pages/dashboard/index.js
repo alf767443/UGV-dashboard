@@ -2,6 +2,8 @@
 import { Grid } from '@mui/material';
 import CurrentDatetimeArea from 'graphs/battery/currentDatetimeArea';
 import PercentageDatetimeArea from 'graphs/battery/percentageDatetimeArea';
+import PowerDatetimeArea from 'graphs/battery/powerDatetimeArea';
+import VoltageDatetimeArea from 'graphs/battery/voltageDatetimeArea';
 
 // project import
 
@@ -13,6 +15,8 @@ const DashboardDefault = () => {
             {/* Main block */}
             <PercentageDatetimeArea />
             <CurrentDatetimeArea />
+            <VoltageDatetimeArea />
+            <PowerDatetimeArea />
         </Grid>
     );
 };
