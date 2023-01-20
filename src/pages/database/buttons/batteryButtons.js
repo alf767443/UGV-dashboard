@@ -1,6 +1,6 @@
 // material-ui
-import { Grid, Typography } from '@mui/material';
-import { BatteryCharging90, BatterySaver } from '@mui/icons-material';
+import { Grid } from '@mui/material';
+import { BatterySaver } from '@mui/icons-material';
 // project import
 import DataBaseButtons from './button';
 import { gridParameters } from '../styles';
@@ -8,9 +8,6 @@ import { gridParameters } from '../styles';
 export const BatteryButtons = () => {
     return (
         <Grid>
-            <Typography variant="h3" color="textSecondary">
-                Battery databases
-            </Typography>
             <Grid
                 container
                 columnSpacing={gridParameters.columnSpacing}
@@ -27,17 +24,7 @@ export const BatteryButtons = () => {
                     lg={gridParameters.lg}
                     xl={gridParameters.xl}
                 >
-                    <DataBaseButtons href={'dbs/battery/physical'} Title={'Physical'} Icon={BatterySaver} />
-                </Grid>
-                <Grid
-                    item
-                    xs={gridParameters.xs}
-                    sm={gridParameters.sm}
-                    md={gridParameters.md}
-                    lg={gridParameters.lg}
-                    xl={gridParameters.xl}
-                >
-                    <DataBaseButtons href={'dbs/battery/status'} Title={'Status'} Icon={BatteryCharging90} />
+                    <DataBaseButtons href={'dbs/battery/'} Title={'Battery'} Icon={BatterySaver} />
                 </Grid>
             </Grid>
         </Grid>
