@@ -1,16 +1,22 @@
 const styles = {
     graph:{
         big:{
+            /*
             width: 800,
             height: 400
+            */
         },
         medium:{
+            /*
             width: 400,
             height: 200
+            */
         },
         small:{
+            /*
             width: 200,
             height: 200
+            */
         }
     },
     stack: {

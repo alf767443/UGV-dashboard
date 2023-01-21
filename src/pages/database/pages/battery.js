@@ -1,15 +1,16 @@
 // Import from MUI
-import { Grid } from '@mui/material';
+import { Stack } from '@mui/material';
 // Import from project
 import { TableCard } from 'tables/Battery';
+import { BatteryCarrousel } from '../../../carousels/battery'
 
 // --------- database - odometry --------- \\
 const dbActions = () => {
     return (
-        <Grid container rowSpacing={2.75} columnSpacing={1}>
-            {/* Main block */}
+        <Stack spacing={2}>
+            <BatteryCarrousel />
             <TableCard />
-        </Grid>
+        </Stack>
     );
 };
 

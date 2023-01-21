@@ -145,7 +145,7 @@ export default class CurrentDatetimeArea extends React.Component {
 						<Area 
 							{...this.config} 
 							data={this.state.data} 
-							{... styles.graph.medium} 
+							{...styles.graph.medium} 
 						/>
 					</Stack>
 				</Box>

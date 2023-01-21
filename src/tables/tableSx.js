@@ -5,7 +5,7 @@ const tableSx = {
     maxHeight: 1,
     minWidth: 1,
     maxWidth: 1,
-    mt: 2,
+    mt: 1,
     gap: 2
 };
 

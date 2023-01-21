@@ -110,7 +110,6 @@ export default class PowerDatetimeArea extends React.Component {
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ data: json });
-			console.log(this.state.data)
 		})
 		.catch((error) => {
 			console.log(error);
