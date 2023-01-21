@@ -11,6 +11,7 @@ const Dashboard = Loadable(lazy(() => import('pages/dashboard')));
 const Database = Loadable(lazy(() => import('pages/database')));
 
 const DatabaseBattery = Loadable(lazy(() => import('pages/database/pages/battery')));
+const DatabaseMotors = Loadable(lazy(() => import('pages/database/pages/motors')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -47,6 +48,9 @@ const MainRoutes = {
                         }, {
                             path: 'battery',
                             element: <DatabaseBattery />
+                        }, {
+                            path: 'motors',
+                            element: <DatabaseMotors />
                         }
                     ]
                 },

@@ -1,8 +1,8 @@
 // Import from MUI
 import { Stack } from '@mui/material';
 // Import from project
-import { TableCard } from 'tables/Battery';
-import { Carrousel } from '../../../carousels/battery'
+import { TableCard } from 'tables/Motors';
+import { Carrousel } from '../../../carousels/motors'
 
 // --------- database - odometry --------- \\
 const dbActions = () => {

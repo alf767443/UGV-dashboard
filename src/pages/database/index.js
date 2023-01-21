@@ -2,6 +2,7 @@
 import { Grid, Typography, Stack } from '@mui/material';
 // project import
 import { BatteryButtons } from './buttons/batteryButtons';
+import { MotorsButtons } from './buttons/motorsButtons';
 import { stackParameters } from './styles';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -20,6 +21,7 @@ const DataBase = () => {
                 <Typography variant="h3" color="textSecondary"></Typography>
                 {/*Position databases*/}
                 <BatteryButtons />
+                <MotorsButtons />
             </Stack>
         </Grid>
     );

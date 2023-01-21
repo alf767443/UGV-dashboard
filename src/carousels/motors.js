@@ -7,10 +7,9 @@ import MainCard from 'components/MainCard';
 
 // Import from project
 import tableSx from 'tables/tableSx';
-import CurrentDatetimeArea from 'graphs/battery/currentDatetimeArea';
-import PercentageDatetimeArea from 'graphs/battery/percentageDatetimeArea';
-import PowerDatetimeArea from 'graphs/battery/powerDatetimeArea';
-import VoltageDatetimeArea from 'graphs/battery/voltageDatetimeArea';
+import CurrentDatetimeLine from 'graphs/motors/currentDatetimeLine' ;
+import PWMDatetimeLine from 'graphs/motors/PWMDatetimeLine';
+import RotationRateDatetimeLine from 'graphs/motors/rrateDatetimeLine';
 
 // --------- table physical data - index --------- \\
 export class Carrousel extends Component {
@@ -36,10 +35,9 @@ export class Carrousel extends Component {
             case 1:
                 return(
                     <Stack direction="row" spacing={2}>
-                        <CurrentDatetimeArea />
-                        <PercentageDatetimeArea />
-                        <PowerDatetimeArea />
-                        <VoltageDatetimeArea />
+                        <CurrentDatetimeLine />
+                        <PWMDatetimeLine />
+                        <RotationRateDatetimeLine />
                     </Stack>
                 );
         }
@@ -51,7 +49,7 @@ export class Carrousel extends Component {
                 <Box sx={{ p: 3, pb: 0 }}>
                     <Stack spacing={2}>
                         <Typography variant="h3" color="textSecondary">
-                            Battery plots
+                            Motors plots
                         </Typography>
                         {this.graphs()}
                         <Pagination count={1} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
