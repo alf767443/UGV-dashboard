@@ -1,9 +1,8 @@
 // material-ui
 import { Grid } from '@mui/material';
-import CurrentDatetimeArea from 'graphs/battery/currentDatetimeArea';
-import PercentageDatetimeArea from 'graphs/battery/percentageDatetimeArea';
-import PowerDatetimeArea from 'graphs/battery/powerDatetimeArea';
-import VoltageDatetimeArea from 'graphs/battery/voltageDatetimeArea';
+import CurrentDatetimeLine from 'graphs/motors/currentDatetimeLine' ;
+import PWMDatetimeLine from 'graphs/motors/PWMDatetimeLine';
+import RotationRateDatetimeLine from 'graphs/motors/rrateDatetimeLine';
 
 // project import
 
@@ -13,10 +12,9 @@ const DashboardDefault = () => {
     return (
         <Grid container rowSpacing={1.75} columnSpacing={2}>
             {/* Main block */}
-            <PercentageDatetimeArea />
-            <CurrentDatetimeArea />
-            <VoltageDatetimeArea />
-            <PowerDatetimeArea />
+            <CurrentDatetimeLine />
+            <PWMDatetimeLine />
+            <RotationRateDatetimeLine />
         </Grid>
     );
 };
