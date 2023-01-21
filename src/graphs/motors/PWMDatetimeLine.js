@@ -97,7 +97,6 @@ export default class PWMDatetimeLine extends React.Component {
 			console.log(error);
 		});
 		this.setState({data: [...this.state.left, ...this.state.right]})
-		console.log(this.state.data)
     }
 
     componentDidMount = () => {
