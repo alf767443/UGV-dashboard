@@ -97,7 +97,7 @@ export default class PowerDatetimeArea extends React.Component {
 
 	canUpdate(){
 		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
-			this.setState({ ticks: 100})
+			this.setState({ ticks: 10})
 			this.refreshList()
 		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
 			// From MongoDB cloud
@@ -117,6 +117,7 @@ export default class PowerDatetimeArea extends React.Component {
     }
 
     componentDidMount = () => {
+		this.refreshList();
 		this.timer();
     }
 
