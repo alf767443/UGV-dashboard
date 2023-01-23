@@ -13,7 +13,7 @@ var raw = JSON.stringify({
 		{
 			'$project': {
 				'dateTime': 1,
-				'percentage': 1
+				'current': 1
 			}
 		}, {
 			'$sort': {
@@ -25,15 +25,15 @@ var raw = JSON.stringify({
 	]
 });
 
-export default class PercentageBullet extends React.Component {
+export default class CurrentBullet extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
       data: [],
       out: {
-            title: 'Percentage',
-            ranges: [20, 40, 60, 80, 100],
+            title: 'Current',
+            ranges: [2, 3, 3.5],
             measures: [0],
             value: null,
           },
@@ -55,7 +55,7 @@ export default class PercentageBullet extends React.Component {
 		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json[0].percentage.toFixed(4) * 100 });
+			this.setState({ data: json[0].percentage.toFixed(4)});
 		})
 		.catch((error) => {
 			console.log(error);
@@ -89,7 +89,7 @@ export default class PercentageBullet extends React.Component {
             target: 30,
         },
         color: {
-          range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74'],
+          range: ['#82FF74', '#F5F16E', '#FF7772'],
           measure: '#5B8FF9',
           target: '#39a3f4',
         },
@@ -105,7 +105,7 @@ export default class PercentageBullet extends React.Component {
 
 	render() {
 		return (
-          <Bullet {...this.config} data={[{...this.state.out, value: this.state.data}]}/>
+				<Bullet {...this.config} data={[{...this.state.out, value: this.state.data}]}/>
 		);
 	}
 }
