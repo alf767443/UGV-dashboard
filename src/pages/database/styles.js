@@ -12,7 +12,7 @@ export const gridParameters = {
 };
 
 export const stackParameters = {
-    direction: 'column',
+    direction: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'flex-start',
     spacing: 2

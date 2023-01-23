@@ -1,14 +1,8 @@
-//import { useState } from 'react';
-
 // material-ui
 import { Grid, Typography, Stack } from '@mui/material';
 // project import
-//import DataBaseButtons from './buttons/button';
-import { PositionButtons } from './buttons/positionButtons';
 import { BatteryButtons } from './buttons/batteryButtons';
-import { ActionButtons } from './buttons/actionButtons';
-import { RouteButtons } from './buttons/routeButtons';
-import { DecisionButtons } from './buttons/decisionButtons';
+import { MotorsButtons } from './buttons/motorsButtons';
 import { stackParameters } from './styles';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -26,15 +20,8 @@ const DataBase = () => {
                 {/*Spacing*/}
                 <Typography variant="h3" color="textSecondary"></Typography>
                 {/*Position databases*/}
-                <PositionButtons />
-                {/*Decisions databases*/}
-                <DecisionButtons />
-                {/*Battery databases*/}
                 <BatteryButtons />
-                {/*Actions databases*/}
-                <ActionButtons />
-                {/*Route databases*/}
-                <RouteButtons />
+                <MotorsButtons />
             </Stack>
         </Grid>
     );

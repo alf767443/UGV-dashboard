@@ -9,18 +9,18 @@ import MainCard from 'components/MainCard';
 import { DataTable } from './dataTable';
 import tableSx from 'tables/tableSx';
 
-// --------- table Gyroscope - index --------- \\
-export class StatusCard extends Component {
+// --------- table physical data - index --------- \\
+export class TableCard extends Component {
     render() {
         return (
             <MainCard sx={tableSx} content={false}>
                 <Box sx={{ p: 3, pb: 0 }}>
                     <Stack spacing={2}>
                         <Typography variant="h3" color="textSecondary">
-                            Battery status
+                            Battery data
                         </Typography>
+                        <DataTable />
                     </Stack>
-                    <DataTable />
                 </Box>
             </MainCard>
         );

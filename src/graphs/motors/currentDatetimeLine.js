@@ -1,7 +1,7 @@
 
 import React from "react";
 
-import { Area } from '@ant-design/plots';
+import { Line } from '@ant-design/plots';
 
 
 // Import from project
@@ -11,10 +11,10 @@ import MainCard from "components/MainCard";
 import styles from "graphs/styles";
 import { Box, Typography, Stack } from '@mui/material';
 
-var raw = JSON.stringify({
+var raw = (side) => JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_buffer",
-	"collection": "Battery_Data",
+	"collection": "Motor_Data",
 	"pipeline": [
 		{
 			'$project': {
@@ -24,15 +24,8 @@ var raw = JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'voltage': {
-					'$cond': [
-						{
-							'$eq': [
-								'NaN', '$voltage'
-							]
-						}, null, '$voltage'
-					]
-				}
+				'left.current': 1, 
+				'right.current': 1
 			}
 		}, {
 			'$densify': {
@@ -46,8 +39,8 @@ var raw = JSON.stringify({
 		}, {
 			'$group': {
 				'_id': '$dateTime', 
-				'voltage': {
-					'$avg': '$voltage'
+				'current': {
+					'$avg': "$" + side + ".current"
 				}
 			}
 		}, {
@@ -56,16 +49,22 @@ var raw = JSON.stringify({
 			}
 		}, {
 			'$limit': 100
+		}, {
+			'$addFields': {
+				'side': side
+			}
 		}
 	]
 });
 
-export default class VoltageDatetimeArea extends React.Component {
+export default class CurrentDatetimeLine extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
             data: [],
+			right: [],
+			left: [],
 			ticks: -1
         };
     }
@@ -81,14 +80,23 @@ export default class VoltageDatetimeArea extends React.Component {
 	}
 
     refreshList() {
-		fetch(url(), requestOptions(raw))
+		fetch(url(), requestOptions(raw("left")))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json });
+			this.setState({ left: json });
 		})
 		.catch((error) => {
 			console.log(error);
 		});
+		fetch(url(), requestOptions(raw("right")))
+		.then((response) => response.json())
+		.then((json) => {
+			this.setState({ right: json });
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+		this.setState({data: [...this.state.left, ...this.state.right]})
     }
 
     componentDidMount = () => {
@@ -109,7 +117,8 @@ export default class VoltageDatetimeArea extends React.Component {
 	config = {
 		padding: 'auto',
 		xField: '_id',
-		yField: 'voltage',
+		yField: 'current',
+		seriesField: 'side',
 		xAxis: {
 			tickCount: 5,
 			type: 'time',
@@ -121,12 +130,12 @@ export default class VoltageDatetimeArea extends React.Component {
 		yAxis:{
 			tickCount: 10,
 			title: {
-				text: "Battery voltage [V]"
+				text: "Motor current [A]"
 			}
 		},tooltip: {
 			formatter: (data) => {
-				if (data['voltage'] != null){
-					return { name: 'Voltage', value: data['voltage'].toFixed(1) + ' V' };
+				if (data['current'] != null){
+					return { name: 'Current', value: data['current'].toFixed(1) + ' A' };
 				}
 				return {};
 			},	
@@ -141,12 +150,12 @@ export default class VoltageDatetimeArea extends React.Component {
 				<Box sx={styles.box.sx}>
 					<Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
 						<Typography variant={styles.typography.variant} color={styles.typography.color}>
-							Battery voltage by time
+							Battery current by time
 						</Typography>
-						<Area 
+						<Line 
 							{...this.config} 
 							data={this.state.data} 
-							{... styles.graph.medium} 
+							{...styles.graph.medium} 
 						/>
 					</Stack>
 				</Box>

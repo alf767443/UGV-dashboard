@@ -63,6 +63,7 @@ export default class ConnectivityIcon extends React.Component {
     }
 
     componentDidMount = () => {
+		this.refreshList();
 		this.timer();
     }
 

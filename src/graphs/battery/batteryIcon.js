@@ -60,6 +60,7 @@ export default class BatteryIcon extends React.Component {
     }
 
     componentDidMount = () => {
+		this.refreshList();
 		this.timer();
     }
 
