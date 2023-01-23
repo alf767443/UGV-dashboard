@@ -6,7 +6,6 @@ import { Bullet } from '@ant-design/plots';
 // Import from project
 import { url, requestOptions } from 'API/url';
 
-
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_buffer",
@@ -29,27 +28,27 @@ var raw = JSON.stringify({
 
 const data = [
     {
-      title: '重庆',
-      ranges: [30, 90, 120],
+      title: 'Percent',
+      ranges: [20, 80, 100],
       measures: [65],
       target: 80,
     },
     {
-      title: '杭州',
-      ranges: [30, 90, 120],
-      measures: [50],
+      title: 'Current',
+      ranges: [1, 4, 8],
+      measures: [3],
       target: 100,
     },
     {
-      title: '广州',
-      ranges: [30, 90, 120],
-      measures: [40],
+      title: 'Voltage',
+      ranges: [16, 24, 26],
+      measures: [20],
       target: 85,
     },
     {
-      title: '深圳',
-      ranges: [30, 90, 120],
-      measures: [50],
+      title: 'Temperature',
+      ranges: [0, 50, 100],
+      measures: [60],
       target: 100,
     },
   ];   
@@ -123,9 +122,8 @@ export default class InstantDataBattery extends React.Component {
             line: null,
         },
         yAxis: false,
-        // 自定义 legend
         legend: {
-            custom: true,
+            custom: false,
             position: 'bottom',
             items: [
             {
