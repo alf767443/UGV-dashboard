@@ -13,7 +13,7 @@ var raw = JSON.stringify({
 		{
 			'$project': {
 				'dateTime': 1,
-				'percentage': 1
+				'voltage': 1
 			}
 		}, {
 			'$sort': {
@@ -25,14 +25,14 @@ var raw = JSON.stringify({
 	]
 });
 
-export default class PercentageBullet extends React.Component {
+export default class VoltageBullet extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
       data: [],
       out: {
-            title: 'Percentage',
+            title: 'Voltage',
             ranges: [20, 40, 60, 80, 100],
             measures: [0],
             value: null,
@@ -55,7 +55,7 @@ export default class PercentageBullet extends React.Component {
 		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json[0].percentage.toFixed(4) * 100 });
+			this.setState({ data: json[0].voltage.toFixed(4) });
 		})
 		.catch((error) => {
 			console.log(error);
@@ -101,7 +101,7 @@ export default class PercentageBullet extends React.Component {
             measure: false,
             target: true,
         },  
-        height: 40,
+		height: 40,
         width: 350
       };
 

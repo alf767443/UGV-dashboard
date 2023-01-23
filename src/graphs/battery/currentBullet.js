@@ -101,6 +101,8 @@ export default class CurrentBullet extends React.Component {
             measure: false,
             target: true,
         },  
+		height: 40,
+        width: 350
       };
 
 	render() {
