@@ -12,71 +12,33 @@ var raw = JSON.stringify({
 	"pipeline": [
 		{
 			'$project': {
-				'dateTime': {
-					'$dateTrunc': {
-						'date': '$dateTime', 
-						'unit': 'minute'
-					}
-				}, 
-				'current': {
-					'$cond': [
-						{
-							'$eq': [
-								'NaN', '$current'
-							]
-						}, null, '$current'
-					]
-				}
-			}
-		}, {
-			'$densify': {
-				'field': 'dateTime', 
-				'range': {
-					'step': 1, 
-					'unit': 'minute', 
-					'bounds': 'full'
-				}
-			}
-		}, {
-			'$group': {
-				'_id': '$dateTime', 
-				'current': {
-					'$avg': '$current'
-				}
+				'dateTime': 1,
+				'percentage': 1
 			}
 		}, {
 			'$sort': {
-				'_id': -1
-			}
+				'dateTime': -1
+				}
 		}, {
-			'$limit': 100
+			'$limit': 1
 		}
 	]
 });
-/*
-const data = [
-    {
-      title: 'Percentage',
-      ranges: [40, 70, 100],
-      measures: [80],
-      target: 85,
-    },
-  ];
-*/
+
 export default class PercentageBullet extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-            data: [],
-            out: [{
-                  title: 'Percentage',
-                  ranges: [20, 40, 60, 80, 100],
-                  measures: [0],
-                  target: 45,
-                },],
+      data: [],
+      out: {
+            title: 'Percentage',
+            ranges: [20, 40, 60, 80, 100],
+            measures: [0],
+            value: null,
+          },
 			ticks: -1
-        };
+      };
     }
 
 	canUpdate(){
@@ -89,21 +51,22 @@ export default class PercentageBullet extends React.Component {
 		}
 	}
 
-    refreshList() {
+  refreshList() {
 		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json });
+			this.setState({ data: json[0].percentage.toFixed(4) * 100 });
 		})
 		.catch((error) => {
 			console.log(error);
 		});
-    }
+    
+  }
 
-    componentDidMount = () => {
+  componentDidMount = () => {
 		this.refreshList();
 		this.timer();
-    }
+  }
 
 	componentWillUnmount = () =>{
 		clearInterval(this.timer)
@@ -116,10 +79,9 @@ export default class PercentageBullet extends React.Component {
 	}
 
 	config = {
-        //data: this.state.out,
         measureField: 'measures',
         rangeField: 'ranges',
-        targetField: 'target',
+        targetField: 'value',
         xField: 'title',
         size: {
             range: 30,
@@ -127,7 +89,7 @@ export default class PercentageBullet extends React.Component {
             target: 30,
         },
         color: {
-          range: ['#FFbcb8', '#FFe0b0', '#bfeec8'],
+          range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74'],
           measure: '#5B8FF9',
           target: '#39a3f4',
         },
@@ -138,77 +100,14 @@ export default class PercentageBullet extends React.Component {
         label: {
             measure: false,
             target: true,
-        },
-        
-        // 自定义 legend
-        /*legend: {
-          custom: true,
-          position: 'bottom',
-          items: [
-            {
-              value: '差',
-              name: '差',
-              marker: {
-                symbol: 'square',
-                style: {
-                  fill: '#FFbcb8',
-                  r: 5,
-                },
-              },
-            },
-            {
-              value: '良',
-              name: '良',
-              marker: {
-                symbol: 'square',
-                style: {
-                  fill: '#FFe0b0',
-                  r: 5,
-                },
-              },
-            },
-            {
-              value: '优',
-              name: '优',
-              marker: {
-                symbol: 'square',
-                style: {
-                  fill: '#bfeec8',
-                  r: 5,
-                },
-              },
-            },
-            {
-              value: '实际值',
-              name: '实际值',
-              marker: {
-                symbol: 'square',
-                style: {
-                  fill: '#5B8FF9',
-                  r: 5,
-                },
-              },
-            },
-            {
-              value: '目标值',
-              name: '目标值',
-              marker: {
-                symbol: 'line',
-                style: {
-                  stroke: '#39a3f4',
-                  r: 5,
-                },
-              },
-            },
-          ],
-        },*/
+        },  
       };
 
 	render() {
 		return (
 			<div>
-                <Bullet {...this.config} data={this.state.out}/>
-            </div>
+          <Bullet {...this.config} data={[{...this.state.out, value: this.state.data}]}/>
+      </div>
 		);
 	}
 }
