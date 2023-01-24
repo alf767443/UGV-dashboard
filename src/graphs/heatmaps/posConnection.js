@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heatmap } from '@ant-design/plots';
+import cedri from './cedri.png'
 
 
 export default class ConnectivityIcon extends React.Component {
@@ -11,7 +12,7 @@ export default class ConnectivityIcon extends React.Component {
 			ticks: -1,
 			quality: 0
         };
-    }
+    }   
     //const [data, setData] = useState([]);
 
     componentDidMount = () => {
@@ -41,7 +42,7 @@ export default class ConnectivityIcon extends React.Component {
             type: 'image',
             start: ['min', 'max'],
             end: ['max', 'min'],
-            src: 'https://gw.alipayobjects.com/zos/rmsportal/NeUTMwKtPcPxIFNTWZOZ.png',
+            src: cedri,
         },
         ],
     };
