@@ -30,13 +30,7 @@ export default class VoltageBullet extends React.Component {
 		super(props);
 
 		this.state = {
-      data: [],
-      out: {
-            title: 'Voltage',
-            ranges: [20, 40, 60, 80, 100],
-            measures: [0],
-            value: null,
-          },
+			data: [],
 			ticks: -1
       };
     }
@@ -55,7 +49,7 @@ export default class VoltageBullet extends React.Component {
 		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json[0].voltage.toFixed(4) });
+			this.setState({ data: json[0] });
 		})
 		.catch((error) => {
 			console.log(error);
@@ -85,11 +79,11 @@ export default class VoltageBullet extends React.Component {
         xField: 'title',
         size: {
             range: 30,
-            measure: 0,
+            measure: 10,
             target: 30,
         },
         color: {
-          range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74'],
+          range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74', '#FF7772'],
           measure: '#5B8FF9',
           target: '#39a3f4',
         },
@@ -105,9 +99,18 @@ export default class VoltageBullet extends React.Component {
         width: 350
       };
 
+	data = () => {
+		return [{
+			title: 'Voltage',
+			ranges: [20,23,24,25,27,28],
+			measures: [25],
+			value: Math.round(this.state.data['voltage']*100)/100
+		}]
+	}
+
 	render() {
 		return (
-          <Bullet {...this.config} data={[{...this.state.out, value: this.state.data}]}/>
+          <Bullet {...this.config} data={this.data()} />
 		);
 	}
 }

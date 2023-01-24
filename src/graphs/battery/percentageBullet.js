@@ -31,12 +31,6 @@ export default class PercentageBullet extends React.Component {
 
 		this.state = {
       data: [],
-      out: {
-            title: 'Percentage',
-            ranges: [20, 40, 60, 80, 100],
-            measures: [0],
-            value: null,
-          },
 			ticks: -1
       };
     }
@@ -55,7 +49,7 @@ export default class PercentageBullet extends React.Component {
 		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json[0].percentage.toFixed(4) * 100 });
+			this.setState({ data: json[0] });
 		})
 		.catch((error) => {
 			console.log(error);
@@ -101,13 +95,22 @@ export default class PercentageBullet extends React.Component {
             measure: false,
             target: true,
         },  
-        height: 40,
+		height: 40,
         width: 350
       };
 
+    data = () => {
+      return [{
+        title: 'Percentage',
+        ranges: [20, 40, 60, 80, 100],
+        measures: [0],
+        value: Math.round(this.state.data['percentage']*100)
+      }]
+    }
+
 	render() {
 		return (
-          <Bullet {...this.config} data={[{...this.state.out, value: this.state.data}]}/>
+          <Bullet {...this.config} data={this.data()}/>
 		);
 	}
 }

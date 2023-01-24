@@ -30,15 +30,9 @@ export default class CurrentBullet extends React.Component {
 		super(props);
 
 		this.state = {
-      data: [],
-      out: {
-            title: 'Current',
-            ranges: [2, 3, 3.5],
-            measures: [0],
-            value: null,
-          },
+			data: [],
 			ticks: -1
-      };
+		};
     }
 
 	canUpdate(){
@@ -55,7 +49,7 @@ export default class CurrentBullet extends React.Component {
 		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json[0].percentage.toFixed(4)});
+			this.setState({ data: json[0]});//.current.toFixed(2)});
 		})
 		.catch((error) => {
 			console.log(error);
@@ -105,9 +99,19 @@ export default class CurrentBullet extends React.Component {
         width: 350
       };
 
+	data = () => {
+		return [{
+            title: 'Current',
+            ranges: [2, 3, 3.5],
+            measures: [0],
+			value: Math.round(this.state.data['current']*100)/100
+		}]
+	}
+
+
 	render() {
 		return (
-				<Bullet {...this.config} data={[{...this.state.out, value: this.state.data}]}/>
+				<Bullet {...this.config} data={this.data()} />
 		);
 	}
 }
