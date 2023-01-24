@@ -23,6 +23,6 @@ export const url = function(){
     // From MongoDB cloud
         return 'http://192.168.217.183:8000/query/'
     } else{
-        return 'http://192.168.217.183:8000/query/'
+        return 'http://127.0.0.1:8000/query/'
     }
 }
