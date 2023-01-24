@@ -103,7 +103,7 @@ export default class VoltageBullet extends React.Component {
 		return [{
 			title: 'Voltage',
 			ranges: [20,23,24,25,27,28],
-			measures: [25],
+			measures: [0],
 			value: Math.round(this.state.data['voltage']*100)/100
 		}]
 	}
