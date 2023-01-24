@@ -10,6 +10,7 @@ import tableSx from 'tables/tableSx';
 import CurrentDatetimeLine from 'graphs/motors/currentDatetimeLine' ;
 import PWMDatetimeLine from 'graphs/motors/PWMDatetimeLine';
 import RotationRateDatetimeLine from 'graphs/motors/rrateDatetimeLine';
+import MotorBullets from 'graphs/motors/groupBullet';
 
 // --------- table physical data - index --------- \\
 export class Carrousel extends Component {
@@ -40,6 +41,12 @@ export class Carrousel extends Component {
                         <RotationRateDatetimeLine />
                     </Stack>
                 );
+            case 2:
+                return(
+                    <Stack direction="row" spacing={2}>
+                        <MotorBullets />
+                    </Stack>
+                );
         }
     }
 
@@ -52,7 +59,7 @@ export class Carrousel extends Component {
                             Motors plots
                         </Typography>
                         {this.graphs()}
-                        <Pagination count={1} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
+                        <Pagination count={2} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
                     </Stack>    
                 </Box>
             </MainCard>
