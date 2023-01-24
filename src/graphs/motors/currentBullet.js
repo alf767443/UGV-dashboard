@@ -8,22 +8,24 @@ import { url, requestOptions } from 'API/url';
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_buffer",
-	"collection": "Battery_Data",
+	"collection": "Motor_Data",
 	"pipeline": [
-		{
-            '$project': {
-                'dateTime': 1,
-				'left.current': 1, 
-				'right.current': 1
-			}
-		}, {
-			'$sort': {
-				'_id': -1
-			}
-		}, {
-			'$limit': 1
-		},
-	]
+        {
+          $project: {
+            dateTime: 1,
+            left: "$left.current",
+            right: "$right.current",
+          },
+        },
+        {
+          $sort: {
+            _id: -1,
+          },
+        },
+        {
+          $limit: 1,
+        },
+      ]
 });
 
 export default class CurrentBullet extends React.Component {
@@ -96,17 +98,25 @@ export default class CurrentBullet extends React.Component {
             measure: false,
             target: true,
         },  
-		height: 40,
+		height: 80,
         width: 350
       };
 
 	data = () => {
-		return [{
-            title: 'Current',
-            ranges: [2, 3, 3.5],
-            measures: [0],
-			value: Math.round(this.state.data['current']*100)/100
-		}]
+        console.log(this.state.data['left']);  
+		return [
+            {
+                title: 'Left current',
+                ranges: [2, 3, 3.5],
+                measures: [0],
+                value: Math.round(this.state.data['left']*100)/100
+            }, {
+                title: 'Right current',
+                ranges: [2, 3, 3.5],
+                measures: [0],
+                value: Math.round(this.state.data['right']*100)/100
+            },
+        ]
 	}
 
 

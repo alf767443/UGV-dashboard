@@ -1,9 +1,7 @@
 // material-ui
 import { Grid } from '@mui/material';
 import DemoHeatmap from 'graphs/heatmaps/posConnection';
-import PercentageBullet from 'graphs/battery/percentageBullet';
-import CurrentBullet from 'graphs/battery/currentBullet';
-import VoltageBullet from 'graphs/battery/voltageBullet';
+import CurrentBullet from 'graphs/motors/currentBullet';
 import { Stack } from '../../../node_modules/@mui/joy/index';
 
 
@@ -17,9 +15,7 @@ const DashboardDefault = () => {
             {/* Main block */}
             <DemoHeatmap />
             <Stack direction={'column'} alignItems={'center'} spacing={0} >
-                <PercentageBullet />
                 <CurrentBullet />
-                <VoltageBullet />
             </Stack>
         </Grid>
     );
