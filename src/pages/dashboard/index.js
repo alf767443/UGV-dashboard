@@ -3,7 +3,6 @@ import { Grid } from '@mui/material';
 import DemoHeatmap from 'graphs/heatmaps/posConnection';
 import MotorBullets from 'graphs/motors/groupBullet';
 
-
 // project import
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
