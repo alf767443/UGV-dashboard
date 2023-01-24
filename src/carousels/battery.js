@@ -11,6 +11,7 @@ import CurrentDatetimeArea from 'graphs/battery/currentDatetimeArea';
 import PercentageDatetimeArea from 'graphs/battery/percentageDatetimeArea';
 import PowerDatetimeArea from 'graphs/battery/powerDatetimeArea';
 import VoltageDatetimeArea from 'graphs/battery/voltageDatetimeArea';
+import BatteryBullets from 'graphs/battery/groupBullet';
 
 // --------- table physical data - index --------- \\
 export class Carrousel extends Component {
@@ -42,6 +43,12 @@ export class Carrousel extends Component {
                         <VoltageDatetimeArea />
                     </Stack>
                 );
+            case 2:
+                return(
+                    <Stack direction="row" spacing={2}>
+                        <BatteryBullets />
+                    </Stack>
+                )
         }
     }
 
@@ -54,7 +61,7 @@ export class Carrousel extends Component {
                             Battery plots
                         </Typography>
                         {this.graphs()}
-                        <Pagination count={1} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
+                        <Pagination count={2} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
                     </Stack>    
                 </Box>
             </MainCard>
