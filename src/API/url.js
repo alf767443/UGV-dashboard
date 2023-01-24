@@ -21,7 +21,7 @@ export const requestOptions = function(raw = ""){
 export const url = function(){
     if (!JSON.parse(window.localStorage.getItem('fromLocal'))) {
     // From MongoDB cloud
-        return 'http://127.0.0.1:8000/query/'
+        return 'http://192.168.217.183:8000/query/'
     } else{
         return 'http://127.0.0.1:8000/query/'
     }
