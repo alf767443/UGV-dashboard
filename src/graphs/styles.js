@@ -43,21 +43,40 @@ const styles = {
         content: false
     },
     bullet:{
-        size: {
-            range: 30,
-            measure: 0,
-            target: 30,
+        simple: {
+            size: {
+                range: 30,
+                measure: 0,
+                target: 30,
+            },
+            height: 50,
+            width: 350,
+            xAxis: {
+              line: null,
+            },
+            yAxis: false,
+            label: {
+                measure: false,
+                target: true,
+            },  
         },
-        height: 50,
-        width: 350,
-        xAxis: {
-          line: null,
-        },
-        yAxis: false,
-        label: {
-            measure: false,
-            target: true,
-        },  
+        dual: {
+            size: {
+                range: 30,
+                measure: 0,
+                target: 30,
+            },
+            height: 200,
+            width: 90,
+            xAxis: {
+              line: null,
+            },
+            yAxis: false,
+            label: {
+                measure: false,
+                target: true
+            }
+        }
     }
 };
 

@@ -96,7 +96,7 @@ export default class PercentageBullet extends React.Component {
 
 	render() {
 		return (
-          <Bullet {...this.config} data={this.data()} {...styles.bullet}/>
+          <Bullet {...this.config} data={this.data()} {...styles.bullet.simple}/>
 		);
 	}
 }
