@@ -1,5 +1,5 @@
 // material-ui
-import { Grid } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 import DemoHeatmap from 'graphs/heatmaps/posConnection';
 import BatteryBullets from 'graphs/battery/groupBullet'
 import MotorBullets from 'graphs/motors/groupBullet';
@@ -14,12 +14,23 @@ const DashboardDefault = () => {
         <Grid container rowSpacing={1.75} columnSpacing={2}>
             {/* Main block */}
             
-            {/*Battery group*/}
-            <Grid>
-                <PercentageDatetimeArea />
-                <BatteryBullets />
-            </Grid>
-
+            {/*First column*/}
+            <Stack spacing={0} direction={'column'} alignItems={'center'}>
+                {/*Battery group*/}
+                <Grid>
+                    <PercentageDatetimeArea />
+                    <BatteryBullets />
+                </Grid>
+            </Stack>
+            {/*Second column*/}
+            <Stack spacing={0} direction={'column'} alignItems={'center'}>
+                {/*Battery group*/}
+                <Grid>
+                    
+                    <PercentageDatetimeArea />
+                    <MotorBullets />
+                </Grid>
+            </Stack>
             <Grid>
                 <DemoHeatmap />
                 <MotorBullets />
