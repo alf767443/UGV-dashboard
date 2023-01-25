@@ -5,6 +5,7 @@ import { Bullet } from '@ant-design/plots';
 // Import from project
 import { url, requestOptions } from 'API/url';
 import styles from "graphs/styles";
+import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -89,26 +90,31 @@ export default class PWMBullet extends React.Component {
       };
 
 	data = () => {
-        console.log(this.state.data['left']);  
 		return [
-            {
-                title: 'Left PWM',
-                ranges: [65, 85, 100],
-                measures: [0],
-                value: Math.round(this.state.data['left']*100)/100
-            }, {
-                title: 'Right PWM',
-                ranges: [65, 85, 100],
-                measures: [0],
-                value: Math.round(this.state.data['right']*100)/100
-            },
-        ]
+    {
+      title: 'Right',
+      ranges: [65, 85, 100],
+      measures: [0],
+      value: Math.round(this.state.data['right']*100)/100
+    },
+    {
+        title: 'Left',
+        ranges: [65, 85, 100],
+        measures: [0],
+        value: Math.round(this.state.data['left']*100)/100
+    }, 
+    ]
 	}
 
 
 	render() {
 		return (
-				<Bullet {...this.config} data={this.data()} {...styles.bullet.dual} />
+    <Stack>
+      <Bullet {...this.config} data={this.data()} {...styles.bullet.dual} />
+      <Typography {...styles.typography.subtitle}>
+        PWM
+      </Typography>
+    </Stack>
 		);
 	}
 }

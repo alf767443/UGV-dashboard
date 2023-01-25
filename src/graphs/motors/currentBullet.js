@@ -115,7 +115,6 @@ export default class CurrentBullet extends React.Component {
                         Current
                     </Typography>
 				</Stack>
-				
 		);
 	}
 }
