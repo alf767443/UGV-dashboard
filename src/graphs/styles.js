@@ -23,8 +23,16 @@ const styles = {
         spacing: 1
     },
     typography: {
-        variant: 'h5',
-        color: 'textSecondary'
+        title: {
+            align: 'center',
+            variant: 'h5',
+            color: 'textSecondary'
+        },
+        subtitle:{
+            align: 'center',
+            variant: 'h6',
+            color: 'textSecondary' 
+        },
     },
     box: {
         sx: {
@@ -75,7 +83,8 @@ const styles = {
             label: {
                 measure: false,
                 target: true
-            }
+            },
+            layout: 'vertical',
         }
     }
 };

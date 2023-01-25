@@ -5,6 +5,7 @@ import { Bullet } from '@ant-design/plots';
 // Import from project
 import { url, requestOptions } from 'API/url';
 import styles from "graphs/styles";
+import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -86,29 +87,35 @@ export default class CurrentBullet extends React.Component {
           measure: '#5B8FF9',
           target: '#39a3f4',
         },
-		layout: 'vertical',
       };
 
 	data = () => {
 		return [
-		{
-			title: 'Left current',
-			ranges: [2, 3, 3.5],
-			measures: [0],
-			Current: Math.round(this.state.data['left']*100)/100
-		}, {
-			title: 'Right current',
-			ranges: [2, 3, 3.5],
-			measures: [0],
-			Current: Math.round(this.state.data['right']*100)/100
-		},
+			{
+				title: 'Right',
+				ranges: [2, 3, 3.5],
+				measures: [0],
+				Current: Math.round(this.state.data['right']*100)/100
+			},
+			{
+				title: 'Left',
+				ranges: [2, 3, 3.5],
+				measures: [0],
+				Current: Math.round(this.state.data['left']*100)/100
+			}, 
 		]
 	}
 
 
 	render() {
 		return (
-				<Bullet {...this.config} data={this.data()} {...styles.bullet.dual} />
+				<Stack>
+					<Bullet {...this.config} data={this.data()} {...styles.bullet.dual} />
+					<Typography {...styles.typography.subtitle}>
+                        Current
+                    </Typography>
+				</Stack>
+				
 		);
 	}
 }
