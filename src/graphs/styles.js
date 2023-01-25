@@ -23,20 +23,69 @@ const styles = {
         spacing: 1
     },
     typography: {
-        variant: 'h5',
-        color: 'textSecondary'
+        title: {
+            align: 'center',
+            variant: 'h5',
+            color: 'textSecondary'
+        },
+        subtitle:{
+            align: 'center',
+            variant: 'h6',
+            color: 'textSecondary' 
+        },
     },
     box: {
         sx: {
-            p: 2,
+            p: 1,
             pb: 1
         }
     },
     maincard: {
         sx: {
-            mt: 2
+            mt: 1,
+            mr: 1,
+            ml: 1,
+            mb: 1
+
         },
         content: false
+    },
+    bullet:{
+        simple: {
+            size: {
+                range: 30,
+                measure: 0,
+                target: 30,
+            },
+            height: 50,
+            width: 350,
+            xAxis: {
+              line: null,
+            },
+            yAxis: false,
+            label: {
+                measure: false,
+                target: true,
+            },  
+        },
+        dual: {
+            size: {
+                range: 30,
+                measure: 0,
+                target: 30,
+            },
+            height: 200,
+            width: 90,
+            xAxis: {
+              line: null,
+            },
+            yAxis: false,
+            label: {
+                measure: false,
+                target: true
+            },
+            layout: 'vertical',
+        }
     }
 };
 

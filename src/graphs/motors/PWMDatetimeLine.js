@@ -149,7 +149,7 @@ export default class PWMDatetimeLine extends React.Component {
 			<MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
 				<Box sx={styles.box.sx}>
 					<Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
-						<Typography variant={styles.typography.variant} color={styles.typography.color}>
+						<Typography variant={styles.typography.title.variant} color={styles.typography.title.color}>
 							Battery PWM by time
 						</Typography>
 						<Line 

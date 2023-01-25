@@ -4,6 +4,8 @@ import { Bullet } from '@ant-design/plots';
 
 // Import from project
 import { url, requestOptions } from 'API/url';
+import styles from "graphs/styles";
+import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -80,49 +82,39 @@ export default class RrateBullet extends React.Component {
         rangeField: 'ranges',
         targetField: 'value',
         xField: 'title',
-        size: {
-            range: 30,
-            measure: 0,
-            target: 30,
-        },
         color: {
           range: ['#82FF74', '#F5F16E', '#FF7772'],
           measure: '#5B8FF9',
           target: '#39a3f4',
         },
-        xAxis: {
-          line: null,
-        },
-        yAxis: false,
-        label: {
-            measure: false,
-            target: true,
-        },  
-		height: 80,
-        width: 350
       };
 
 	data = () => {
-        console.log(this.state.data['left']);  
 		return [
-            {
-                title: 'Left speed',
-                ranges: [65, 85, 100],
-                measures: [0],
-                value: Math.round(this.state.data['left']*100)/100
-            }, {
-                title: 'Right speed',
+			{
+                title: 'Right',
                 ranges: [65, 85, 100],
                 measures: [0],
                 value: Math.round(this.state.data['right']*100)/100
             },
+            {
+                title: 'Left',
+                ranges: [65, 85, 100],
+                measures: [0],
+                value: Math.round(this.state.data['left']*100)/100
+            }, 
         ]
 	}
 
 
 	render() {
 		return (
-				<Bullet {...this.config} data={this.data()} />
+			<Stack>
+				<Bullet {...this.config} data={this.data()} {...styles.bullet.dual} />
+				<Typography {...styles.typography.subtitle}>
+					Rot. rate
+				</Typography>
+			</Stack>
 		);
 	}
 }
