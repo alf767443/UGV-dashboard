@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/UGV-dashboard/static/css/main.c6efb68b.css",
-    "main.js": "/UGV-dashboard/static/js/main.c65d8dae.js",
+    "main.js": "/UGV-dashboard/static/js/main.460f2cb4.js",
     "static/js/243.22ab03cd.chunk.js": "/UGV-dashboard/static/js/243.22ab03cd.chunk.js",
     "static/js/954.fb5967f5.chunk.js": "/UGV-dashboard/static/js/954.fb5967f5.chunk.js",
-    "static/js/622.f0f676c9.chunk.js": "/UGV-dashboard/static/js/622.f0f676c9.chunk.js",
+    "static/js/622.f7503ebb.chunk.js": "/UGV-dashboard/static/js/622.f7503ebb.chunk.js",
     "static/js/360.d4dd9fb3.chunk.js": "/UGV-dashboard/static/js/360.d4dd9fb3.chunk.js",
-    "static/js/387.b868582f.chunk.js": "/UGV-dashboard/static/js/387.b868582f.chunk.js",
-    "static/js/3.4cf000d8.chunk.js": "/UGV-dashboard/static/js/3.4cf000d8.chunk.js",
+    "static/js/62.74a012b9.chunk.js": "/UGV-dashboard/static/js/62.74a012b9.chunk.js",
+    "static/js/656.54e2b110.chunk.js": "/UGV-dashboard/static/js/656.54e2b110.chunk.js",
     "static/js/525.6a6b4c1a.chunk.js": "/UGV-dashboard/static/js/525.6a6b4c1a.chunk.js",
     "static/js/893.271b1528.chunk.js": "/UGV-dashboard/static/js/893.271b1528.chunk.js",
     "static/js/165.c0054bc6.chunk.js": "/UGV-dashboard/static/js/165.c0054bc6.chunk.js",
@@ -17,6 +17,7 @@
     "static/js/489.7e0d4a1b.chunk.js": "/UGV-dashboard/static/js/489.7e0d4a1b.chunk.js",
     "static/js/846.4d004b74.chunk.js": "/UGV-dashboard/static/js/846.4d004b74.chunk.js",
     "static/js/634.00404128.chunk.js": "/UGV-dashboard/static/js/634.00404128.chunk.js",
+    "static/js/158.7a4def05.chunk.js": "/UGV-dashboard/static/js/158.7a4def05.chunk.js",
     "static/media/logo_CeDRI.png": "/UGV-dashboard/static/media/logo_CeDRI.35cc9641999496b689b0.png",
     "index.html": "/UGV-dashboard/index.html",
     "static/media/google.svg": "/UGV-dashboard/static/media/google.b7da2ce748745374ee27eb11dd475b9c.svg",
@@ -25,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.c6efb68b.css",
-    "static/js/main.c65d8dae.js"
+    "static/js/main.460f2cb4.js"
   ]
 }
