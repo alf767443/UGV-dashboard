@@ -7,10 +7,8 @@ const styles = {
             */
         },
         medium:{
-            /*
             width: 400,
             height: 200
-            */
         },
         small:{
             /*
