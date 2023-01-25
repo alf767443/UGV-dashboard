@@ -28,5 +28,3 @@ const BatteryBullets = () => {
 };
 
 export default BatteryBullets;
-
-
