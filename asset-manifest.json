@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/UGV-dashboard/static/css/main.c6efb68b.css",
-    "main.js": "/UGV-dashboard/static/js/main.f444933f.js",
+    "main.js": "/UGV-dashboard/static/js/main.c65d8dae.js",
     "static/js/243.22ab03cd.chunk.js": "/UGV-dashboard/static/js/243.22ab03cd.chunk.js",
     "static/js/954.fb5967f5.chunk.js": "/UGV-dashboard/static/js/954.fb5967f5.chunk.js",
-    "static/js/622.8d4155c6.chunk.js": "/UGV-dashboard/static/js/622.8d4155c6.chunk.js",
+    "static/js/622.f0f676c9.chunk.js": "/UGV-dashboard/static/js/622.f0f676c9.chunk.js",
     "static/js/360.d4dd9fb3.chunk.js": "/UGV-dashboard/static/js/360.d4dd9fb3.chunk.js",
-    "static/js/387.ee1b5e3f.chunk.js": "/UGV-dashboard/static/js/387.ee1b5e3f.chunk.js",
-    "static/js/3.52665dd0.chunk.js": "/UGV-dashboard/static/js/3.52665dd0.chunk.js",
+    "static/js/387.b868582f.chunk.js": "/UGV-dashboard/static/js/387.b868582f.chunk.js",
+    "static/js/3.4cf000d8.chunk.js": "/UGV-dashboard/static/js/3.4cf000d8.chunk.js",
     "static/js/525.6a6b4c1a.chunk.js": "/UGV-dashboard/static/js/525.6a6b4c1a.chunk.js",
     "static/js/893.271b1528.chunk.js": "/UGV-dashboard/static/js/893.271b1528.chunk.js",
     "static/js/165.c0054bc6.chunk.js": "/UGV-dashboard/static/js/165.c0054bc6.chunk.js",
     "static/js/346.86c48d69.chunk.js": "/UGV-dashboard/static/js/346.86c48d69.chunk.js",
     "static/js/819.867a96ff.chunk.js": "/UGV-dashboard/static/js/819.867a96ff.chunk.js",
     "static/js/522.6c7316c2.chunk.js": "/UGV-dashboard/static/js/522.6c7316c2.chunk.js",
-    "static/js/546.588ce314.chunk.js": "/UGV-dashboard/static/js/546.588ce314.chunk.js",
-    "static/js/846.f4f8d4ed.chunk.js": "/UGV-dashboard/static/js/846.f4f8d4ed.chunk.js",
+    "static/js/489.7e0d4a1b.chunk.js": "/UGV-dashboard/static/js/489.7e0d4a1b.chunk.js",
+    "static/js/846.4d004b74.chunk.js": "/UGV-dashboard/static/js/846.4d004b74.chunk.js",
     "static/js/634.00404128.chunk.js": "/UGV-dashboard/static/js/634.00404128.chunk.js",
     "static/media/logo_CeDRI.png": "/UGV-dashboard/static/media/logo_CeDRI.35cc9641999496b689b0.png",
     "index.html": "/UGV-dashboard/index.html",
@@ -25,6 +25,6 @@
   },
   "entrypoints": [
     "static/css/main.c6efb68b.css",
-    "static/js/main.f444933f.js"
+    "static/js/main.c65d8dae.js"
   ]
 }
