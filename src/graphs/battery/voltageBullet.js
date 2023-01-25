@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Bullet } from '@ant-design/plots';
+import styles from "graphs/styles";
 
 // Import from project
 import { url, requestOptions } from 'API/url';
@@ -77,26 +78,11 @@ export default class VoltageBullet extends React.Component {
         rangeField: 'ranges',
         targetField: 'value',
         xField: 'title',
-        size: {
-            range: 30,
-            measure: 10,
-            target: 30,
-        },
         color: {
           range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74', '#FF7772'],
           measure: '#5B8FF9',
           target: '#39a3f4',
         },
-        xAxis: {
-          line: null,
-        },
-        yAxis: false,
-        label: {
-            measure: false,
-            target: true,
-        },  
-		height: 40,
-        width: 350
       };
 
 	data = () => {
@@ -110,7 +96,7 @@ export default class VoltageBullet extends React.Component {
 
 	render() {
 		return (
-          <Bullet {...this.config} data={this.data()} />
+          <Bullet {...this.config} data={this.data()} {...styles.bullet}/>
 		);
 	}
 }
