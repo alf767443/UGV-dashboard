@@ -1,9 +1,14 @@
 // material-ui
 import { Grid, Stack } from '@mui/material';
 import DemoHeatmap from 'graphs/heatmaps/posConnection';
-import BatteryBullets from 'graphs/battery/groupBullet'
-import MotorBullets from 'graphs/motors/groupBullet';
-import PercentageDatetimeArea from 'graphs/battery/percentageDatetimeArea';
+
+import Battery_Bullet from 'graphs/battery/groupBullet';
+import Battery_Area_Percentage from 'graphs/battery/percentageDatetimeArea';
+import Battery_Area_Current from 'graphs/battery/currentDatetimeArea'
+
+import Motor_Bullet from 'graphs/motors/groupBullet';
+import Motor_Line_Current from 'graphs/motors/currentDatetimeLine';
+import Motor_Line_PWM from 'graphs/motors/PWMDatetimeLine';
 
 // project import
 
@@ -11,29 +16,29 @@ import PercentageDatetimeArea from 'graphs/battery/percentageDatetimeArea';
 
 const DashboardDefault = () => {
     return (
-        <Grid container rowSpacing={1.75} columnSpacing={2}>
-            {/* Main block */}
-            
+        <Grid container rowSpacing={1.75} columnSpacing={1.75}>       
             {/*First column*/}
             <Stack spacing={0} direction={'column'} alignItems={'center'}>
                 {/*Battery group*/}
                 <Grid>
-                    <PercentageDatetimeArea />
-                    <BatteryBullets />
+                    <Battery_Area_Current />
+                    <Battery_Area_Percentage />
+                    <Battery_Bullet />
                 </Grid>
             </Stack>
             {/*Second column*/}
             <Stack spacing={0} direction={'column'} alignItems={'center'}>
-                {/*Battery group*/}
-                <Grid>
-                    
-                    <PercentageDatetimeArea />
-                    <MotorBullets />
+                {/*Motor group*/}
+                <Grid>   
+                    <Motor_Line_PWM />
+                    <Motor_Line_Current />
+                    <Motor_Bullet />
                 </Grid>
             </Stack>
-            <Grid>
+            {/*Third column*/}
+            <Grid>  
                 <DemoHeatmap />
-                <MotorBullets />
+                <Motor_Bullet />
             </Grid>
             
         </Grid>
