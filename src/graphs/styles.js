@@ -28,13 +28,17 @@ const styles = {
     },
     box: {
         sx: {
-            p: 2,
+            p: 1,
             pb: 1
         }
     },
     maincard: {
         sx: {
-            mt: 2
+            mt: 1,
+            mr: 1,
+            ml: 1,
+            mb: 1
+
         },
         content: false
     }
