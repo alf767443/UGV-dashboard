@@ -166,21 +166,28 @@ export default class ConnectivityIcon extends React.Component {
                 src: cedri,
             },
         ],
+        tooltip: {},
+
     };
 
     render() {
-        const position = {
-            type: 'dataMarker',
-            // src: UGV,
-            // style: {
-            //     width: 20,
-            //     height: 15,
-            // },
-            // start: [this.state.last.x,this.state.last.y],
-            // end: [this.state.last.x,this.state.last.y],
-            position: [this.state.last.x,this.state.last.y],
-            rotate: this.state.last.yaw,
-        }
+        const position = [
+            ...this.config.annotations,
+            {
+                type: 'dataMarker',
+                position: [this.state.last.x,this.state.last.y],
+                rotate: this.state.last.yaw,
+            }, {
+                type: 'text',
+                content: `(${Math.round(this.state.last.x)},${Math.round(this.state.last.y)})`,
+                style:{
+                    fontSize: 22,
+                    fill: '#fff',
+                    textAlign: 'left',
+                },
+                position: ['1%', '3%'],
+            }
+        ]
         return(
             <MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
                 <Box sx={styles.box.sx}>
@@ -188,7 +195,7 @@ export default class ConnectivityIcon extends React.Component {
                         <Typography variant={styles.typography.title.variant} color={styles.typography.title.color}>
                             UGV position
                         </Typography>
-                        <Heatmap {...this.config} data={this.state.data} sx={{width: 300, height: 300}} annotations={[...this.config.annotations, position]} />
+                        <Heatmap {...this.config} data={this.state.data} sx={{width: 300, height: 300}} annotations={position} />
                     </Stack>
                 </Box>
             </MainCard>
