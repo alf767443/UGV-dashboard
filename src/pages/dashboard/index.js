@@ -1,6 +1,6 @@
 // material-ui
 import { Grid, Stack } from '@mui/material';
-import DemoHeatmap from 'graphs/heatmaps/posConnection';
+import Position_Map from 'graphs/maps/positionMap';
 
 import Battery_Bullet from 'graphs/battery/groupBullet';
 import Battery_Area_Percentage from 'graphs/battery/percentageDatetimeArea';
@@ -21,8 +21,8 @@ const DashboardDefault = () => {
             <Stack spacing={0} direction={'column'} alignItems={'center'}>
                 {/*Battery group*/}
                 <Grid>
-                    <Battery_Area_Current />
                     <Battery_Area_Percentage />
+                    <Battery_Area_Current />
                     <Battery_Bullet />
                 </Grid>
             </Stack>
@@ -37,8 +37,7 @@ const DashboardDefault = () => {
             </Stack>
             {/*Third column*/}
             <Grid>  
-                <DemoHeatmap />
-                <Motor_Bullet />
+                <Position_Map />
             </Grid>
             
         </Grid>
