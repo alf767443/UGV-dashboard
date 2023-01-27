@@ -1,6 +1,10 @@
 // material-ui
 import { Grid, Stack } from '@mui/material';
-import DemoHeatmap from 'graphs/maps/positionMap';
+import Position_Map from 'graphs/maps/positionMap';
+
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+import Heat from 'graphs/maps/heatmaps/connectivityHeatmap'
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 import Battery_Bullet from 'graphs/battery/groupBullet';
 import Battery_Area_Percentage from 'graphs/battery/percentageDatetimeArea';
@@ -37,7 +41,8 @@ const DashboardDefault = () => {
             </Stack>
             {/*Third column*/}
             <Grid>  
-                <DemoHeatmap />
+                <Position_Map />
+                <Heat />
             </Grid>
             
         </Grid>

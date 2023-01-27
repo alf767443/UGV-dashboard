@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heatmap } from '@ant-design/plots';
-import cedri from './images/cedri.png'
+import cedri from '../images/cedri.png'
 import { url, requestOptions } from 'API/url';
 import styles from 'graphs/styles';
 
@@ -32,27 +32,58 @@ var rawPosition = JSON.stringify({
 var raw = JSON.stringify({
     "dataSource": "CeDRI",
 	"database": "CeDRI_UGV_buffer",
-	"collection": "PositionAMCL_Data",
+	"collection": "PositionOdom_Data",
 	"pipeline": [
-		{
-			'$project': {
-				'dateTime': 1,
-				'x': 1,
-				'y': 1, 
-                'yaw': '$orient.yaw',
-			}
-		}, {
-			'$sort': {
-				'dateTime': -1
-				}
-		}, {
-			'$limit': 1
-		}, {
-            '$set': {
-                'count': 0
+        {
+            '$project': {
+                'dateTime': {
+                    '$dateTrunc': {
+                        'date': '$dateTime', 
+                        'unit': 'minute'
+                    }
+                }, 
+                'x': {
+                    '$toInt': '$x'
+                }, 
+                'y': {
+                    '$toInt': '$y'
+                }, 
+                'orient': 1
             }
-        }
-	]
+        }, {
+            '$addFields': {
+                'xy': {
+                    '$concat': [
+                        {
+                            '$toString': [
+                                '$x'
+                            ]
+                        }, ':', {
+                            '$toString': [
+                                '$y'
+                            ]
+                        }
+                    ]
+                }
+            }
+        }, {
+            '$group': {
+                '_id': '$xy', 
+                'x': {
+                    '$avg': '$x'
+                }, 
+                'y': {
+                    '$avg': '$y'
+                }, 
+                'yaw': {
+                    '$avg': '$orient.yaw'
+                }, 
+                'count': {
+                    '$count': {}
+                }
+            }
+        }, 
+    ]
 })
 
 
@@ -61,7 +92,7 @@ export default class ConnectivityIcon extends React.Component {
 		super(props);
 
 		this.state = {
-            data: [{x:0,y:0,count:0}],//[{x:-3520, y:-2960, cont:null},{x:3520, y:2960, count:null}],
+            data: [{x:-3520, y:-2960, cont:null},{x:3520, y:2960, count:null}],
             last: {x:0,y:0,yaw:2},
 			ticks: -1,
 			quality: 0
@@ -95,8 +126,7 @@ export default class ConnectivityIcon extends React.Component {
         fetch(url(), requestOptions(raw))
         .then((response) => response.json())
         .then((json) => {
-            this.setState({ data: json });
-            //this.setState({ data: [...json, {x:-3520, y:-2960, count:null},{x:3520, y:2960, count:null}] });
+            this.setState({ data: [...json, {x:-3520, y:-2960, count:null},{x:3520, y:2960, count:null}] });
         })
         .catch((error) => {
             console.log(error)
@@ -123,24 +153,11 @@ export default class ConnectivityIcon extends React.Component {
         type: 'density',
         xField: 'x',
         yField: 'y',
-        //xAxis: false,
-        xAxis:{
-            min: -3520,
-            minLimit: -3520,
-            max: 3520,
-            maxLimit: 3520,
-            label: null,
-        },
-        //yAxis: false,
-        yAxis:{
-            min: -2960,
-            minLimit: -2960,
-            max: 2960,
-            maxLimit: 2960,
-            label: null,
-        },
+        xAxis: false,
+        yAxis: false,
         colorField: 'count',
         limitInPlot: true,
+        sizeField: 5,
         color: '#F51D27-#FA541C-#FF8C12-#FFC838-#FAFFA8-#80FF73-#12CCCC-#1890FF-#6E32C2',
         annotations: [
             {
@@ -150,10 +167,14 @@ export default class ConnectivityIcon extends React.Component {
                 src: cedri,
             },
         ],
+        legend: {
+            position: 'bottom',
+          },
         tooltip: {
-            showTitle: false,
+            fields: ['_id', 'count'],
+            title: 'Count of occurencies',
             formatter: (point) => {
-                return { name: `X:${Math.round(point.x)}  Y:${Math.round(point.y)}`}//, value: `Y:${Math.round(point.y)}` };
+                return { name: point._id, value: point.count };
             },
         }
 
@@ -182,7 +203,7 @@ export default class ConnectivityIcon extends React.Component {
                 <Box sx={styles.box.sx}>
                     <Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
                         <Typography variant={styles.typography.title.variant} color={styles.typography.title.color}>
-                            UGV position
+                            Position heatmap
                         </Typography>
                         <Heatmap {...this.config} data={this.state.data} sx={{width: 300, height: 300}} annotations={position} />
                     </Stack>
