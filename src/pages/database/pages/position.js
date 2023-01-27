@@ -2,7 +2,7 @@
 import { Stack } from '@mui/material';
 // Import from project
 import { TableCard } from 'tables/Position';
-import { Carrousel } from '../../../carousels/battery'
+import { Carrousel } from '../../../carousels/position'
 
 // --------- database - odometry --------- \\
 const dbActions = () => {
