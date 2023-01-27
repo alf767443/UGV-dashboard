@@ -41,18 +41,18 @@ const columns = [
     },
     {
         title: 'X',
-        dataIndex: 'X',
+        dataIndex: 'x',
         key: 'x'
     },
     {
         title: 'Y',
-        dataIndex: 'Y',
+        dataIndex: 'x',
         key: 'x'
     },
     {
         title: 'Yaw',
-        dataIndex: 'Yaw',
-        key: 'Yaw'
+        dataIndex: ['orient','yaw'],
+        key: 'yaw'
     }
 ];
 
