@@ -1,8 +1,9 @@
 // material-ui
-import { Grid, Typography, Stack } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 // project import
 import { BatteryButtons } from './buttons/batteryButtons';
 import { MotorsButtons } from './buttons/motorsButtons';
+import { PositionButtons } from './buttons/positionButtons'
 import { stackParameters } from './styles';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -17,11 +18,10 @@ const DataBase = () => {
                 alignItems={stackParameters.alignItems}
                 spacing={stackParameters.spacing}
             >
-                {/*Spacing*/}
-                <Typography variant="h3" color="textSecondary"></Typography>
-                {/*Position databases*/}
+                {/*Spacing*/}   
                 <BatteryButtons />
                 <MotorsButtons />
+                <PositionButtons />
             </Stack>
         </Grid>
     );
