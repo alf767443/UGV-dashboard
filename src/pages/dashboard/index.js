@@ -2,10 +2,6 @@
 import { Grid, Stack } from '@mui/material';
 import Position_Map from 'graphs/maps/positionMap';
 
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-import Heat from 'graphs/maps/heatmaps/connectivityHeatmap'
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
 import Battery_Bullet from 'graphs/battery/groupBullet';
 import Battery_Area_Percentage from 'graphs/battery/percentageDatetimeArea';
 import Battery_Area_Current from 'graphs/battery/currentDatetimeArea'
@@ -42,7 +38,6 @@ const DashboardDefault = () => {
             {/*Third column*/}
             <Grid>  
                 <Position_Map />
-                <Heat />
             </Grid>
             
         </Grid>
