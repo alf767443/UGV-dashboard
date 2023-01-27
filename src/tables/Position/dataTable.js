@@ -4,11 +4,28 @@ import React, { Component } from 'react';
 // Import from Antd
 import { Table } from 'antd';
 
-// Import from project
-import { url } from 'API/url';
 
-// URL
-const urls = 'position/table=Gyroscope';
+// Import from project
+import { url, requestOptions } from 'API/url';
+
+var raw = JSON.stringify({
+	"dataSource": "CeDRI",
+	"database": "CeDRI_UGV_buffer",
+	"collection": "PositionOdom_Data",
+	"pipeline": [
+		{
+			'$project': {
+				'_id': 0,
+			}
+		}, {
+			'$sort': {
+				'dateTime': -1
+				}
+		}, {
+			'$limit': 1000
+		}
+	]
+   });
 
 // Define columns
 const columns = [
@@ -23,37 +40,49 @@ const columns = [
         defaultSortOrder: 'descend'
     },
     {
-        title: 'Angle',
-        dataIndex: ['Gyroscope','Angle'],
-        key: 'angle'
+        title: 'X',
+        dataIndex: 'X',
+        key: 'x'
+    },
+    {
+        title: 'Y',
+        dataIndex: 'Y',
+        key: 'x'
+    },
+    {
+        title: 'Yaw',
+        dataIndex: 'Yaw',
+        key: 'Yaw'
     }
 ];
 
 // --------- table fiducialmark - datatable --------- \\
 export class DataTable extends Component {
     constructor(props) {
-        super(props);
+		super(props);
 
-        this.state = {
-            data: []
+		this.state = {
+            data: [],
+			ticks: -1
         };
     }
 
     refreshList() {
-        fetch(url.API + urls)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({ data: data });
-            });
+		fetch(url(), requestOptions(raw))
+		.then((response) => response.json())
+		.then((json) => {
+			this.setState({ data: json });
+		})
+		.catch((error) => {
+			console.log(error);
+		});
     }
 
-    componentDidMount() {
-        this.refreshList();
+    componentDidMount = () => {
+		this.refreshList();
     }
 
     render() {
-        console.log(this.state.data);
-
         return (
             <Table
                 columns={columns}
