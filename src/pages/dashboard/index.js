@@ -1,8 +1,8 @@
 // material-ui
-import { Grid, Stack } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import Position_Map from 'graphs/maps/pointmaps/positionMap';
-import Track_Map from 'graphs/maps/pointmaps/trackMap';
+// import Track_Map from 'graphs/maps/pointmaps/trackMap';
 
 import Battery_Bullet from 'graphs/battery/groupBullet';
 import Battery_Area_Percentage from 'graphs/battery/percentageDatetimeArea';
@@ -12,39 +12,47 @@ import Motor_Bullet from 'graphs/motors/groupBullet';
 import Motor_Line_Current from 'graphs/motors/currentDatetimeLine';
 import Motor_Line_PWM from 'graphs/motors/PWMDatetimeLine';
 
-// project import
+import styles from './styles';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
-const DashboardDefault = () => {
+export const DashboardDefault = () => {
     return (
-        <Grid container rowSpacing={1.75} columnSpacing={1.75}>       
-            {/*First column*/}
-            <Stack spacing={0} direction={'column'} alignItems={'center'}>
-                {/*Battery group*/}
-                <Grid>
-                    <Battery_Area_Percentage />
-                    <Battery_Area_Current />
-                    <Battery_Bullet />
+        <Grid container {...styles.grid.main}>
+            {/* Header */}
+
+            <Grid container {...styles.grid.column.header}>
+
+                <Grid container  {...styles.grid.column.subheader}>
+                {/* Bullets */}
+                    <Grid item {...styles.grid.column.graphs}>
+                        <Battery_Bullet />    
+                    </Grid>
+                    <Grid item {...styles.grid.column.graphs}>
+                        <Motor_Bullet />    
+                    </Grid>
                 </Grid>
-            </Stack>
-            {/*Second column*/}
-            <Stack spacing={0} direction={'column'} alignItems={'center'}>
-                {/*Motor group*/}
-                <Grid>   
-                    <Motor_Line_PWM />
-                    <Motor_Line_Current />
-                    <Motor_Bullet />
+
+                {/* Graphs */}
+                <Grid container {...styles.grid.column.subheader}>
+                    <Grid item {...styles.grid.column.graphs}>
+                        <Battery_Area_Percentage />
+                        <Battery_Area_Current />  
+                    </Grid>
+                    <Grid item {...styles.grid.column.graphs}>
+                        <Motor_Line_PWM />
+                        <Motor_Line_Current />  
+                    </Grid>
                 </Grid>
-            </Stack>
-            {/*Third column*/}
-            <Grid>  
-                <Position_Map />
-                <Track_Map />
             </Grid>
-            
+
+            <Grid item {...styles.grid.column.map} >
+                    <Position_Map />
+                </Grid>
         </Grid>
+
     );
 };
 
-export default DashboardDefault;
+
+export default DashboardDefault ;

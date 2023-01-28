@@ -5,32 +5,30 @@ import { Bullet } from '@ant-design/plots';
 // Import from project
 import { url, requestOptions } from 'API/url';
 import styles from "graphs/styles";
+
 import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_buffer",
-	"collection": "Motor_Data",
+	"collection": "Battery_Data",
 	"pipeline": [
-        {
-          $project: {
-            dateTime: 1,
-            left: "$left.PWM",
-            right: "$right.PWM",
-          },
-        },
-        {
-          $sort: {
-            _id: -1,
-          },
-        },
-        {
-          $limit: 1,
-        },
-      ]
+		{
+			'$project': {
+				'dateTime': 1,
+				'current': 1
+			}
+		}, {
+			'$sort': {
+				'dateTime': -1
+				}
+		}, {
+			'$limit': 1
+		}
+	]
 });
 
-export default class PWMBullet extends React.Component {
+export default class CurrentBullet extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -54,7 +52,7 @@ export default class PWMBullet extends React.Component {
 		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ data: json[0]});
+			this.setState({ data: json[0]});//.current.toFixed(2)});
 		})
 		.catch((error) => {
 			console.log(error);
@@ -78,39 +76,31 @@ export default class PWMBullet extends React.Component {
 	}
 
 	config = {
-    color: {
-      range: ['#82FF74', '#F5F16E', '#FF7772'],
-      measure: '#5B8FF9',
-      target: '#39a3f4',
-    },
-  };
+        color: {
+          range: ['#82FF74', '#F5F16E', '#FF7772'],
+          measure: '#5B8FF9',
+          target: '#39a3f4',
+        }
+      };
 
 	data = () => {
-		return [
-    {
-      title: 'Right',
-      ranges: [65, 85, 100],
-      measures: [0],
-      value: Math.round(this.state.data['right']*100)/100
-    },
-    {
-        title: 'Left',
-        ranges: [65, 85, 100],
-        measures: [0],
-        value: Math.round(this.state.data['left']*100)/100
-    }, 
-    ]
+		return [{
+            title: ' ',
+            ranges: [2, 3, 3.5],
+            measures: [0],
+			value: Math.round(this.state.data['current']*100)/100
+		}]
 	}
 
 
 	render() {
 		return (
-    <Stack>
-      <Bullet {...this.config} data={this.data()} {...styles.bullet.dual} />
-      <Typography {...styles.typography.subtitle}>
-        PWM
-      </Typography>
-    </Stack>
+			<Stack>
+				<Bullet {...this.config} data={this.data()} {...styles.bullet.dual} />
+				<Typography {...styles.typography.subtitle}>
+					Temp.
+				</Typography>
+			</Stack>
 		);
 	}
 }

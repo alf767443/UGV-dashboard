@@ -3,6 +3,8 @@ import React from "react";
 import { Bullet } from '@ant-design/plots';
 import styles from "graphs/styles";
 
+import { Typography, Stack } from '@mui/material';
+
 // Import from project
 import { url, requestOptions } from 'API/url';
 
@@ -74,11 +76,6 @@ export default class VoltageBullet extends React.Component {
 	}
 
 	config = {
-        measureField: 'measures',
-        rangeField: 'ranges',
-        targetField: 'value',
-        xField: 'title',
-		animation: false,
         color: {
           range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74', '#FF7772'],
           measure: '#5B8FF9',
@@ -88,7 +85,7 @@ export default class VoltageBullet extends React.Component {
 
 	data = () => {
 		return [{
-			title: 'Voltage',
+			title: ' ',
 			ranges: [20,23,24,25,27,28],
 			measures: [0],
 			value: Math.round(this.state.data['voltage']*100)/100
@@ -97,7 +94,12 @@ export default class VoltageBullet extends React.Component {
 
 	render() {
 		return (
-          <Bullet {...this.config} data={this.data()} {...styles.bullet.simple}/>
+			<Stack>
+				<Bullet {...this.config} data={this.data()} {...styles.bullet.dual} />
+				<Typography {...styles.typography.subtitle}>
+					Voltage
+				</Typography>
+			</Stack>
 		);
 	}
 }
