@@ -13,20 +13,17 @@ export default class DataBaseButtons extends React.Component {
 
     render() {
         return (
-            <MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
-                <Box sx={styles.box.sx}>
-                    <Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
-                        <Typography variant={styles.typography.variant} color={styles.typography.color}>
+            <MainCard {...styles.maincard}>
+                <Box {...styles.box}>
+                    <Stack {...styles.stack}>
+                        <Typography {...styles.typography}>
                             {this.props.Title}
                         </Typography>
                         <IconButton
-                            color={styles.icon.color}
-                            style={styles.button.style}
-                            iconStyle={styles.icon.style}
-                            sx={styles.button.sx}
+                            {...styles.icon}
                             href={this.props.href}
                         >
-                            <this.props.Icon sx={styles.icon.style} />
+                            <this.props.Icon {...styles.icon}/>
                         </IconButton>
                     </Stack>
                 </Box>

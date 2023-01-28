@@ -13,7 +13,11 @@ const styles = {
         style: {
             width: 150,
             height: 150,
-            color: 'gray'
+            color: 'gray',
+            padding: 0
+        },
+        sx: {
+            borderRadius: '10%'
         }
     },
     stack: {
