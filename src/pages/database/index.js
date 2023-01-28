@@ -4,8 +4,9 @@ import { Grid, Typography, Stack, Divider } from '@mui/material';
 import { BatteryButtons } from './buttons/batteryButtons';
 import { MotorsButtons } from './buttons/motorsButtons';
 import { PositionButtons } from './buttons/positionButtons';
-
+import { MapButtons } from './buttons/mapButtons';
 import styles from './styles';
+
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
@@ -46,21 +47,6 @@ const DataBase = () => {
                 </Grid>
             </Grid>
         </Stack>
-
-        // <Grid container rowSpacing={3} buttonSpacing={1.25}>
-        //     {/* Main block */}
-        //     <Stack
-        //         direction={stackParameters.direction}
-        //         justifyContent={stackParameters.justifyContent}
-        //         alignItems={stackParameters.alignItems}
-        //         spacing={stackParameters.spacing}
-        //     >
-        //         {/*Spacing*/}   
-        //         <BatteryButtons />
-        //         <MotorsButtons />
-        //         <PositionButtons />
-        //     </Stack>
-        // </Grid>
     );
 };
 
