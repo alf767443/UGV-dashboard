@@ -1,16 +1,22 @@
 // Import from MUI
-import { Stack } from '@mui/material';
+import { Grid } from '@mui/material';
 // Import from project
 import { TableCard } from 'tables/Motors';
-import { Carrousel } from '../../../carousels/motors'
+import { Carrousel } from '../../../carousels/motors';
+
+import styles from './styles';
 
 // --------- database - odometry --------- \\
 const dbActions = () => {
     return (
-        <Stack spacing={2}>
-            <Carrousel />
-            <TableCard />
-        </Stack>
+        <Grid container {...styles.grid.main}>
+            <Grid item {...styles.grid.item}>
+                <Carrousel />
+            </Grid>
+            <Grid item {...styles.grid.item}>
+                <TableCard />
+            </Grid>
+        </Grid>
     );
 };
 

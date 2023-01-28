@@ -6,6 +6,8 @@ import { Bullet } from '@ant-design/plots';
 import { url, requestOptions } from 'API/url';
 import styles from "graphs/styles";
 
+import { Typography, Stack } from '@mui/material';
+
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_buffer",
@@ -74,11 +76,6 @@ export default class PercentageBullet extends React.Component {
 	}
 
 	config = {
-        measureField: 'measures',
-        rangeField: 'ranges',
-        targetField: 'value',
-        xField: 'title',
-		animation: false,
         color: {
           range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74'],
           measure: '#5B8FF9',
@@ -88,7 +85,7 @@ export default class PercentageBullet extends React.Component {
 
     data = () => {
       return [{
-        title: 'Percentage',
+        title: ' ',
         ranges: [20, 40, 60, 80, 100],
         measures: [0],
         value: Math.round(this.state.data['percentage']*100)
@@ -97,7 +94,16 @@ export default class PercentageBullet extends React.Component {
 
 	render() {
 		return (
-          <Bullet {...this.config} data={this.data()} {...styles.bullet.simple}/>
+			<Stack>
+				<Bullet 
+					{...this.config}
+					{...styles.bullet.dual}
+					data={this.data()}
+				/>
+				<Typography {...styles.typography.subtitle}>
+					Percentage
+				</Typography>
+			</Stack>
 		);
 	}
 }

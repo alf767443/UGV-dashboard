@@ -9,7 +9,7 @@ import { url, requestOptions } from 'API/url';
 import MainCard from "components/MainCard";
 
 import styles from "graphs/styles";
-import { Box, Typography, Stack } from '@mui/material';
+import { Typography, Stack } from '@mui/material';
 
 var raw = (side) => JSON.stringify({
 	"dataSource": "CeDRI",
@@ -115,7 +115,6 @@ export default class RotationRateDatetimeLine extends React.Component {
 	}
 
 	config = {
-		padding: 'auto',
 		xField: '_id',
 		yField: 'rrate',
 		seriesField: 'side',
@@ -140,25 +139,21 @@ export default class RotationRateDatetimeLine extends React.Component {
 				return {};
 			},	
 		},
-		//seriesField: 'Status',
-		smooth: true,		animation: false,
 	}
 
 	render() {
 		return (
-			<MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
-				<Box sx={styles.box.sx}>
-					<Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
-						<Typography variant={styles.typography.title.variant} color={styles.typography.title.color}>
-							Battery rrate by time
-						</Typography>
-						<Line 
-							{...this.config} 
-							data={this.state.data} 
-							{...styles.graph.medium} 
-						/>
-					</Stack>
-				</Box>
+			<MainCard {...styles.maincard}>
+				<Stack {...styles.stack}>
+					<Typography {...styles.typography.title}>
+						Battery rrate by time
+					</Typography>
+					<Line 
+						{...this.config}
+						{...styles.plot}
+						data={this.state.data}
+					/>
+				</Stack>
 			</MainCard>
 		);
 	}

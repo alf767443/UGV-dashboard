@@ -1,27 +1,72 @@
+
+import Divider from '@mui/material/Divider';
+
 const styles = {
-    graph:{
-        big:{
-            /*
-            width: 800,
-            height: 400
-            */
+    bullet:{
+        simple: {
+            measureField: 'measures',
+            rangeField: 'ranges',
+            targetField: 'value',
+            xField: 'title',
+            size: {
+                range: 30,
+                measure: 0,
+                target: 30,
+            },
+            height: 50,
+            width: 300,
+            xAxis: {
+              line: null,
+            },
+            yAxis: false,
+            label: {
+                measure: false,
+                target: true,
+            },  
+            animation: false,
         },
-        medium:{
-            width: 400,
-            height: 200
+        dual: {
+            measureField: 'measures',
+            rangeField: 'ranges',
+            targetField: 'value',
+            xField: 'title',
+            size: {
+                range: 30,
+                measure: 0,
+                target: 30,
+            },
+            height: 178,
+            width: 90,
+            xAxis: {
+              line: null,
+            },
+            yAxis: false,
+            label: {
+                measure: false,
+                target: true
+            },
+            layout: 'vertical',
+            animation: false,
         },
-        small:{
-            /*
-            width: 200,
-            height: 200
-            */
+        stack: {
+            direction:'row',
+            divider:<Divider orientation="vertical" flexItem />,
+            justifyContent:"space-evenly",
+            alignItems:'center',
+            spacing:0,
         }
     },
-    stack: {
-        direction: 'column',
-        alignItems: 'center',
-        spacing: 1
+
+    plot:{
+        //padding: 'auto',
+        smooth: true,
+		animation: false,
+        style:{
+            width: '100%',
+            height: 200,
+        }
     },
+
     typography: {
         title: {
             align: 'center',
@@ -34,59 +79,56 @@ const styles = {
             color: 'textSecondary' 
         },
     },
-    box: {
-        sx: {
-            p: 1,
-            pb: 1
-        }
-    },
-    maincard: {
+
+    stack: {
+        direction: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        spacing: 1,
         sx: {
             mt: 1,
             mr: 1,
             ml: 1,
-            mb: 1
-
+            mb: 1,
         },
-        content: false
     },
-    bullet:{
-        simple: {
-            size: {
-                range: 30,
-                measure: 0,
-                target: 30,
-            },
-            height: 50,
-            width: 350,
-            xAxis: {
-              line: null,
-            },
-            yAxis: false,
-            label: {
-                measure: false,
-                target: true,
-            },  
+
+    maincard: {
+        xs: 1,
+        sm: 1,
+        md: 1,
+        lg: 1,
+        xl: 1,
+        sx: {
+            mt: 1,
+            mr: 1,
+            ml: 1,
+            mb: 1,
         },
-        dual: {
-            size: {
-                range: 30,
-                measure: 0,
-                target: 30,
-            },
-            height: 200,
-            width: 90,
-            xAxis: {
-              line: null,
-            },
-            yAxis: false,
-            label: {
-                measure: false,
-                target: true
-            },
-            layout: 'vertical',
-        }
-    }
+        height: '100%',
+        content: false,
+        // style:{
+        //     aspectRatio: 5/3,
+        // },
+    },
+
+    box: {
+        xs: 1,
+        sm: 1,
+        md: 1,
+        lg: 1,
+        xl: 1,
+        sx: {
+            mt: 1,
+            mr: 1,
+            ml: 1,
+            mb: 1,
+            display: 'grid',
+            gridAutoRows: '100%',
+            gap: 1,
+        },
+        height: '100%',
+    },
 };
 
 export default styles;

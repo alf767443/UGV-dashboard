@@ -1,15 +1,12 @@
-
 import React from "react";
 
 import { Area } from '@ant-design/plots';
 
-
-// Import from project
 import { url, requestOptions } from 'API/url';
 import MainCard from "components/MainCard";
 
 import styles from "graphs/styles";
-import { Box, Typography, Stack } from '@mui/material';
+import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -92,7 +89,7 @@ export default class CurrentDatetimeArea extends React.Component {
     }
 
     componentDidMount = () => {
-		this.refreshList();
+		//this.refreshList();
 		this.timer();
     }
 
@@ -107,7 +104,6 @@ export default class CurrentDatetimeArea extends React.Component {
 	}
 
 	config = {
-		padding: 'auto',
 		xField: '_id',
 		yField: 'current',
 		xAxis: {
@@ -131,25 +127,21 @@ export default class CurrentDatetimeArea extends React.Component {
 				return {};
 			},	
 		},
-		//seriesField: 'Status',
-		smooth: true,		animation: false,
 	}
 
 	render() {
 		return (
-			<MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
-				<Box sx={styles.box.sx}>
-					<Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
-						<Typography variant={styles.typography.title.variant} color={styles.typography.title.color}>
+			<MainCard {...styles.maincard}>
+					<Stack {...styles.stack}>
+						<Typography {...styles.typography.title}>
 							Battery current by time
 						</Typography>
 						<Area 
-							{...this.config} 
-							data={this.state.data} 
-							{...styles.graph.medium} 
+							{...this.config}
+							{...styles.plot}
+							data={this.state.data}
 						/>
 					</Stack>
-				</Box>
 			</MainCard>
 		);
 	}
