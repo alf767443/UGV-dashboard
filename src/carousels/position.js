@@ -7,7 +7,7 @@ import MainCard from 'components/MainCard';
 
 // Import from project
 import tableSx from 'tables/tableSx';
-import PositionMap from 'graphs/maps/positionMap';
+import PositionMap from 'graphs/maps/pointmaps/positionMap';
 
 // --------- table physical data - index --------- \\
 export class Carrousel extends Component {

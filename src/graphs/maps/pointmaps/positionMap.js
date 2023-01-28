@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heatmap } from '@ant-design/plots';
-import cedri from './images/cedri.png'
+import cedri from '../images/cedri.png'
 import { url, requestOptions } from 'API/url';
 import styles from 'graphs/styles';
 
