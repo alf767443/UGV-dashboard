@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/UGV-dashboard/static/css/main.c6efb68b.css",
-    "main.js": "/UGV-dashboard/static/js/main.c51032ab.js",
+    "main.js": "/UGV-dashboard/static/js/main.3a02d890.js",
     "static/js/243.22ab03cd.chunk.js": "/UGV-dashboard/static/js/243.22ab03cd.chunk.js",
     "static/js/954.fb5967f5.chunk.js": "/UGV-dashboard/static/js/954.fb5967f5.chunk.js",
-    "static/js/589.fd5c7235.chunk.js": "/UGV-dashboard/static/js/589.fd5c7235.chunk.js",
+    "static/js/589.08f0a353.chunk.js": "/UGV-dashboard/static/js/589.08f0a353.chunk.js",
     "static/js/162.9be124a3.chunk.js": "/UGV-dashboard/static/js/162.9be124a3.chunk.js",
-    "static/js/62.c41dfd00.chunk.js": "/UGV-dashboard/static/js/62.c41dfd00.chunk.js",
-    "static/js/656.54e2b110.chunk.js": "/UGV-dashboard/static/js/656.54e2b110.chunk.js",
-    "static/js/316.0b7aca70.chunk.js": "/UGV-dashboard/static/js/316.0b7aca70.chunk.js",
+    "static/js/62.4e5dd152.chunk.js": "/UGV-dashboard/static/js/62.4e5dd152.chunk.js",
+    "static/js/656.b4f04786.chunk.js": "/UGV-dashboard/static/js/656.b4f04786.chunk.js",
+    "static/js/316.ce4533fc.chunk.js": "/UGV-dashboard/static/js/316.ce4533fc.chunk.js",
     "static/js/525.6a6b4c1a.chunk.js": "/UGV-dashboard/static/js/525.6a6b4c1a.chunk.js",
     "static/js/893.271b1528.chunk.js": "/UGV-dashboard/static/js/893.271b1528.chunk.js",
     "static/js/165.c0054bc6.chunk.js": "/UGV-dashboard/static/js/165.c0054bc6.chunk.js",
@@ -18,7 +18,7 @@
     "static/js/643.847f8642.chunk.js": "/UGV-dashboard/static/js/643.847f8642.chunk.js",
     "static/js/846.4d004b74.chunk.js": "/UGV-dashboard/static/js/846.4d004b74.chunk.js",
     "static/js/634.00404128.chunk.js": "/UGV-dashboard/static/js/634.00404128.chunk.js",
-    "static/js/158.50a3be83.chunk.js": "/UGV-dashboard/static/js/158.50a3be83.chunk.js",
+    "static/js/158.6df6ef78.chunk.js": "/UGV-dashboard/static/js/158.6df6ef78.chunk.js",
     "static/media/logo_CeDRI.png": "/UGV-dashboard/static/media/logo_CeDRI.35cc9641999496b689b0.png",
     "index.html": "/UGV-dashboard/index.html",
     "static/media/google.svg": "/UGV-dashboard/static/media/google.b7da2ce748745374ee27eb11dd475b9c.svg",
@@ -27,6 +27,6 @@
   },
   "entrypoints": [
     "static/css/main.c6efb68b.css",
-    "static/js/main.c51032ab.js"
+    "static/js/main.3a02d890.js"
   ]
 }
