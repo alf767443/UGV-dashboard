@@ -35,7 +35,7 @@ const styles = {
                 measure: 0,
                 target: 30,
             },
-            height: 200,
+            height: 178,
             width: 90,
             xAxis: {
               line: null,
