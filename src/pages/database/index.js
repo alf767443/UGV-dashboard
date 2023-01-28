@@ -3,7 +3,8 @@ import { Grid, Stack } from '@mui/material';
 // project import
 import { BatteryButtons } from './buttons/batteryButtons';
 import { MotorsButtons } from './buttons/motorsButtons';
-import { PositionButtons } from './buttons/positionButtons'
+import { PositionButtons } from './buttons/positionButtons';
+import { MapButtons } from './buttons/mapButtons';
 import { stackParameters } from './styles';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -22,6 +23,7 @@ const DataBase = () => {
                 <BatteryButtons />
                 <MotorsButtons />
                 <PositionButtons />
+                <MapButtons />
             </Stack>
         </Grid>
     );
