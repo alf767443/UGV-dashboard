@@ -164,7 +164,6 @@ export default class ConnectivityIcon extends React.Component {
         xField: 'x',
         yField: 'y',
         //xAxis: false,
-        animation: false,
         xAxis:{
             min: -3520,
             minLimit: -3520,
@@ -182,6 +181,7 @@ export default class ConnectivityIcon extends React.Component {
         },
         colorField: 'yaw',
         limitInPlot: true,
+        animation: false,
         color: '#F51D27-#FA541C-#FF8C12-#FFC838-#FAFFA8-#80FF73-#12CCCC-#1890FF-#6E32C2',
         annotations: [
             {

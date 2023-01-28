@@ -78,6 +78,7 @@ export default class CurrentBullet extends React.Component {
         rangeField: 'ranges',
         targetField: 'value',
         xField: 'title',
+		animation: false,
         color: {
           range: ['#82FF74', '#F5F16E', '#FF7772'],
           measure: '#5B8FF9',

@@ -216,6 +216,7 @@ export default class ConnectivityIcon extends React.Component {
         yAxis: false,
         colorField: 'Connect',
         limitInPlot: true,
+        animation: false,
         sizeField: 5,
         color: '#6E32C2-#1890FF-#12CCCC-#80FF73-#FAFFA8-#FFC838-#FF8C12-#FA541C-#F51D27',
         annotations: [

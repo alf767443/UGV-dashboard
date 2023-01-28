@@ -78,6 +78,7 @@ export default class PercentageBullet extends React.Component {
         rangeField: 'ranges',
         targetField: 'value',
         xField: 'title',
+		animation: false,
         color: {
           range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74'],
           measure: '#5B8FF9',
