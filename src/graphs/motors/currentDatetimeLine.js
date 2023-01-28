@@ -141,7 +141,7 @@ export default class CurrentDatetimeLine extends React.Component {
 			},	
 		},
 		//seriesField: 'Status',
-		smooth: true
+		smooth: true,		animation: false,
 	}
 
 	render() {

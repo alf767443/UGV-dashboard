@@ -132,7 +132,7 @@ export default class CurrentDatetimeArea extends React.Component {
 			},	
 		},
 		//seriesField: 'Status',
-		smooth: true
+		smooth: true,		animation: false,
 	}
 
 	render() {

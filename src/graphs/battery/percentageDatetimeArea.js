@@ -140,10 +140,12 @@ export default class PercentageDatetimeArea extends React.Component {
 			},	
 		},
 		//seriesField: 'Status',
-		smooth: true
+		smooth: true,
+		animation: false,
 	}
 
 	render() {
+		
 		return (
 			<MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
 				<Box sx={styles.box.sx}>
@@ -154,7 +156,7 @@ export default class PercentageDatetimeArea extends React.Component {
 						<Area 
 							{...this.config} 
 							data={this.state.data} 
-							{... styles.graph.medium} 
+							{... styles.graph.medium}
 						/>
 					</Stack>
 				</Box>

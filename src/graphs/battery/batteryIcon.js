@@ -188,6 +188,7 @@ export default class BatteryIcon extends React.Component {
 		wave: {
 			length: 20
 		},
+		
 	};
 
 	statistic = [null];

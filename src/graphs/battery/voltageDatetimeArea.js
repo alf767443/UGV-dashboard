@@ -132,7 +132,7 @@ export default class VoltageDatetimeArea extends React.Component {
 			},	
 		},
 		//seriesField: 'Status',
-		smooth: true
+		smooth: true,		animation: false,
 	}
 
 	render() {
