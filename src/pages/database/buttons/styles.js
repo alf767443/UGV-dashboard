@@ -1,14 +1,4 @@
 const styles = {
-    button: {
-        style: {
-            width: 150,
-            height: 150,
-            padding: 0
-        },
-        sx: {
-            borderRadius: '10%'
-        }
-    },
     icon: {
         style: {
             width: 150,
