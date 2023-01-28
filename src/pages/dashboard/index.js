@@ -1,6 +1,8 @@
 // material-ui
 import { Grid, Stack } from '@mui/material';
-import Position_Map from 'graphs/maps/positionMap';
+
+import Position_Map from 'graphs/maps/pointmaps/positionMap';
+import Track_Map from 'graphs/maps/pointmaps/trackMap';
 
 import Battery_Bullet from 'graphs/battery/groupBullet';
 import Battery_Area_Percentage from 'graphs/battery/percentageDatetimeArea';
@@ -38,6 +40,7 @@ const DashboardDefault = () => {
             {/*Third column*/}
             <Grid>  
                 <Position_Map />
+                <Track_Map />
             </Grid>
             
         </Grid>
