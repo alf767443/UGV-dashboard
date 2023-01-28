@@ -37,13 +37,7 @@ const DataBase = () => {
             </Typography>
             <Grid container {...styles.grid.main}>
                 <Grid item {...styles.grid.button}>
-                    <BatteryButtons />
-                </Grid>
-                <Grid item {...styles.grid.button}>
-                    <MotorsButtons />
-                </Grid>
-                <Grid item {...styles.grid.button}>
-                    <PositionButtons />
+                    <MapButtons />
                 </Grid>
             </Grid>
         </Stack>

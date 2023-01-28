@@ -2,16 +2,17 @@
 import React, { Component } from 'react';
 
 // Import from MUI
-import { Box, Typography, Stack, Pagination } from '@mui/material';
+import { Typography, Grid, Pagination, Stack } from '@mui/material';
 import MainCard from 'components/MainCard';
 
 // Import from project
-import tableSx from 'tables/tableSx';
 import Map_Position from '../graphs/maps/pointmaps/positionMap'
 import Map_Breadcrumbs from '../graphs/maps/pointmaps/trackMap'
 import Heatmap_RTT from  '../graphs/maps/heatmaps/RTTHeatmap'
 import Heatmap_Postion from  '../graphs/maps/heatmaps/positionHeatmap'
 import Heatmap_Connectivity from  '../graphs/maps/heatmaps/connectivityHeatmap'
+
+import styles from './styles';
 
 // --------- table physical data - index --------- \\
 export class Carrousel extends Component {
@@ -36,34 +37,47 @@ export class Carrousel extends Component {
         switch(this.state.page){
             case 1:
                 return(
-                    <Stack direction="row" spacing={2}>
-                        <Map_Position />
-                        <Map_Breadcrumbs />
-                        <Heatmap_RTT />
-                    </Stack>
+                    <Grid container {...styles.grid.main} >
+                        <Grid item {...styles.grid.item} >
+                            <Map_Position />
+                        </Grid>
+                        <Grid item {...styles.grid.item} >
+                            <Map_Breadcrumbs />    
+                        </Grid>
+                    </Grid>
                 );
             case 2:
                 return(
-                    <Stack direction="row" spacing={2}>
-                        <Heatmap_Postion />
-                        <Heatmap_Connectivity />
-                    </Stack>
+                    <Grid container {...styles.grid.main} >
+                        <Grid item {...styles.grid.item} >
+                            <Heatmap_RTT />
+                        </Grid>
+                        <Grid item {...styles.grid.item} >
+                            <Heatmap_Postion />
+                        </Grid>
+                    </Grid>
+                )
+            case 3:
+                return(
+                    <Grid container {...styles.grid.main} >
+                        <Grid item {...styles.grid.item} >
+                            <Heatmap_Connectivity />
+                        </Grid>
+                    </Grid>
                 )
         }
     }
 
     render() {
         return (
-            <MainCard sx={tableSx} content={false}>
-                <Box sx={{ p: 3, pb: 0 }}>
-                    <Stack spacing={2}>
-                        <Typography variant="h3" color="textSecondary">
-                            Maps
-                        </Typography>
+            <MainCard {...styles.box} >
+                <Stack {...styles.stack}>
+                    <Typography {...styles.typography}>
+                        Maps
+                    </Typography>
                         {this.graphs()}
-                        <Pagination count={2} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
-                    </Stack>    
-                </Box>
+                    <Pagination count={3} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
+                </Stack>    
             </MainCard>
         );
     }
