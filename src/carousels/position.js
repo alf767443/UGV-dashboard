@@ -2,12 +2,13 @@
 import React, { Component } from 'react';
 
 // Import from MUI
-import { Box, Typography, Stack, Pagination } from '@mui/material';
+import { Typography, Grid, Pagination, Stack } from '@mui/material';
 import MainCard from 'components/MainCard';
 
 // Import from project
-import tableSx from 'tables/tableSx';
 import PositionMap from 'graphs/maps/pointmaps/positionMap';
+
+import styles from './styles';
 
 // --------- table physical data - index --------- \\
 export class Carrousel extends Component {
@@ -32,25 +33,25 @@ export class Carrousel extends Component {
         switch(this.state.page){
             case 1:
                 return(
-                    <Stack direction="row" spacing={2}>
-                        <PositionMap />
-                    </Stack>
+                    <Grid container {...styles.grid.main} >
+                        <Grid item {...styles.grid.item} >
+                            <PositionMap />
+                        </Grid>
+                    </Grid>
                 );
         }
     }
 
     render() {
         return (
-            <MainCard sx={tableSx} content={false}>
-                <Box sx={{ p: 3, pb: 0 }}>
-                    <Stack spacing={2}>
-                        <Typography variant="h3" color="textSecondary">
-                            Position plots
-                        </Typography>
+            <MainCard {...styles.box} >
+                <Stack {...styles.stack}>
+                    <Typography {...styles.typography}>
+                        Position plots
+                    </Typography>
                         {this.graphs()}
-                        <Pagination count={1} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
-                    </Stack>    
-                </Box>
+                    <Pagination count={1} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
+                </Stack>    
             </MainCard>
         );
     }

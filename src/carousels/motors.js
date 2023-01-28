@@ -2,15 +2,16 @@
 import React, { Component } from 'react';
 
 // Import from MUI
-import { Box, Typography, Stack, Pagination } from '@mui/material';
+import { Typography, Grid, Pagination, Stack } from '@mui/material';
 import MainCard from 'components/MainCard';
 
 // Import from project
-import tableSx from 'tables/tableSx';
 import CurrentDatetimeLine from 'graphs/motors/currentDatetimeLine' ;
 import PWMDatetimeLine from 'graphs/motors/PWMDatetimeLine';
 import RotationRateDatetimeLine from 'graphs/motors/rrateDatetimeLine';
 import MotorBullets from 'graphs/motors/groupBullet';
+
+import styles from './styles';
 
 // --------- table physical data - index --------- \\
 export class Carrousel extends Component {
@@ -35,33 +36,39 @@ export class Carrousel extends Component {
         switch(this.state.page){
             case 1:
                 return(
-                    <Stack direction="row" spacing={2}>
-                        <CurrentDatetimeLine />
-                        <PWMDatetimeLine />
-                        <RotationRateDatetimeLine />
-                    </Stack>
+                    <Grid container {...styles.grid.main} >
+                        <Grid item {...styles.grid.item} >
+                            <CurrentDatetimeLine />
+                        </Grid>
+                        <Grid item {...styles.grid.item} >
+                            <PWMDatetimeLine />    
+                        </Grid>
+                    </Grid>
                 );
             case 2:
                 return(
-                    <Stack direction="row" spacing={2}>
-                        <MotorBullets />
-                    </Stack>
+                    <Grid container {...styles.grid.main} >
+                        <Grid item {...styles.grid.item} >
+                            <RotationRateDatetimeLine />
+                        </Grid>
+                        <Grid item {...styles.grid.item} >
+                            <MotorBullets />    
+                        </Grid>
+                    </Grid>
                 );
         }
     }
 
     render() {
         return (
-            <MainCard sx={tableSx} content={false}>
-                <Box sx={{ p: 3, pb: 0 }}>
-                    <Stack spacing={2}>
-                        <Typography variant="h3" color="textSecondary">
+            <MainCard {...styles.box} >
+                <Stack {...styles.stack}>
+                    <Typography {...styles.typography}>
                             Motors plots
                         </Typography>
                         {this.graphs()}
                         <Pagination count={2} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
                     </Stack>    
-                </Box>
             </MainCard>
         );
     }
