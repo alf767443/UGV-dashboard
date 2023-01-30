@@ -200,13 +200,13 @@ export default class ConnectivityIcon extends React.Component {
             }
         ]
         return(
-            <MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
-                <Box sx={styles.box.sx}>
-                    <Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
-                        <Typography variant={styles.typography.title.variant} color={styles.typography.title.color}>
+            <MainCard {...styles.maincard}>
+                <Box {...styles.box}>
+                    <Stack {...styles.stack}>
+                        <Typography {...styles.typography.title}>
                             Position heatmap
                         </Typography>
-                        <Heatmap {...this.config} data={this.state.data} sx={{width: 300, height: 300}} annotations={position} />
+                        <Heatmap {...this.config} {...styles.map} data={this.state.data} annotations={position} />
                     </Stack>
                 </Box>
             </MainCard>
