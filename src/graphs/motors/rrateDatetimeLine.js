@@ -13,8 +13,8 @@ import { Typography, Stack } from '@mui/material';
 
 var raw = (side) => JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "Motor_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Motor",
 	"pipeline": [
 		{
 			'$project': {
@@ -24,8 +24,8 @@ var raw = (side) => JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'left.rrate': 1, 
-				'right.rrate': 1
+				'leftRotateRate': 1, 
+				'rightRotateRate': 1
 			}
 		}, {
 			'$densify': {
@@ -40,7 +40,7 @@ var raw = (side) => JSON.stringify({
 			'$group': {
 				'_id': '$dateTime', 
 				'rrate': {
-					'$avg': "$" + side + ".rrate"
+					'$avg': "$" + side + "RotateRate"
 				}
 			}
 		}, {

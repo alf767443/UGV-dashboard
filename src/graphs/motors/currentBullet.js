@@ -9,25 +9,23 @@ import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "Motor_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Motor",
 	"pipeline": [
-        {
-          $project: {
-            dateTime: 1,
-            left: "$left.current",
-            right: "$right.current",
-          },
-        },
-        {
-          $sort: {
-            _id: -1,
-          },
-        },
-        {
-          $limit: 1,
-        },
-      ]
+		{
+			'$project': {
+				'dateTime': 1, 
+				'left': '$leftCurrent', 
+				'right': '$rightCurrent'
+			}
+		}, {
+			'$sort': {
+				'dateTime': -1
+			}
+		}, {
+			'$limit': 1
+		}
+	]
 });
 
 export default class CurrentBullet extends React.Component {
@@ -55,6 +53,7 @@ export default class CurrentBullet extends React.Component {
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ data: json[0]});
+			console.log(this.setState.data)
 		})
 		.catch((error) => {
 			console.log(error);
@@ -91,13 +90,13 @@ export default class CurrentBullet extends React.Component {
 				title: 'Right',
 				ranges: [2, 3, 3.5],
 				measures: [0],
-				Current: Math.round(this.state.data['right']*100)/100
+				value: Math.round(this.state.data['right']*100)/100
 			},
 			{
 				title: 'Left',
 				ranges: [2, 3, 3.5],
 				measures: [0],
-				Current: Math.round(this.state.data['left']*100)/100
+				value: Math.round(this.state.data['left']*100)/100
 			}, 
 		]
 	}

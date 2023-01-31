@@ -10,8 +10,8 @@ import { url, requestOptions } from 'API/url';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "Motor_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Motor",
 	"pipeline": [
 		{
 			'$project': {

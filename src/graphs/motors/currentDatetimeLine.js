@@ -12,8 +12,8 @@ import { Typography, Stack } from '@mui/material';
 
 var raw = (side) => JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "Motor_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Motor",
 	"pipeline": [
 		{
 			'$project': {
@@ -23,8 +23,8 @@ var raw = (side) => JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'left.current': 1, 
-				'right.current': 1
+				'leftCurrent': 1, 
+				'rightCurrent': 1
 			}
 		}, {
 			'$densify': {
@@ -39,7 +39,7 @@ var raw = (side) => JSON.stringify({
 			'$group': {
 				'_id': '$dateTime', 
 				'current': {
-					'$avg': "$" + side + ".current"
+					'$avg': "$" + side + "Current"
 				}
 			}
 		}, {
