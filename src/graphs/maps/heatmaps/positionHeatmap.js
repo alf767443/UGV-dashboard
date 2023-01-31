@@ -9,15 +9,14 @@ import MainCard from "components/MainCard";
 
 var rawPosition = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "PositionAMCL_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Position_Odometry",
 	"pipeline": [
 		{
 			'$project': {
 				'dateTime': 1,
-				'x': 1,
-				'y': 1, 
-                'yaw': '$orient.yaw'
+				'x': '$pose.pose.position.x', 
+                'y': '$pose.pose.position.y'
 			}
 		}, {
 			'$sort': {
@@ -31,8 +30,8 @@ var rawPosition = JSON.stringify({
 
 var raw = JSON.stringify({
     "dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "PositionOdom_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Position_Odometry",
 	"pipeline": [
         {
             '$project': {
@@ -43,12 +42,11 @@ var raw = JSON.stringify({
                     }
                 }, 
                 'x': {
-                    '$toInt': '$x'
+                    '$toInt': '$pose.pose.position.x'
                 }, 
                 'y': {
-                    '$toInt': '$y'
-                }, 
-                'orient': 1
+                    '$toInt': '$pose.pose.position.y'
+                },
             }
         }, {
             '$addFields': {
