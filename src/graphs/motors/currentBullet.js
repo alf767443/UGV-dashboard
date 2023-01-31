@@ -53,7 +53,6 @@ export default class CurrentBullet extends React.Component {
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ data: json[0]});
-			console.log(this.setState.data)
 		})
 		.catch((error) => {
 			console.log(error);
