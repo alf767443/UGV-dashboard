@@ -21,15 +21,7 @@ var raw = JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'current': {
-					'$cond': [
-						{
-							'$eq': [
-								'NaN', '$current'
-							]
-						}, null, '$current'
-					]
-				}
+				'current': 1
 			}
 		}, {
 			'$densify': {

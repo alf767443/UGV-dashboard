@@ -24,24 +24,8 @@ var raw = JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'voltage': {
-					'$cond': [
-						{
-							'$eq': [
-								'NaN', '$voltage'
-							]
-						}, 'None', '$voltage'
-					]
-				}, 
-				'current': {
-					'$cond': [
-						{
-							'$eq': [
-								'NaN', '$current'
-							]
-						}, 'None', '$current'
-					]
-				}
+				'voltage': 1,
+				'current': 1,
 			}
 		}, {
 			'$densify': {

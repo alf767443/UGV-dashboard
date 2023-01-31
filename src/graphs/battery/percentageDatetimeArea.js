@@ -24,15 +24,7 @@ var raw = JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'percentage': {
-				'$cond': [
-					{
-					'$eq': [
-						'NaN', '$percentage'
-					]
-					}, null, '$percentage'
-				]
-				}
+				'percentage': 1
 			}
 		}, {
 			'$densify': {
