@@ -129,6 +129,13 @@ const styles = {
         },
         height: '100%',
     },
+
+    map:{
+        style:{
+            width: '100%',
+            height: 450,
+        }
+    },
 };
 
 export default styles;
