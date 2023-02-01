@@ -1,42 +1,31 @@
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
-export default function CustomizedSnackbars() {
-  const [open, setOpen] = React.useState(false);
+function MyApp() {
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleClick = () => {
-    setOpen(true);
+    enqueueSnackbar('I love snacks.');
   };
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
+  const handleClickVariant = (variant) => () => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar('This is a success message!', { variant });
   };
 
   return (
-    <Stack spacing={2} sx={{ width: '100%' }}>
-      <Button variant="outlined" onClick={handleClick}>
-        Open success snackbar
-      </Button>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          This is a success message!
-        </Alert>
-      </Snackbar>
-      <Alert severity="error">This is an error message!</Alert>
-      <Alert severity="warning">This is a warning message!</Alert>
-      <Alert severity="info">This is an information message!</Alert>
-      <Alert severity="success">This is a success message!</Alert>
-    </Stack>
+    <React.Fragment>
+      <Button onClick={handleClick}>Show snackbar</Button>
+      <Button onClick={handleClickVariant('success')}>Show success snackbar</Button>
+    </React.Fragment>
+  );
+}
+
+export default function IntegrationNotistack() {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <MyApp />
+    </SnackbarProvider>
   );
 }

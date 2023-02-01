@@ -14,6 +14,8 @@ import Motor_Line_PWM from 'graphs/motors/PWMDatetimeLine';
 
 import styles from './styles';
 
+import CustomizedSnackbars from 'snackbar/index';
+
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 export const DashboardDefault = () => {
@@ -49,7 +51,10 @@ export const DashboardDefault = () => {
             <Grid item {...styles.grid.column.map} >
                     <Position_Map />
                 </Grid>
+            
+            <CustomizedSnackbars />
         </Grid>
+        
 
     );
 };
