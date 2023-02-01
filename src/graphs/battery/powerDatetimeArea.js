@@ -13,8 +13,8 @@ import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "Battery_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Battery",
 	"pipeline": [
 		{
 			'$project': {
@@ -24,24 +24,8 @@ var raw = JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'voltage': {
-					'$cond': [
-						{
-							'$eq': [
-								'NaN', '$voltage'
-							]
-						}, 'None', '$voltage'
-					]
-				}, 
-				'current': {
-					'$cond': [
-						{
-							'$eq': [
-								'NaN', '$current'
-							]
-						}, 'None', '$current'
-					]
-				}
+				'voltage': 1,
+				'current': 1,
 			}
 		}, {
 			'$densify': {

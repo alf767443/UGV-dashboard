@@ -65,8 +65,30 @@ var raw = JSON.stringify({
                 }
             }
         }, {
+            '$unionWith': {
+                'coll': 'RemoteUnitConection_Data', 
+                'pipeline': [
+                    {
+                        '$project': {
+                            'dateTime': {
+                                '$dateTrunc': {
+                                    'date': '$dateTime', 
+                                    'unit': 'minute'
+                                }
+                            }, 
+                            'Connect': {
+                                '$toInt': [
+                                    '$Connect'
+                                ]
+                            }, 
+                            'RTT': 1
+                        }
+                    }
+                ]
+            }
+        }, {
             '$group': {
-                '_id': '$xy', 
+                '_id': '$dateTime', 
                 'x': {
                     '$avg': '$x'
                 }, 
@@ -76,8 +98,44 @@ var raw = JSON.stringify({
                 'yaw': {
                     '$avg': '$orient.yaw'
                 }, 
-                'count': {
-                    '$count': {}
+                'Connect': {
+                    '$avg': '$Connect'
+                }, 
+                'RTT': {
+                    '$avg': '$RTT'
+                }, 
+                'xy': {
+                    '$first': '$xy'
+                }
+            }
+        }, {
+            '$group': {
+                '_id': '$dateTime', 
+                'x': {
+                    '$avg': '$x'
+                }, 
+                'y': {
+                    '$avg': '$y'
+                }, 
+                'yaw': {
+                    '$avg': '$orient.yaw'
+                }, 
+                'Connect': {
+                    '$avg': '$Connect'
+                }, 
+                'RTT': {
+                    '$avg': '$RTT'
+                }, 
+                'xy': {
+                    '$first': '$xy'
+                }
+            }
+        }, {
+            '$set': {
+                'Connect': {
+                    '$round': [
+                        '$Connect', 2
+                    ]
                 }
             }
         }, 
@@ -90,7 +148,7 @@ export default class ConnectivityIcon extends React.Component {
 		super(props);
 
 		this.state = {
-            data: [{x:-3520, y:-2960, cont:null},{x:3520, y:2960, count:null}],
+            data: [{x:-3520, y:-2960, Connect:null},{x:3520, y:2960, Connect:null}],
             last: {x:0,y:0,yaw:2},
 			ticks: -1,
 			quality: 0
@@ -124,7 +182,8 @@ export default class ConnectivityIcon extends React.Component {
         fetch(url(), requestOptions(raw))
         .then((response) => response.json())
         .then((json) => {
-            this.setState({ data: [...json, {x:-3520, y:-2960, count:null},{x:3520, y:2960, count:null}] });
+            this.setState({ data: [...json, {x:-3520, y:-2960, RTT:0},{x:3520, y:2960, RTT:0}] });
+            console.log(this.state.data)
         })
         .catch((error) => {
             console.log(error)
@@ -153,11 +212,11 @@ export default class ConnectivityIcon extends React.Component {
         yField: 'y',
         xAxis: false,
         yAxis: false,
-        colorField: 'count',
+        colorField: 'Connect',
         limitInPlot: true,
         animation: false,
         sizeField: 5,
-        color: '#F51D27-#FA541C-#FF8C12-#FFC838-#FAFFA8-#80FF73-#12CCCC-#1890FF-#6E32C2',
+        color: '#6E32C2-#1890FF-#12CCCC-#80FF73-#FAFFA8-#FFC838-#FF8C12-#FA541C-#F51D27',
         annotations: [
             {
                 type: 'image',
@@ -170,10 +229,10 @@ export default class ConnectivityIcon extends React.Component {
             position: 'bottom',
           },
         tooltip: {
-            fields: ['_id', 'count'],
-            title: 'Count of occurencies',
+            fields: ['xy', 'Connect'],
+            showTitle: false,
             formatter: (point) => {
-                return { name: point._id, value: point.count };
+                return { name: `Connectivity of ${point.xy}`, value: `${Math.round(point.Connect*100)}%` };
             },
         }
 
@@ -198,13 +257,13 @@ export default class ConnectivityIcon extends React.Component {
             }
         ]
         return(
-            <MainCard {...styles.maincard}>
-                <Box {...styles.box}>
-                    <Stack {...styles.stack}>
-                        <Typography {...styles.typography.title}>
-                            Position heatmap
+            <MainCard sx={styles.maincard.sx} content={styles.maincard.content}>
+                <Box sx={styles.box.sx}>
+                    <Stack spacing={styles.stack.spacing} direction={styles.stack.direction} alignItems={styles.stack.alignItems}>
+                        <Typography variant={styles.typography.title.variant} color={styles.typography.title.color}>
+                            Connectivity heatmap
                         </Typography>
-                        <Heatmap {...this.config} {...styles.map} data={this.state.data} annotations={position} />
+                        <Heatmap {...this.config} data={this.state.data} sx={{width: 300, height: 300}} annotations={position} />
                     </Stack>
                 </Box>
             </MainCard>

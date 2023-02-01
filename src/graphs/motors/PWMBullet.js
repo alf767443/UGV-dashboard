@@ -9,14 +9,14 @@ import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "Motor_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Motor",
 	"pipeline": [
         {
           $project: {
             dateTime: 1,
-            left: "$left.PWM",
-            right: "$right.PWM",
+            left: "$leftPwmDrive",
+            right: "$rightPwmDrive",
           },
         },
         {
