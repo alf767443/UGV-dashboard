@@ -10,8 +10,8 @@ import { url, requestOptions } from 'API/url';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "Battery_Data",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Battery",
 	"pipeline": [
 		{
 			'$project': {
@@ -51,14 +51,14 @@ const columns = [
     },
     {
         title: 'Current',
-        dataIndex: ['voltage'],
+        dataIndex: ['current'],
         key: 'current'
     },
     {
-        title: 'Power',
-        dataIndex: ['power'],
-        key: 'power'
-    }
+        title: 'Temperature',
+        dataIndex: ['temperature'],
+        key: 'temperature'
+    },
 ];
 
 // --------- table fiducialmark - datatable --------- \\
