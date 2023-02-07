@@ -10,7 +10,7 @@ import MainCard from "components/MainCard";
 var rawPosition = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_Odometry",
+	"collection": "Position_AMCL",
 	"pipeline": [
 		{
 			'$project': {
@@ -31,7 +31,7 @@ var rawPosition = JSON.stringify({
 var raw = JSON.stringify({
     "dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_Odometry",
+	"collection": "Position_AMCL",
 	"pipeline": [
         {
             '$project': {
@@ -81,7 +81,7 @@ var raw = JSON.stringify({
                 'dateTime': -1
             }
         }, {
-            '$limit': 10
+            '$limit': 60
         }, {
             '$set': {
                 'start': {
@@ -163,18 +163,18 @@ export default class ConnectivityIcon extends React.Component {
         yField: 'y',
         //xAxis: false,
         xAxis:{
-            min: -3520,
-            minLimit: -3520,
-            max: 3520,
-            maxLimit: 3520,
+            min: -30.20,
+            minLimit: -30.20,
+            max: 40.20,
+            maxLimit: 40.20,
             label: null,
         },
         //yAxis: false,
         yAxis:{
-            min: -2960,
-            minLimit: -2960,
-            max: 2960,
-            maxLimit: 2960,
+            min: -30.60,
+            minLimit: -30.60,
+            max: 28.60,
+            maxLimit: 28.60,
             label: null,
         },
         colorField: 'yaw',
@@ -184,15 +184,15 @@ export default class ConnectivityIcon extends React.Component {
         annotations: [
             {
                 type: 'image',
-                start: [-3520, 2960],
-                end: [3520, -2960],
+                start: [-30.20, 28.60],
+                end: [40.20, -30.60],
                 src: cedri,
             },
         ],
         tooltip: {
             showTitle: false,
             formatter: (point) => {
-                return { name: `X:${Math.round(point.x)}  Y:${Math.round(point.y)}`}//, value: `Y:${Math.round(point.y)}` };
+                return { name: `X:${Math.round(point.x*100)/100}  Y:${Math.round(point.y*100)/100}`}//, value: `Y:${Math.round(point.y)}` };
             },
         }
 

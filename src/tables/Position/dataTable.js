@@ -11,7 +11,7 @@ import { url, requestOptions } from 'API/url';
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_Odometry",
+	"collection": "Position_AMCL",
 	"pipeline": [
 		{
 			'$project': {
