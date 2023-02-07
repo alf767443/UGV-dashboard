@@ -38,22 +38,44 @@ const columns = [
             multiple: 1
         },
         defaultSortOrder: 'descend'
-    },
-    {
-        title: 'X',
-        dataIndex: 'x',
-        key: 'x'
-    },
-    {
-        title: 'Y',
-        dataIndex: 'x',
-        key: 'x'
-    },
-    {
-        title: 'Yaw',
-        dataIndex: ['orient','yaw'],
-        key: 'yaw'
-    }
+    },{
+        title: 'Pose',
+        align: 'center',
+        children:[
+            {
+                title: 'X',
+                align: 'center',
+                dataIndex: ['pose', 'pose', 'position', 'x'],
+                key: 'x'
+            }, {
+                title: 'Y',
+                align: 'center',
+                dataIndex: ['pose', 'pose', 'position', 'y'],
+                key: 'y'
+            }, {
+                title: 'Orientation',
+                align: 'center',
+                dataIndex: ['pose', 'pose', 'orientation', 'yaw'],
+                key: 'current_right'
+            },
+        ]
+    }, {
+        title: 'Twist',
+        align: 'center',
+        children:[
+            {
+                title: 'Linear',
+                align: 'center',
+                dataIndex: ['twist', 'twist', 'linear', 'x'],
+                key: 'linear'
+            }, {
+                title: 'Angular',
+                align: 'center',
+                dataIndex: ['twist', 'twist', 'linear', 'z'],
+                key: 'ang'
+            },
+        ]
+    }, 
 ];
 
 // --------- table fiducialmark - datatable --------- \\
