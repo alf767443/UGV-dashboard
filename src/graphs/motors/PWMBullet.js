@@ -89,13 +89,13 @@ export default class PWMBullet extends React.Component {
 		return [
     {
       title: 'Right',
-      ranges: [65, 85, 100],
+      ranges: [250, 300, 350],
       measures: [0],
       value: Math.round(this.state.data['right']*100)/100
     },
     {
         title: 'Left',
-        ranges: [65, 85, 100],
+        ranges: [250, 300, 350],
         measures: [0],
         value: Math.round(this.state.data['left']*100)/100
     }, 
