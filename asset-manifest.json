@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/UGV-dashboard/static/css/main.c6efb68b.css",
-    "main.js": "/UGV-dashboard/static/js/main.be3158e6.js",
+    "main.js": "/UGV-dashboard/static/js/main.5c5ad5a0.js",
     "static/js/243.22ab03cd.chunk.js": "/UGV-dashboard/static/js/243.22ab03cd.chunk.js",
     "static/js/954.fb5967f5.chunk.js": "/UGV-dashboard/static/js/954.fb5967f5.chunk.js",
-    "static/js/505.a91be2e0.chunk.js": "/UGV-dashboard/static/js/505.a91be2e0.chunk.js",
+    "static/js/505.567cdb4c.chunk.js": "/UGV-dashboard/static/js/505.567cdb4c.chunk.js",
     "static/js/936.3d529c4b.chunk.js": "/UGV-dashboard/static/js/936.3d529c4b.chunk.js",
     "static/js/62.fa1c3e6b.chunk.js": "/UGV-dashboard/static/js/62.fa1c3e6b.chunk.js",
-    "static/js/656.d0c5a7de.chunk.js": "/UGV-dashboard/static/js/656.d0c5a7de.chunk.js",
+    "static/js/656.fb68db83.chunk.js": "/UGV-dashboard/static/js/656.fb68db83.chunk.js",
     "static/js/316.ba030fca.chunk.js": "/UGV-dashboard/static/js/316.ba030fca.chunk.js",
     "static/js/970.b20285b9.chunk.js": "/UGV-dashboard/static/js/970.b20285b9.chunk.js",
     "static/js/525.6a6b4c1a.chunk.js": "/UGV-dashboard/static/js/525.6a6b4c1a.chunk.js",
@@ -20,7 +20,7 @@
     "static/js/899.ce089078.chunk.js": "/UGV-dashboard/static/js/899.ce089078.chunk.js",
     "static/js/846.4d004b74.chunk.js": "/UGV-dashboard/static/js/846.4d004b74.chunk.js",
     "static/js/634.00404128.chunk.js": "/UGV-dashboard/static/js/634.00404128.chunk.js",
-    "static/js/519.c0b16015.chunk.js": "/UGV-dashboard/static/js/519.c0b16015.chunk.js",
+    "static/js/519.ff7bf128.chunk.js": "/UGV-dashboard/static/js/519.ff7bf128.chunk.js",
     "static/media/logo_CeDRI.png": "/UGV-dashboard/static/media/logo_CeDRI.35cc9641999496b689b0.png",
     "index.html": "/UGV-dashboard/index.html",
     "static/media/google.svg": "/UGV-dashboard/static/media/google.b7da2ce748745374ee27eb11dd475b9c.svg",
@@ -29,6 +29,6 @@
   },
   "entrypoints": [
     "static/css/main.c6efb68b.css",
-    "static/js/main.be3158e6.js"
+    "static/js/main.5c5ad5a0.js"
   ]
 }
