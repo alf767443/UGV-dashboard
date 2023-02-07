@@ -10,8 +10,8 @@ import styles from './styles';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_buffer",
-	"collection": "UGV_Connection",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Connection",
 	"pipeline": [
 		{
 			'$project': {
@@ -78,7 +78,9 @@ export default class ConnectivityIcon extends React.Component {
 	}
 
 	quality = () => {
-		if (this.state.data['Connect']){
+		
+		
+		if (this.state.data['Connect'] && (Date.now() - Date.parse(this.state.data['dateTime'])) < 30000){
 			if (this.state.data['RTT'] < 1){
 				this.setState({ quality:  1 });
 			}
