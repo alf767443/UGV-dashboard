@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/UGV-dashboard/static/css/main.c6efb68b.css",
-    "main.js": "/UGV-dashboard/static/js/main.6d207289.js",
+    "main.js": "/UGV-dashboard/static/js/main.105d89b2.js",
     "static/js/243.22ab03cd.chunk.js": "/UGV-dashboard/static/js/243.22ab03cd.chunk.js",
     "static/js/954.fb5967f5.chunk.js": "/UGV-dashboard/static/js/954.fb5967f5.chunk.js",
-    "static/js/505.977a4a48.chunk.js": "/UGV-dashboard/static/js/505.977a4a48.chunk.js",
+    "static/js/505.8b17fad5.chunk.js": "/UGV-dashboard/static/js/505.8b17fad5.chunk.js",
     "static/js/936.3d529c4b.chunk.js": "/UGV-dashboard/static/js/936.3d529c4b.chunk.js",
     "static/js/62.fa1c3e6b.chunk.js": "/UGV-dashboard/static/js/62.fa1c3e6b.chunk.js",
-    "static/js/656.fb68db83.chunk.js": "/UGV-dashboard/static/js/656.fb68db83.chunk.js",
+    "static/js/656.e68635dc.chunk.js": "/UGV-dashboard/static/js/656.e68635dc.chunk.js",
     "static/js/316.1a27e67a.chunk.js": "/UGV-dashboard/static/js/316.1a27e67a.chunk.js",
     "static/js/970.b34173a2.chunk.js": "/UGV-dashboard/static/js/970.b34173a2.chunk.js",
     "static/js/525.6a6b4c1a.chunk.js": "/UGV-dashboard/static/js/525.6a6b4c1a.chunk.js",
@@ -29,6 +29,6 @@
   },
   "entrypoints": [
     "static/css/main.c6efb68b.css",
-    "static/js/main.6d207289.js"
+    "static/js/main.105d89b2.js"
   ]
 }
