@@ -51,14 +51,14 @@ const columns = [
     },
     {
         title: 'Current',
-        dataIndex: ['voltage'],
+        dataIndex: ['current'],
         key: 'current'
     },
     {
-        title: 'Power',
-        dataIndex: ['power'],
-        key: 'power'
-    }
+        title: 'Temperature',
+        dataIndex: ['temperature'],
+        key: 'temperature'
+    },
 ];
 
 // --------- table fiducialmark - datatable --------- \\

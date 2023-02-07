@@ -45,18 +45,23 @@ const columns = [
             {
                 title: 'PWM',
                 align: 'center',
-                dataIndex: ['left','PWM'],
+                dataIndex: ['leftPwmDrive'],
                 key: 'PWM_left'
             }, {
                 title: 'Rot. rate',
                 align: 'center',
-                dataIndex: ['left','rrate'],
+                dataIndex: ['leftRotateRate'],
                 key: 'rrate_left'
             }, {
                 title: 'Current',
                 align: 'center',
-                dataIndex: ['left','current'],
+                dataIndex: ['leftCurrent'],
                 key: 'current_left'
+            }, {
+                title: 'Position',
+                align: 'center',
+                dataIndex: ['leftPosition'],
+                key: 'position_left'
             }
         ]
     }, {
@@ -66,21 +71,26 @@ const columns = [
             {
                 title: 'PWM',
                 align: 'center',
-                dataIndex: ['right','PWM'],
+                dataIndex: ['rightPwmDrive'],
                 key: 'PWM_right'
             }, {
                 title: 'Rot. rate',
                 align: 'center',
-                dataIndex: ['right','rrate'],
+                dataIndex: ['rightRotateRate'],
                 key: 'rrate_right'
             }, {
                 title: 'Current',
                 align: 'center',
-                dataIndex: ['right','current'],
+                dataIndex: ['rightCurrent'],
                 key: 'current_right'
+            }, {
+                title: 'Position',
+                align: 'center',
+                dataIndex: ['rightPosition'],
+                key: 'position_right'
             }
         ]
-    }
+    }, 
 ];
 
 // --------- table fiducialmark - datatable --------- \\
