@@ -77,7 +77,7 @@ export default class CurrentBullet extends React.Component {
 
 	config = {
         color: {
-          range: ['#82FF74', '#F5F16E', '#FF7772'],
+          range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74', '#FF7772'],
           measure: '#5B8FF9',
           target: '#39a3f4',
         }
@@ -86,7 +86,7 @@ export default class CurrentBullet extends React.Component {
 	data = () => {
 		return [{
             title: ' ',
-            ranges: [2, 3, 3.5],
+            ranges: [10, 18, 22, 30, 40, 50],
             measures: [0],
 			value: Math.round(this.state.data['current']*100)/100
 		}]

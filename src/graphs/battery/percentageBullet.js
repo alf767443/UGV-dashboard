@@ -77,7 +77,7 @@ export default class PercentageBullet extends React.Component {
 
 	config = {
         color: {
-          range: ['#FF7772', '#FFBC6D', '#F5F16E', '#BAFF7D', '#82FF74'],
+          range: ['#82FF74', '#BAFF7D', '#F5F16E',  '#FFBC6D', '#FF7772'],
           measure: '#5B8FF9',
           target: '#39a3f4',
         }

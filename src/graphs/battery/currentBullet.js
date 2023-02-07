@@ -77,7 +77,7 @@ export default class CurrentBullet extends React.Component {
 
 	config = {
         color: {
-          range: ['#82FF74', '#F5F16E', '#FF7772'],
+          range: ['#FF7772', '#F5F16E', '#82FF74'],
           measure: '#5B8FF9',
           target: '#39a3f4',
         }
