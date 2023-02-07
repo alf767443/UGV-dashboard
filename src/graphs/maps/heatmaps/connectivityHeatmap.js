@@ -10,7 +10,7 @@ import MainCard from "components/MainCard";
 var rawPosition = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_Odometry",
+	"collection": "Position_AMCL",
 	"pipeline": [
 		{
 			'$project': {
@@ -31,7 +31,7 @@ var rawPosition = JSON.stringify({
 var raw = JSON.stringify({
     "dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_Odometry",
+	"collection": "Position_AMCL",
 	"pipeline": [
         {
             '$project': {
@@ -41,11 +41,11 @@ var raw = JSON.stringify({
                         'unit': 'minute'
                     }
                 }, 
-                'x': {
-                    '$toInt': '$pose.pose.position.x'
-                }, 
-                'y': {
-                    '$toInt': '$pose.pose.position.y'
+                'x': { 
+                  '$round' : [ '$pose.pose.position.x' , 1 ],
+                },
+                'y': { 
+                  '$round' : [ '$pose.pose.position.y' , 1 ],
                 },
             }
         }, {
@@ -148,7 +148,7 @@ export default class ConnectivityIcon extends React.Component {
 		super(props);
 
 		this.state = {
-            data: [{x:-3520, y:-2960, Connect:null},{x:3520, y:2960, Connect:null}],
+            data: [{x:-30.20, y:-30.60, Connect:null},{x:40.20, y:28.60, Connect:null}],
             last: {x:0,y:0,yaw:2},
 			ticks: -1,
 			quality: 0
@@ -182,7 +182,7 @@ export default class ConnectivityIcon extends React.Component {
         fetch(url(), requestOptions(raw))
         .then((response) => response.json())
         .then((json) => {
-            this.setState({ data: [...json, {x:-3520, y:-2960, RTT:0},{x:3520, y:2960, RTT:0}] });
+            this.setState({ data: [...json, {x:-30.20, y:-30.60, RTT:0},{x:40.20, y:28.60, RTT:0}] });
             console.log(this.state.data)
         })
         .catch((error) => {
@@ -220,8 +220,8 @@ export default class ConnectivityIcon extends React.Component {
         annotations: [
             {
                 type: 'image',
-                start: [-3520, 2960],
-                end: [3520, -2960],
+                start: [-30.20, 28.60],
+                end: [40.20, -30.60],
                 src: cedri,
             },
         ],
