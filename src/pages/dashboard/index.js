@@ -12,6 +12,8 @@ import Motor_Bullet from 'graphs/motors/groupBullet';
 import Motor_Line_Current from 'graphs/motors/currentDatetimeLine';
 import Motor_Line_PWM from 'graphs/motors/PWMDatetimeLine';
 
+import Log_prompter from 'graphs/log/printLog'
+
 import styles from './styles';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -19,10 +21,9 @@ import styles from './styles';
 export const DashboardDefault = () => {
     return (
         <Grid container {...styles.grid.main}>
-            {/* Header */}
 
             <Grid container {...styles.grid.column.header}>
-
+        
                 <Grid container  {...styles.grid.column.subheader}>
                 {/* Bullets */}
                     <Grid item {...styles.grid.column.graphs}>
@@ -47,7 +48,11 @@ export const DashboardDefault = () => {
             </Grid>
 
             <Grid item {...styles.grid.column.map} >
+                    {/* Map */}
                     <Position_Map />
+
+                    {/* Log */}
+                    <Log_prompter />
                 </Grid>
         </Grid>
 

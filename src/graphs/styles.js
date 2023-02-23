@@ -75,7 +75,7 @@ const styles = {
         },
         subtitle:{
             align: 'center',
-            variant: 'h6',
+            variant: 'h5',
             color: 'textSecondary' 
         },
     },
@@ -134,6 +134,69 @@ const styles = {
         style:{
             width: '100%',
             height: 450,
+        }
+    },
+
+    statusIcon:{
+        popup:{
+            icon:{
+                sx:{
+                    width: 35, 
+                    height: 35,
+                },
+            },
+            typography:{
+                primary:{
+                    align:'left',
+                    variant: "h5", 
+                    color:'textPrimary',
+                },
+                secondary:{
+                    align:'left',
+                    variant:"body1",
+                    color:'textSecondary',
+                },
+            },
+            popover:{
+                title:"Log",
+				trigger:"click",
+            }
+        },
+        badge:{
+            overlap:"circular",
+			anchorOrigin:{ 
+                vertical: 'bottom', 
+                horizontal: 'right', 
+            },
+            size: "lg" 
+        },
+        avatar:{
+            sx:{
+                bgcolor: 'transparent',
+            },
+        },
+        icon:{
+            main:{
+                color:'gray',
+                sx:{
+                    height: 107, 
+                    width: 67,
+                },
+            },
+            badge:{
+                sx:{
+                    width: 37, 
+                    height: 37
+                },
+            },
+        },
+        grid:{
+            direction:"row",
+            justifyContent:"center",
+            alignItems:"center",
+            sx:{
+                height: 202
+            }
         }
     },
 };
