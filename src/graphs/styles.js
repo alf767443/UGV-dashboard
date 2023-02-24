@@ -190,14 +190,24 @@ const styles = {
                 },
             },
         },
-        grid:{
+        container:{
             direction:"row",
             justifyContent:"center",
             alignItems:"center",
+            height: '100%',
+
+        },
+        item:{
+            xs: 12,
+            sm: 6,
+            md: 4,
+            lg: 2,
+            xl: 2,
             sx:{
-                height: 202
-            }
+                height: 198
+            },
         }
+        
     },
 };
 

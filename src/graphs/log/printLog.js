@@ -1,7 +1,7 @@
 // import React from "react";
 import * as React from 'react';
 
-import { Typography, Stack, Grid, Divider } from '@mui/material';
+import { Typography, Stack, Grid } from '@mui/material';
 import MainCard from "components/MainCard";
 
 import styles from "graphs/styles";
@@ -131,8 +131,8 @@ export default class CurrentDatetimeArea extends React.Component {
                 <Typography {...styles.typography.title}>
                     Subsystems status 
                 </Typography>
-                <Grid container {...styles.statusIcon.grid} >
-					<Grid item >
+                <Grid container {...styles.statusIcon.container} >
+					<Grid item {...styles.statusIcon.item}>
 						{/* Battery */}
 						<Stack {...styles.stack}>
 							<IconLogger icon={BatteryChargingFull} pipeline={pipeline.battery} />
@@ -142,9 +142,9 @@ export default class CurrentDatetimeArea extends React.Component {
 						</Stack>
 					</Grid>
 
-					<Divider orientation="vertical" flexItem />
+					{/* <Divider orientation="vertical" flexItem /> */}
 
-					<Grid item >
+					<Grid item {...styles.statusIcon.item}>
 						{/* LiDAR */}
 						<Stack {...styles.stack}>
 							<IconLogger icon={TrackChanges} pipeline={pipeline.lidar} />
@@ -154,9 +154,9 @@ export default class CurrentDatetimeArea extends React.Component {
 						</Stack>
 					</Grid>
 
-					<Divider orientation="vertical" flexItem />
+					{/* <Divider orientation="vertical" flexItem /> */}
 
-					<Grid item >
+					<Grid item {...styles.statusIcon.item}>
 						{/* Encoders */}
 						<Stack {...styles.stack}>
 							<IconLogger icon={Straighten} pipeline={pipeline.encoders} />
@@ -166,9 +166,9 @@ export default class CurrentDatetimeArea extends React.Component {
 						</Stack>
 					</Grid>
 
-					<Divider orientation="vertical" flexItem />
+					{/* <Divider orientation="vertical" flexItem /> */}
 
-					<Grid item >
+					<Grid item {...styles.statusIcon.item}>
 						{/* Motors */}
 						<Stack {...styles.stack}>
 							<IconLogger icon={ElectricMeter} pipeline={pipeline.motors} />
@@ -178,9 +178,9 @@ export default class CurrentDatetimeArea extends React.Component {
 						</Stack>
 					</Grid>
 
-					<Divider orientation="vertical" flexItem />
+					{/* <Divider orientation="vertical" flexItem /> */}
 
-					<Grid item >
+					<Grid item {...styles.statusIcon.item}>
 						{/* Motor Power */}
 						<Stack {...styles.stack}>
 							<IconLogger icon={ModeStandby} pipeline={pipeline.motorPower} />
@@ -190,9 +190,9 @@ export default class CurrentDatetimeArea extends React.Component {
 						</Stack>
 					</Grid>
 
-					<Divider orientation="vertical" flexItem />
+					{/* <Divider orientation="vertical" flexItem /> */}
 
-					<Grid item >
+					<Grid item {...styles.statusIcon.item}>
 						{/* AMCL */}
 						<Stack {...styles.stack}>
 							<IconLogger icon={Explore} pipeline={pipeline.amcl} />
