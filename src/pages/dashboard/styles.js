@@ -51,7 +51,7 @@ const styles = {
         main: {
             direction: "row",
             justifyContent: "center",
-            alignItems: "stretch",
+            alignItems: "stretch",  
             spacing: 0,
         },
         column: {
@@ -68,6 +68,7 @@ const styles = {
             map: {
                 justifyContent: "center",
                 alignItems: "stretch",
+                direction: "column",
                 xs: 12,
                 sm: 12,
                 md: 12,
