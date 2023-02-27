@@ -5,6 +5,7 @@
     "homepage": "http://alf767443.github.io/UGV-dashboard",
     "dependencies": {
         "@ant-design/colors": "^6.0.0",
+        "@ant-design/graphs": "^1.4.0",
         "@ant-design/icons": "^4.8.0",
         "@ant-design/plots": "^1.2.2",
         "@emotion/cache": "^11.10.3",

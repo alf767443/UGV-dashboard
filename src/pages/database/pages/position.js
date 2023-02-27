@@ -1,5 +1,5 @@
 // Import from MUI
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 // Import from project
 import { TableCard } from 'tables/Position';
 import { Carrousel } from '../../../carousels/position'

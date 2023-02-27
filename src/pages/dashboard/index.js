@@ -1,8 +1,10 @@
 // material-ui
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 
-import Position_Map from 'graphs/maps/pointmaps/positionMap';
+// import Position_Map from 'graphs/maps/pointmaps/positionMap';
 // import Track_Map from 'graphs/maps/pointmaps/trackMap';
+
+import Nodes_Map from 'graphs/nodes/nodeMap';
 
 import Battery_Bullet from 'graphs/battery/groupBullet';
 import Battery_Area_Percentage from 'graphs/battery/percentageDatetimeArea';
@@ -47,13 +49,18 @@ export const DashboardDefault = () => {
                 </Grid>
             </Grid>
 
-            <Grid item {...styles.grid.column.map} >
-                    {/* Map */}
-                    <Position_Map />
-
+                <Grid item {...styles.grid.column.map} >
                     {/* Log */}
                     <Log_prompter />
+
+                    <Nodes_Map />
                 </Grid>
+
+                {/* <Grid item {...styles.grid.column.map} > */}
+                    {/* Map */}
+                    
+                {/* </Grid> */}
+            
         </Grid>
 
     );
