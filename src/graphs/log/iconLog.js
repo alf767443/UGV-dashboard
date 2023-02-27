@@ -21,6 +21,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 
+import openNotification from './tst';
 
 export default class IconLogger extends React.Component {
 	constructor(props) {
@@ -33,6 +34,7 @@ export default class IconLogger extends React.Component {
 			ticks: -1,
 			meta: [],
 			msg: '',
+			level: -1,
         };
     }
 
@@ -52,6 +54,10 @@ export default class IconLogger extends React.Component {
 		.then((json) => {
 			this.setState({ data: json });
 			this.setState({ msg: this.state.data[0].message})
+			if(this.state.level != this.state.data[0].level){
+				openNotification(this.props.title, this.state.data[0].message, this.icon(this.state.data[0]));
+				this.setState({level: this.state.data[0].level})
+			}
 		})
 		.catch((error) => {
 			console.log(error);
@@ -60,6 +66,7 @@ export default class IconLogger extends React.Component {
     }
 
     componentDidMount = () => {
+		this.refreshList();
 		this.timer();
     }
 
@@ -131,7 +138,6 @@ export default class IconLogger extends React.Component {
 						</Badge>
 					</Tooltip>
 				</Popover>
-				
 			</Stack>
 		);
 	}
