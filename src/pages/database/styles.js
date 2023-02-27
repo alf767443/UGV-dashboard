@@ -39,9 +39,9 @@ const styles = {
         button: {
             justifyContent: "flex-start",
             alignItems: "center",
-            xs: 2,
-            sm: 2,
-            md: 2,
+            xs: 12,
+            sm: 12,
+            md: 6,
             lg: 2,
             xl: 2,
             sx: {
