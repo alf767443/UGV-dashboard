@@ -179,7 +179,7 @@ export default class NodeMap extends React.Component {
     // console.log(this.state.edges)
     }
 
-    componentDidMount = () => {
+  componentDidMount = () => {
 		this.refreshNodes();
     this.refreshEdges();
     this.setState( {data: {edges: this.state.edges, nodes: this.state.nodes}})
