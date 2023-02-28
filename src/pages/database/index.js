@@ -6,6 +6,8 @@ import { MotorsButtons } from './buttons/motorsButtons';
 import { PositionButtons } from './buttons/positionButtons';
 import { MapButtons } from './buttons/mapButtons';
 import { ActionsButtons } from './buttons/actionsButtons';
+import { ConnectionButtons } from './buttons/connectionButtons';
+
 import styles from './styles';
 
 
@@ -31,6 +33,9 @@ const DataBase = () => {
                 </Grid>
                 <Grid item {...styles.grid.button}>
                     <ActionsButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <ConnectionButtons />
                 </Grid>
             </Grid>
 
