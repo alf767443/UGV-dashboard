@@ -135,7 +135,7 @@ export default class CurrentDatetimeArea extends React.Component {
 					<Grid item {...styles.statusIcon.item}>
 						{/* Battery */}
 						<Stack {...styles.stack}>
-							<IconLogger icon={BatteryChargingFull} pipeline={pipeline.battery} />
+							<IconLogger icon={BatteryChargingFull} pipeline={pipeline.battery} title={'Battery'} />
 							<Typography {...styles.typography.subtitle}>
 								Battery 
 							</Typography>
@@ -147,7 +147,7 @@ export default class CurrentDatetimeArea extends React.Component {
 					<Grid item {...styles.statusIcon.item}>
 						{/* LiDAR */}
 						<Stack {...styles.stack}>
-							<IconLogger icon={TrackChanges} pipeline={pipeline.lidar} />
+							<IconLogger icon={TrackChanges} pipeline={pipeline.lidar} title={'LiDAR'} />
 							<Typography {...styles.typography.subtitle}>
 								LiDAR 
 							</Typography>
@@ -159,7 +159,7 @@ export default class CurrentDatetimeArea extends React.Component {
 					<Grid item {...styles.statusIcon.item}>
 						{/* Encoders */}
 						<Stack {...styles.stack}>
-							<IconLogger icon={Straighten} pipeline={pipeline.encoders} />
+							<IconLogger icon={Straighten} pipeline={pipeline.encoders} title={'Encoders'} />
 							<Typography {...styles.typography.subtitle}>
 								Encoders 
 							</Typography>
@@ -171,7 +171,7 @@ export default class CurrentDatetimeArea extends React.Component {
 					<Grid item {...styles.statusIcon.item}>
 						{/* Motors */}
 						<Stack {...styles.stack}>
-							<IconLogger icon={ElectricMeter} pipeline={pipeline.motors} />
+							<IconLogger icon={ElectricMeter} pipeline={pipeline.motors} title={'Motors'} />
 							<Typography {...styles.typography.subtitle}>
 								Motors 
 							</Typography>
@@ -183,7 +183,7 @@ export default class CurrentDatetimeArea extends React.Component {
 					<Grid item {...styles.statusIcon.item}>
 						{/* Motor Power */}
 						<Stack {...styles.stack}>
-							<IconLogger icon={ModeStandby} pipeline={pipeline.motorPower} />
+							<IconLogger icon={ModeStandby} pipeline={pipeline.motorPower} title={'Motor Power'} />
 							<Typography {...styles.typography.subtitle}>
 								Motor Power 
 							</Typography>
@@ -195,7 +195,7 @@ export default class CurrentDatetimeArea extends React.Component {
 					<Grid item {...styles.statusIcon.item}>
 						{/* AMCL */}
 						<Stack {...styles.stack}>
-							<IconLogger icon={Explore} pipeline={pipeline.amcl} />
+							<IconLogger icon={Explore} pipeline={pipeline.amcl} title={'AMCL'} />
 							<Typography {...styles.typography.subtitle}>
 								AMCL 
 							</Typography>

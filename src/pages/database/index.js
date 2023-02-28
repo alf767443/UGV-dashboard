@@ -5,7 +5,14 @@ import { BatteryButtons } from './buttons/batteryButtons';
 import { MotorsButtons } from './buttons/motorsButtons';
 import { PositionButtons } from './buttons/positionButtons';
 import { MapButtons } from './buttons/mapButtons';
+import { ActionsButtons } from './buttons/actionsButtons';
+import { ConnectionButtons } from './buttons/connectionButtons';
+import { DiagnosticButtons } from './buttons/diagnosticButtons';
+import { OdometryButtons } from './buttons/odometryButtons';
+import { NodesButtons } from './buttons/nodesButtons';
+
 import styles from './styles';
+
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -26,6 +33,21 @@ const DataBase = () => {
                 </Grid>
                 <Grid item {...styles.grid.button}>
                     <PositionButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <ActionsButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <ConnectionButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <DiagnosticButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <OdometryButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <NodesButtons />
                 </Grid>
             </Grid>
 

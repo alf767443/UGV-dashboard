@@ -142,17 +142,15 @@ export default class NodeMap extends React.Component {
     }
 
 	canUpdate(){
-		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
+		if (/*JSON.parse(window.localStorage.getItem('fromLocal')) || */this.state.ticks <= 0 || this.state.data == {edges: [{}], nodes:[{}]}) {
 			this.setState({ ticks: 10})
 			this.refreshNodes()
       this.refreshEdges()
-      if(this.state.edges != this.state.data.edges || this.state.nodes != this.state.data.nodes){
-        this.setState( {data: {edges: this.state.edges, nodes: this.state.nodes}})
-      }
+      this.setState( {data: {edges: this.state.edges, nodes: this.state.nodes}})
       // console.log(this.state.data)
 		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
 			// From MongoDB cloud
-			this.setState({ ticks: this.state.ticks - 1})
+			// this.setState({ ticks: this.state.ticks - 1})
 		}
 	}
 
@@ -179,7 +177,7 @@ export default class NodeMap extends React.Component {
     // console.log(this.state.edges)
     }
 
-    componentDidMount = () => {
+  componentDidMount = () => {
 		this.refreshNodes();
     this.refreshEdges();
     this.setState( {data: {edges: this.state.edges, nodes: this.state.nodes}})
@@ -200,18 +198,21 @@ export default class NodeMap extends React.Component {
 	config = {
     // data,
     autoFit: true,
+    fitCenter: true,
+    animate: false,
     nodeCfg: {
-      size: [140, 25],
-      badge: {
-        style: (cfg) => {
-          const ids = ['a', '-2', '-1'];
-          const fill = ids.includes(cfg.id) ? '#c86bdd' : '#5ae859';
-          return {
-            fill,
-            radius: [2, 2, 2, 2],
-          };
-        },
-      },
+      type: 'ellipse',
+      size: [140, 35],
+      // badge: {
+      //   style: (cfg) => {
+      //     const ids = ['a', '-2', '-1'];
+      //     const fill = ids.includes(cfg.id) ? '#c86bdd' : '#5ae859';
+      //     return {
+      //       fill,
+      //       radius: [2, 2, 2, 2],
+      //     };
+      //   },
+      // },
       items: {
         padding: 6,
         containerStyle: {
@@ -224,7 +225,7 @@ export default class NodeMap extends React.Component {
               height: 12,
             },
             value: {
-              fill: '#f00',
+              fill: '#118980',
             },
             text: {
               fill: '#aaa',
@@ -249,13 +250,15 @@ export default class NodeMap extends React.Component {
         },
       },
       style: {
-        fill: '#E6EAF1',
-        stroke: '#B2BED5',
+        fill: '#cdcdcd',
+        stroke: '#2e2f33',
         radius: [2, 2, 2, 2],
       },
       anchorPoints: [
         [0, 0.5],
         [1, 0.5],
+        [0.5, 0],
+        [0.5, 1],
       ],
     },
     edgeCfg: {

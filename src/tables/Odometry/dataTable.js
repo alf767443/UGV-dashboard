@@ -11,7 +11,7 @@ import { url, requestOptions } from 'API/url';
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_AMCL",
+	"collection": "Position_Odometry",
 	"pipeline": [
 		{
 			'$project': {
@@ -59,7 +59,23 @@ const columns = [
                 key: 'current_right'
             },
         ]
-    },
+    }, {
+        title: 'Twist',
+        align: 'center',
+        children:[
+            {
+                title: 'Linear',
+                align: 'center',
+                dataIndex: ['twist', 'twist', 'linear', 'x'],
+                key: 'linear'
+            }, {
+                title: 'Angular',
+                align: 'center',
+                dataIndex: ['twist', 'twist', 'linear', 'z'],
+                key: 'ang'
+            },
+        ]
+    }, 
 ];
 
 // --------- table fiducialmark - datatable --------- \\

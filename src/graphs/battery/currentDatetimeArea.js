@@ -81,7 +81,7 @@ export default class CurrentDatetimeArea extends React.Component {
     }
 
     componentDidMount = () => {
-		//this.refreshList();
+		this.refreshList();
 		this.timer();
     }
 

@@ -11,7 +11,7 @@ import { url, requestOptions } from 'API/url';
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_AMCL",
+	"collection": "Diagnostics",
 	"pipeline": [
 		{
 			'$project': {
@@ -38,27 +38,26 @@ const columns = [
             multiple: 1
         },
         defaultSortOrder: 'descend'
-    },{
-        title: 'Pose',
-        align: 'center',
-        children:[
-            {
-                title: 'X',
-                align: 'center',
-                dataIndex: ['pose', 'pose', 'position', 'x'],
-                key: 'x'
-            }, {
-                title: 'Y',
-                align: 'center',
-                dataIndex: ['pose', 'pose', 'position', 'y'],
-                key: 'y'
-            }, {
-                title: 'Orientation',
-                align: 'center',
-                dataIndex: ['pose', 'pose', 'orientation', 'yaw'],
-                key: 'current_right'
-            },
-        ]
+    },
+    {
+        title: 'Level',
+        dataIndex: ['level'],
+        key: 'level',
+    },
+    {
+        title: 'Source',
+        dataIndex: ['name'],
+        key: 'name',
+    },
+    {
+        title: 'Message',
+        dataIndex: ['message'],
+        key: 'message'
+    },
+    {
+        title: 'ID',
+        dataIndex: ['hardware_id'],
+        key: 'hardware_id'
     },
 ];
 
