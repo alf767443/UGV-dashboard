@@ -17,6 +17,8 @@ const DatabaseMap = Loadable(lazy(() => import('pages/database/pages/map')));
 const DatabaseActions = Loadable(lazy(() => import('pages/database/pages/actions')));
 const DatabaseConnection = Loadable(lazy(() => import('pages/database/pages/connection')));
 const DatabaseDiagnostics = Loadable(lazy(() => import('pages/database/pages/diagnostics')));
+const DatabaseOdometry = Loadable(lazy(() => import('pages/database/pages/odometry')));
+const DatabaseNodes = Loadable(lazy(() => import('pages/database/pages/nodes')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -71,6 +73,12 @@ const MainRoutes = {
                         }, {
                             path: 'diagnostic',
                             element: <DatabaseDiagnostics />
+                        }, {
+                            path: 'odometry',
+                            element: <DatabaseOdometry />
+                        }, {
+                            path: 'nodes',
+                            element: <DatabaseNodes />
                         }
 
                     ]
