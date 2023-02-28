@@ -69,7 +69,7 @@ const MainRoutes = {
                             path: 'connection',
                             element: <DatabaseConnection />
                         }, {
-                            path: 'diagnostics',
+                            path: 'diagnostic',
                             element: <DatabaseDiagnostics />
                         }
 
