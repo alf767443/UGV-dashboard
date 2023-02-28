@@ -5,7 +5,9 @@ import { BatteryButtons } from './buttons/batteryButtons';
 import { MotorsButtons } from './buttons/motorsButtons';
 import { PositionButtons } from './buttons/positionButtons';
 import { MapButtons } from './buttons/mapButtons';
+import { ActionsButtons } from './buttons/actionsButtons';
 import styles from './styles';
+
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -26,6 +28,9 @@ const DataBase = () => {
                 </Grid>
                 <Grid item {...styles.grid.button}>
                     <PositionButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <ActionsButtons />
                 </Grid>
             </Grid>
 

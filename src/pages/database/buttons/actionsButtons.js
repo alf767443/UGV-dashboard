@@ -1,10 +1,11 @@
 // material-ui
-import { BatteryChargingFull } from '@mui/icons-material';
+import { ReceiptLong } from '@mui/icons-material';
+
 // project import
 import DataBaseButtons from './button';
 
-export const BatteryButtons = () => {
+export const ActionsButtons = () => {
     return (
-        <DataBaseButtons href={'dbs/battery/'} Title={'Battery'} Icon={BatteryChargingFull} />
+        <DataBaseButtons href={'dbs/actions/'} Title={'Actions'} Icon={ReceiptLong} />
     );
 };
