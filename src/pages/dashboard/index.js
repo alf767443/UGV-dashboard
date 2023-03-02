@@ -4,7 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Position_Map from 'graphs/maps/pointmaps/positionMap';
 // import Track_Map from 'graphs/maps/pointmaps/trackMap';
 
-// import Nodes_Map from 'graphs/nodes/nodeMap';
+import { DemoSunburst } from 'graphs/Processes/processSunbrush';
 
 import Battery_Bullet from 'graphs/battery/groupBullet';
 import Battery_Area_Percentage from 'graphs/battery/percentageDatetimeArea';
@@ -61,6 +61,8 @@ export const DashboardDefault = () => {
                     <Position_Map />
                 </Grid>
             </Grid>
+
+            <DemoSunburst />
                 
         </Grid>
 
