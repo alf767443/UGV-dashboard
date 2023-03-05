@@ -151,7 +151,6 @@ export default class DashboardDefault  extends React.Component {
                         <Position_Map position={'21'}/>
                     </Grid>
                 </Grid>
-                    
             </Grid>
 
         );

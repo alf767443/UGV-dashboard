@@ -36,7 +36,7 @@ const items = [
 		key: 'motor',
 		label: 'Motor',
 		children: Motors.SimplePlot.sort((a, b) => sort(a.label, b.label))
-	},	
+	},
 ];
   
 var raw = (graph) => JSON.stringify({

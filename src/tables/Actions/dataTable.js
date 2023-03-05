@@ -1,11 +1,5 @@
-// Import from React
 import React, { Component } from 'react';
-
-// Import from Antd
 import { Table } from 'antd';
-
-
-// Import from project
 import { url, requestOptions } from 'API/url';
 
 var raw = JSON.stringify({
@@ -25,83 +19,86 @@ var raw = JSON.stringify({
 			'$limit': 1000
 		}
 	]
-   });
-
-// Define columns
-const columns = [
-    {
-        title: 'Time',
-        dataIndex: 'dateTime',
-        key: 'dateTime',
-        sorter: {
-            compare: (a, b) => a.dateTime - b.dateTime,
-            multiple: 1
-        },
-        defaultSortOrder: 'descend'
-    },
-    {
-        title: 'Status',
-        dataIndex: ['status'],
-        key: 'status'
-    },
-    {
-        title: 'Source',
-        dataIndex: ['source'],
-        key: 'source'
-    },
-    {
-        title: 'Topic',
-        dataIndex: ['topic'],
-        key: 'topic'
-    },
-    {
-        title: 'Message type',
-        dataIndex: ['msg'],
-        key: 'msg'
-    },
-    {
-        title: 'Command',
-        dataIndex: ['command'],
-        key: 'comamnd'
-    },
-];
-
-// --------- table fiducialmark - datatable --------- \\
+});
 export class DataTable extends Component {
-    constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      pagination: {},
+      loading: false,
+      columns: []
+    };
+  }
 
-		this.state = {
-            data: [],
-			ticks: -1
-        };
-    }
+  componentDidMount() {
+    this.fetchData();
+  }
 
-    refreshList() {
-		fetch(url(), requestOptions(raw))
-		.then((response) => response.json())
-		.then((json) => {
-			this.setState({ data: json });
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-    }
+  fetchData = () => {
+    this.setState({ loading: true });
 
-    componentDidMount = () => {
-		this.refreshList();
-    }
+    fetch(url(), requestOptions(raw))
+      .then(response => response.json())
+      .then(data => {
+        const columns = this.generateColumns(data);
+        this.setState({
+          loading: false,
+          data,
+          columns
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ loading: false });
+      });
+  };
 
-    render() {
-        return (
-            <Table
-                columns={columns}
-                dataSource={this.state.data}
-                pagination={this.state.pagination}
-                loading={this.state.loading}
-                onChange={this.handleTableChange}
-                sx={this.props.sx}
-            />
-        );
-    }
+  generateColumns = data => {
+    const columns = Object.keys(data[0]).map(key => {
+      return {
+        title: key,
+        dataIndex: key,
+        key: key,
+        render: (text) => {
+          if (typeof text === 'object') {
+            const nestedColumns = this.generateColumns([text]);
+            const nestedData = [text];
+            return <Table columns={nestedColumns} dataSource={nestedData} pagination={false} />;
+          }
+          return text;
+        }
+      };
+    });
+    return columns;
+  };
+
+  handleTableChange = (pagination, filters, sorter) => {
+    const pager = { ...this.state.pagination };
+    pager.current = pagination.current;
+    this.setState({ pagination: pager });
+    this.fetchData({
+      results: pagination.pageSize,
+      page: pagination.current,
+      sortField: sorter.field,
+      sortOrder: sorter.order,
+      ...filters
+    });
+  };
+
+  render() {
+    const { loading, data, columns } = this.state;
+    return (
+      <Table
+        columns={columns}
+        rowKey={record => record._id}
+        dataSource={data}
+        pagination={false}
+        loading={loading}
+        onChange={this.handleTableChange}
+        scroll = {true}
+      />
+    );
+  }
 }
+
