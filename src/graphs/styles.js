@@ -107,9 +107,6 @@ const styles = {
         },
         height: '100%',
         content: false,
-        // style:{
-        //     aspectRatio: 5/3,
-        // },
     },
 
     box: {
@@ -128,6 +125,12 @@ const styles = {
             gap: 1,
         },
         height: '100%',
+    },
+
+    grid: {
+        direction:"row",
+        justifyContent:"space-between",
+        alignItems:"stretch"
     },
 
     map:{

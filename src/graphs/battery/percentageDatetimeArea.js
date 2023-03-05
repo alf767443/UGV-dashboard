@@ -6,10 +6,8 @@ import { Area } from '@ant-design/plots';
 
 // Import from project
 import { url, requestOptions } from 'API/url';
-import MainCard from "components/MainCard";
 
 import styles from "graphs/styles";
-import { Typography, Stack } from '@mui/material';
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -135,18 +133,11 @@ export default class PercentageDatetimeArea extends React.Component {
 	render() {
 		
 		return (
-			<MainCard {...styles.maincard}>
-				<Stack {...styles.stack}>
-					<Typography {...styles.typography.title}>
-						Battery percentage by time
-					</Typography>
-					<Area 
-						{...this.config}
-						{...styles.plot}
-						data={this.state.data}
-					/>
-				</Stack>
-			</MainCard>
+			<Area 
+				{...this.config}
+				{...styles.plot}
+				data={this.state.data}
+			/>
 		);
 	}
 }

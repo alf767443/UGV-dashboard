@@ -1,7 +1,7 @@
 
 import React from "react";
 
-import { Line } from '@ant-design/plots';
+import { Area } from '@ant-design/plots';
 
 
 // Import from project
@@ -9,10 +9,10 @@ import { url, requestOptions } from 'API/url';
 
 import styles from "graphs/styles";
 
-var raw = (side) => JSON.stringify({
+var raw = JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Motor",
+	"collection": "Battery",
 	"pipeline": [
 		{
 			'$project': {
@@ -22,8 +22,7 @@ var raw = (side) => JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'leftRotateRate': 1, 
-				'rightRotateRate': 1
+				'current': 1
 			}
 		}, {
 			'$densify': {
@@ -37,8 +36,8 @@ var raw = (side) => JSON.stringify({
 		}, {
 			'$group': {
 				'_id': '$dateTime', 
-				'rrate': {
-					'$avg': "$" + side + "RotateRate"
+				'current': {
+					'$avg': '$temperature'
 				}
 			}
 		}, {
@@ -47,22 +46,16 @@ var raw = (side) => JSON.stringify({
 			}
 		}, {
 			'$limit': 100
-		}, {
-			'$addFields': {
-				'side': side
-			}
 		}
 	]
 });
 
-export default class RotationRateDatetimeLine extends React.Component {
+export default class TemperatureDatetimeArea extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
             data: [],
-			right: [],
-			left: [],
 			ticks: -1
         };
     }
@@ -78,23 +71,14 @@ export default class RotationRateDatetimeLine extends React.Component {
 	}
 
     refreshList() {
-		fetch(url(), requestOptions(raw("left")))
+		fetch(url(), requestOptions(raw))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ left: json });
+			this.setState({ data: json });
 		})
 		.catch((error) => {
 			console.log(error);
 		});
-		fetch(url(), requestOptions(raw("right")))
-		.then((response) => response.json())
-		.then((json) => {
-			this.setState({ right: json });
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-		this.setState({data: [...this.state.left, ...this.state.right]})
     }
 
     componentDidMount = () => {
@@ -114,8 +98,7 @@ export default class RotationRateDatetimeLine extends React.Component {
 
 	config = {
 		xField: '_id',
-		yField: 'rrate',
-		seriesField: 'side',
+		yField: 'temperature',
 		xAxis: {
 			tickCount: 5,
 			type: 'time',
@@ -127,12 +110,12 @@ export default class RotationRateDatetimeLine extends React.Component {
 		yAxis:{
 			tickCount: 10,
 			title: {
-				text: "Motor rrate [rpm?]"
+				text: "Battery temperature [ºC]"
 			}
 		},tooltip: {
 			formatter: (data) => {
-				if (data['rrate'] != null){
-					return { name: 'Rotation rate', value: data['rrate'].toFixed(1) + ' rpm?' };
+				if (data['temperature'] != null){
+					return { name: 'Temperature', value: data['temperature'].toFixed(1) + 'ºC' };
 				}
 				return {};
 			},	
@@ -140,8 +123,9 @@ export default class RotationRateDatetimeLine extends React.Component {
 	}
 
 	render() {
+		
 		return (
-			<Line 
+			<Area 
 				{...this.config}
 				{...styles.plot}
 				data={this.state.data}
