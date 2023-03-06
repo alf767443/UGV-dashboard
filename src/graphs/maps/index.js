@@ -7,6 +7,8 @@ import PointMapPosition from './pointmaps/positionMap'
 import PointMapTrack from './pointmaps/trackMap'
 
 const list = {
+    SimplePlot:  [],
+    LargePlot: [],
     BigPlot: [
         {
             plot: <HeatMapConnectivity />,

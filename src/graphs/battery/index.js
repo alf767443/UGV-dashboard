@@ -45,6 +45,8 @@ const list = {
             key: "battery-battery--bullet",
         },
     ],
+    LargePlot:  [],
+    BigPlot:    [],
 }
 
 export default list

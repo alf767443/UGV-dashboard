@@ -6,6 +6,7 @@ import styles from "graphs/styles";
 import { Typography, Stack, Grid, Skeleton } from '@mui/material';
 
 import Maps from './maps/index'
+import Nodes from './nodes/index'
 
 import { MoreVert } from '@mui/icons-material';
 import { Dropdown, message } from 'antd';
@@ -30,6 +31,11 @@ const items = [
 		key: 'maps',
 		label: 'Maps',
 		children: Maps.BigPlot.sort((a, b) => sort(a.label, b.label))
+	},
+	{
+		key: 'nodes',
+		label: 'Nodes',
+		children: Nodes.BigPlot.sort((a, b) => sort(a.label, b.label))
 	},
 ];
   

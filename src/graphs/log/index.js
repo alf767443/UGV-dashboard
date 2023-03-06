@@ -2,6 +2,7 @@
 import LogBar from './printLog'
 
 const list = {
+    SimplePlot:  [],
     LargePlot: [
         {
             plot: <LogBar />,
@@ -10,6 +11,7 @@ const list = {
             key: "log-actual-status-log",
         },
     ],
+    BigPlot:    [],
 }
 
 export default list

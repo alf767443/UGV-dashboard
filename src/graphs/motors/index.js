@@ -31,6 +31,8 @@ const list = {
             key: "motors-rrate-time-are",
         },
     ],
+    LargePlot: [],
+    BigPlot:  [],
 }
 
 export default list
