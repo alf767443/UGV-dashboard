@@ -6,8 +6,28 @@ import { Box, Typography, Stack } from '@mui/material';
 import MainCard from 'components/MainCard';
 
 // Import from project
-import { DataTable } from './dataTable';
+import DataTable from '../table';
 import tableSx from 'tables/tableSx';
+
+var raw = JSON.stringify({
+	"dataSource": "CeDRI",
+	"database": "CeDRI_UGV_datalake",
+	"collection": "Position_Odometry",
+	"pipeline": [
+		{
+			'$project': {
+				'_id': 0,
+                'header': 0,
+			}
+		}, {
+			'$sort': {
+				'dateTime': -1
+				}
+		}, {
+			'$limit': 1000
+		}
+	]
+   });
 
 // --------- table physical data - index --------- \\
 export class TableCard extends Component {
@@ -20,7 +40,7 @@ export class TableCard extends Component {
                             Odometry data
                         </Typography>
                     </Stack>
-                    <DataTable />
+                    <DataTable raw={raw} />
                 </Box>
             </MainCard>
         );

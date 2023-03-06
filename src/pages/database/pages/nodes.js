@@ -2,7 +2,8 @@
 import Grid from '@mui/material/Unstable_Grid2';
 // Import from project
 import { TableCard } from 'tables/Nodes';
-import { Carrousel } from '../../../carousels/nodes'
+import Carousel from 'carousels/carousel';
+import Plots from 'graphs/nodes'
 
 import styles from './styles';
 
@@ -11,7 +12,7 @@ const dbActions = () => {
     return (
         <Grid container {...styles.grid.main}>
             <Grid item {...styles.grid.item}>
-                <Carrousel />
+                <Carousel Plot={Plots} />
             </Grid>
             <Grid item {...styles.grid.item}>
                 <TableCard />

@@ -3,10 +3,8 @@ import React from "react";
 import { FlowAnalysisGraph } from '@ant-design/graphs';
 
 import { url, requestOptions } from 'API/url';
-import MainCard from "components/MainCard";
 
 import styles from "graphs/styles";
-import { Typography, Stack } from '@mui/material';
 
 var nodes = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -141,24 +139,12 @@ export default class NodeMap extends React.Component {
       };
     }
 
-	canUpdate(){
-		if (/*JSON.parse(window.localStorage.getItem('fromLocal')) || */this.state.ticks <= 0 || this.state.data == {edges: [{}], nodes:[{}]}) {
-			this.setState({ ticks: 10})
-			this.refreshNodes()
-      this.refreshEdges()
-      this.setState( {data: {edges: this.state.edges, nodes: this.state.nodes}})
-      // console.log(this.state.data)
-		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
-			// From MongoDB cloud
-			// this.setState({ ticks: this.state.ticks - 1})
-		}
-	}
-
   refreshNodes() {
 		fetch(url(), requestOptions(nodes))
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ nodes: json});
+      this.refreshEdges();
 		})
 		.catch((error) => {
 			console.log(error);
@@ -170,30 +156,18 @@ export default class NodeMap extends React.Component {
     .then((response) => response.json())
     .then((json) => {
       this.setState({ edges: json});
+      this.setState( {data: {edges: this.state.edges, nodes: this.state.nodes}})
+      this.forceUpdate()
     })
     .catch((error) => {
       console.log(error);
     }); 
-    // console.log(this.state.edges)
     }
 
   componentDidMount = () => {
 		this.refreshNodes();
     this.refreshEdges();
-    this.setState( {data: {edges: this.state.edges, nodes: this.state.nodes}})
-    // console.log(this.state.data)
-		this.timer();
     }
-
-	componentWillUnmount = () =>{
-		clearInterval(this.timer)
-	}
-
-	timer = () => {
-		setInterval(() => {
-			this.canUpdate();
-		}, 1000)
-	}
 
 	config = {
     // data,
@@ -203,16 +177,6 @@ export default class NodeMap extends React.Component {
     nodeCfg: {
       type: 'ellipse',
       size: [140, 35],
-      // badge: {
-      //   style: (cfg) => {
-      //     const ids = ['a', '-2', '-1'];
-      //     const fill = ids.includes(cfg.id) ? '#c86bdd' : '#5ae859';
-      //     return {
-      //       fill,
-      //       radius: [2, 2, 2, 2],
-      //     };
-      //   },
-      // },
       items: {
         padding: 6,
         containerStyle: {
@@ -291,18 +255,11 @@ export default class NodeMap extends React.Component {
 
 	render() {
 		return (
-			<MainCard {...styles.maincard}>
-					<Stack {...styles.stack}>
-						<Typography {...styles.typography.title}>
-							Nodes map
-						</Typography>
-						<FlowAnalysisGraph 
-							{...this.config}
-							{...styles.map}
-							data={this.state.data}
-						/>
-					</Stack>
-			</MainCard>
+      <FlowAnalysisGraph 
+        {...this.config}
+        {...styles.map}
+        data={this.state.data}
+      />
 		);
 	}
 }

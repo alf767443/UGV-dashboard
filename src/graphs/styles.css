@@ -1,0 +1,25 @@
+.TitleBox {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.MoreOptions {
+  position: absolute;
+  width: 12px;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, 0); /* Translada a div 50% para a esquerda */
+  z-index: 2; 
+}
+
+.BatteryIcon{
+  transform: rotate(90deg)
+}
+
+.div-pai {
+  width: 100%;
+  position: relative; /* Define a posição como referência para as divs filhas */
+}

@@ -17,7 +17,7 @@ const HeaderContent = () => {
             {!matchesXs && <Box sx={{ width: '100%', ml: { xs: 0, md: 1 } }} />}
             {matchesXs && <Box sx={{ width: '100%', ml: 1 }} />}
             <ConnectivityIcon height={30} width={30} length={20}/>
-            <BatteryIcon height={30} width={30} length={20}/>
+            <BatteryIcon height={45} width={40} length={20}/>
             <DBSwitch />
             <Notification />
         </>

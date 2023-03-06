@@ -7,6 +7,8 @@ import { Liquid } from "@ant-design/plots";
 import { url, requestOptions } from 'API/url';
 import { round } from "lodash";
 
+import "../styles.css"
+
 
 var raw = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -204,7 +206,7 @@ export default class BatteryIcon extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className={"BatteryIcon"}>
 				<Liquid
 					{...this.config}
 					color={this.color()}

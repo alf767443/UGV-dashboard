@@ -1,13 +1,14 @@
 // Import from MUI
 import { Stack } from '@mui/material';
 // Import from project
-import { Carrousel } from '../../../carousels/maps'
+import Plots from 'graphs/maps/index'
+import Carousel from 'carousels/carousel';
 
 // --------- database - odometry --------- \\
 const dbActions = () => {
     return (
         <Stack spacing={2}>
-            <Carrousel />
+            <Carousel Plot={Plots}/>
         </Stack>
     );
 };

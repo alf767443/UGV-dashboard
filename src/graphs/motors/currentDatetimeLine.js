@@ -5,10 +5,8 @@ import { Line } from '@ant-design/plots';
 
 // Import from project
 import { url, requestOptions } from 'API/url';
-import MainCard from "components/MainCard";
 
 import styles from "graphs/styles";
-import { Typography, Stack } from '@mui/material';
 
 var raw = (side) => JSON.stringify({
 	"dataSource": "CeDRI",
@@ -142,18 +140,11 @@ export default class CurrentDatetimeLine extends React.Component {
 
 	render() {
 		return (
-			<MainCard {...styles.maincard}>
-				<Stack {...styles.stack}>
-					<Typography {...styles.typography.title}>
-						Battery current by time
-					</Typography>
-					<Line 
-						{...this.config}
-						{...styles.plot}
-						data={this.state.data}
-					/>
-				</Stack>
-			</MainCard>
+			<Line 
+				{...this.config}
+				{...styles.plot}
+				data={this.state.data}
+			/>
 		);
 	}
 }
