@@ -5,8 +5,7 @@ import MainCard from "components/MainCard";
 import styles from "graphs/styles";
 import { Typography, Stack, Grid, Skeleton } from '@mui/material';
 
-import Battery from './battery/index'
-import Motors from './motors/index'
+import Log from './log/index'
 
 import { MoreVert } from '@mui/icons-material';
 import { Dropdown, message } from 'antd';
@@ -28,14 +27,9 @@ function sort(a, b) {
 
 const items = [
 	{
-		key: 'battery',
-		label: 'Battery',
-		children: Battery.SimplePlot.sort((a, b) => sort(a.label, b.label))
-	},
-	{
-		key: 'motor',
-		label: 'Motor',
-		children: Motors.SimplePlot.sort((a, b) => sort(a.label, b.label))
+		key: 'log',
+		label: 'Log',
+		children: Log.LargePlot.sort((a, b) => sort(a.label, b.label))
 	},
 ];
   
@@ -48,7 +42,7 @@ var raw = (graph) => JSON.stringify({
 		{
 			'$set': {
 				'dashboardLayout': {
-					'coordinates': {'graph': graph, 'type': 'simple'}
+					'coordinates': {'graph': graph, 'type': 'large'}
 				},
 			}
 		}

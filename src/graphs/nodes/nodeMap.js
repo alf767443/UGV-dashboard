@@ -3,10 +3,8 @@ import React from "react";
 import { FlowAnalysisGraph } from '@ant-design/graphs';
 
 import { url, requestOptions } from 'API/url';
-import MainCard from "components/MainCard";
 
 import styles from "graphs/styles";
-import { Typography, Stack } from '@mui/material';
 
 var nodes = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -257,18 +255,11 @@ export default class NodeMap extends React.Component {
 
 	render() {
 		return (
-			<MainCard {...styles.maincard}>
-					<Stack {...styles.stack}>
-						<Typography {...styles.typography.title}>
-							Nodes map
-						</Typography>
-						<FlowAnalysisGraph 
-							{...this.config}
-							{...styles.map}
-							data={this.state.data}
-						/>
-					</Stack>
-			</MainCard>
+      <FlowAnalysisGraph 
+        {...this.config}
+        {...styles.map}
+        data={this.state.data}
+      />
 		);
 	}
 }

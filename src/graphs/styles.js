@@ -136,7 +136,7 @@ const styles = {
     map:{
         style:{
             width: '100%',
-            height: 450,
+            height: 460,
         }
     },
 
@@ -207,7 +207,7 @@ const styles = {
             lg: 2,
             xl: 2,
             sx:{
-                height: 198
+                height: 202
             },
         }
         

@@ -4,8 +4,6 @@ import cedri from '../images/cedri.png'
 import { url, requestOptions } from 'API/url';
 import styles from 'graphs/styles';
 
-import { Box, Typography, Stack } from '@mui/material';
-import MainCard from "components/MainCard";
 
 var rawPosition = JSON.stringify({
 	"dataSource": "CeDRI",
@@ -262,16 +260,7 @@ export default class ConnectivityIcon extends React.Component {
             }
         ]
         return(
-            <MainCard {...styles.maincard}>
-                <Box {...styles.box}>
-                    <Stack {...styles.stack}>
-                        <Typography {...styles.typography.title}>
-                            RTT heatmap
-                        </Typography>
-                        <Heatmap {...this.config} {...styles.map} data={this.state.data} annotations={position} />
-                    </Stack>
-                </Box>
-            </MainCard>
+            <Heatmap {...this.config} {...styles.map} data={this.state.data} annotations={position} />
         );
     }
 }
