@@ -93,6 +93,7 @@ export default class SimpleGraph extends React.Component {
 			<MainCard {...styles.maincard}>	
 					<Stack {...styles.stack}>
 						<div className="div-pai">
+						{this.props.static? <></>: 
 							<div className="MoreOptions">
 								<Dropdown
 									menu={{
@@ -103,7 +104,7 @@ export default class SimpleGraph extends React.Component {
 								>
 									<MoreVert sx={{color:'#b3b3b3'}} />
 								</Dropdown>
-							</div>
+							</div>}
 							<div className="TitleBox">
 							<Grid
 								container
