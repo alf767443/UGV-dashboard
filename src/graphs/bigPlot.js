@@ -124,7 +124,7 @@ export default class SimpleGraph extends React.Component {
 							</Grid>
 							</div>
 						</div>
-						{this.props.graph ? this.props.graph : <Skeleton animation="wave" height={202} width="100%"/> }
+						{!this.props.graph ? this.props.graph : <Skeleton animation="wave" height={458} width="100%"/> }
 					</Stack>
 			</MainCard>
 		);
