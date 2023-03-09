@@ -31,104 +31,108 @@ var raw = JSON.stringify({
 	"database": "CeDRI_UGV_datalake",
 	"collection": "Position_AMCL",
 	"pipeline": [
-        {
-            '$project': {
-                'dateTime': {
-                    '$dateTrunc': {
-                        'date': '$dateTime', 
-                        'unit': 'minute'
-                    }
-                }, 
-                'x': { 
-                  '$round' : [ '$pose.pose.position.x' , 1 ],
-                },
-                'y': { 
-                  '$round' : [ '$pose.pose.position.y' , 1 ],
-                },
-            }
-        }, {
-            '$addFields': {
-                'xy': {
-                    '$concat': [
-                        {
-                            '$toString': [
-                                '$x'
-                            ]
-                        }, ':', {
-                            '$toString': [
-                                '$y'
-                            ]
-                        }
-                    ]
+    {
+        '$project': {
+            'dateTime': {
+                '$dateTrunc': {
+                    'date': '$dateTime', 
+                    'unit': 'minute'
                 }
+            }, 
+            'x': {
+                '$round': [
+                    '$pose.pose.position.x', 1
+                ]
+            }, 
+            'y': {
+                '$round': [
+                    '$pose.pose.position.y', 1
+                ]
             }
-        }, {
-            '$unionWith': {
-                'coll': 'Connection', 
-                'pipeline': [
+        }
+    }, {
+        '$unionWith': {
+            'coll': 'Connection', 
+            'pipeline': [
+                {
+                    '$project': {
+                        'dateTime': {
+                            '$dateTrunc': {
+                                'date': '$dateTime', 
+                                'unit': 'minute'
+                            }
+                        }, 
+                        'Connect': {
+                            '$toInt': [
+                                '$Connect'
+                            ]
+                        }, 
+                        'RTT': 1
+                    }
+                }
+            ]
+        }
+    }, {
+        '$group': {
+            '_id': '$dateTime', 
+            'x': {
+                '$first': '$x'
+            }, 
+            'y': {
+                '$first': '$y'
+            }, 
+            'yaw': {
+                '$avg': '$orient.yaw'
+            }, 
+            'Connect': {
+                '$avg': '$Connect'
+            }, 
+            'RTT': {
+                '$avg': '$RTT'
+            }, 
+            'xy': {
+                '$first': '$xy'
+            }
+        }
+    }, {
+        '$addFields': {
+            'xy': {
+                '$concat': [
                     {
-                        '$project': {
-                            'dateTime': {
-                                '$dateTrunc': {
-                                    'date': '$dateTime', 
-                                    'unit': 'minute'
-                                }
-                            }, 
-                            'Connect': {
-                                '$toInt': [
-                                    '$Connect'
-                                ]
-                            }, 
-                            'RTT': 1
-                        }
+                        '$toString': [
+                            '$x'
+                        ]
+                    }, ':', {
+                        '$toString': [
+                            '$y'
+                        ]
                     }
                 ]
             }
-        }, {
-            '$group': {
-                '_id': '$dateTime', 
-                'x': {
-                    '$avg': '$x'
-                }, 
-                'y': {
-                    '$avg': '$y'
-                }, 
-                'yaw': {
-                    '$avg': '$orient.yaw'
-                }, 
-                'Connect': {
-                    '$avg': '$Connect'
-                }, 
-                'RTT': {
-                    '$avg': '$RTT'
-                }, 
-                'xy': {
-                    '$first': '$xy'
-                }
+        }
+    }, {
+        '$group': {
+            '_id': '$xy', 
+            'x': {
+                '$first': '$x'
+            }, 
+            'y': {
+                '$first': '$y'
+            }, 
+            'yaw': {
+                '$avg': '$orient.yaw'
+            }, 
+            'Connect': {
+                '$avg': '$Connect'
+            }, 
+            'RTT': {
+                '$avg': '$RTT'
+            }, 
+            'xy': {
+                '$first': '$xy'
             }
-        }, {
-            '$group': {
-                '_id': '$dateTime', 
-                'x': {
-                    '$avg': '$x'
-                }, 
-                'y': {
-                    '$avg': '$y'
-                }, 
-                'yaw': {
-                    '$avg': '$orient.yaw'
-                }, 
-                'Connect': {
-                    '$avg': '$Connect'
-                }, 
-                'RTT': {
-                    '$avg': '$RTT'
-                }, 
-                'xy': {
-                    '$first': '$xy'
-                }
-            }
-        }, {
+        }
+    }, {
             '$match': {
                 'Connect': {
                     '$gt': 0
