@@ -3,15 +3,17 @@ import React from "react";
 // import MainCard from "components/MainCard";
 
 // import styles from "graphs/styles";
-// import { Typography, Stack, Grid, Skeleton } from '@mui/material';
+import { IconButton } from '@mui/material';
+// import { useTheme } from '@mui/material/styles';
 
 // import Battery from './battery/index'
 // import Motors from './motors/index'
 
-import { MoreVert } from '@mui/icons-material';
-import { Dropdown } from 'antd';
+import { AddLocationAltOutlined  } from '@mui/icons-material';
+import { Dropdown, message } from 'antd';
 import { requestOptions } from 'API/url';
 
+import "./styles.css";
 
 const items = [
 	{
@@ -116,36 +118,40 @@ var raw = (key) => JSON.stringify({
 	],
 });
 
+// const theme = useTheme();
 export default class SimpleGraph extends React.Component {
 	constructor(props) {
 		super(props);
+        // this.
     }
 
 	handleMenuClick = (e) => {
-		console.log(e)
-		// message.open({
-		// 	key: e.key,
-		// 	type: 'loading',
-		// 	content: 'Uploading change...',
-		// 	style: {
-		// 		marginTop: '11vh',
-		// 	},
-		// 	duration: 0,
-		// });
-		fetch('http://192.168.217.183:8000/update/', requestOptions(raw(e.key).replace('coordinates', this.props.position)))
-		.then((response) => response.json())
-		// .then(() => {
-		// 	message.destroy(e.key)
-		// 	message.open({
-		// 		key: e.key,
-		// 		type: 'success',
-		// 		content: 'Success, reloading the page',
-		// 		style: {
-		// 			marginTop: '11vh',
-		// 		},
-		// 		duration: 2.5,
-		// 	})
-		// })
+		// console.log(e)
+		message.open({
+			key: e.key,
+			type: 'loading',
+			content: 'Sending command',
+			style: {
+				marginTop: '8vh',
+			},
+			duration: 0,
+            
+		});
+		fetch('http://192.168.217.183:8000/update/', requestOptions(raw(e.key)))
+		// .then((response) => response)
+		.then(() => {
+			message.destroy(e.key)
+			message.open({
+				key: e.key,
+				type: 'success',
+				content: 'Success in sending command',
+				style: {
+					marginTop: '8vh',
+                    zIndex:9999
+				},
+				duration: 2.5,
+			})
+		})
 		.catch((error) => {
 			console.log(error);
 		});
@@ -153,16 +159,26 @@ export default class SimpleGraph extends React.Component {
 
 
 	render() {
+        
 		return (
-            <Dropdown
+            
+                <Dropdown
+                sx={ {width:'100%' , height: '100%'} }
+                zIndex={9999}
                 menu={{
                 items,
                 onClick: this.handleMenuClick,
                 }}
                 trigger={['click']}
-            >
-                <MoreVert sx={{color:'#b3b3b3'}} />
-            </Dropdown>
+                >
+                    {/* <Box sx={{ flexShrink: 0, ml: 0.75, backgroundColor: 'grey.100', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" > */}
+                    <IconButton sx={{ flexShrink: 0, ml: 0.75, backgroundColor: 'grey.100', color:'dark', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" >
+                        <AddLocationAltOutlined sx={{color:'dark', width:'100%' , height: '100%'}} justifyContent="center" alignItems="center" />
+                    </IconButton>
+                    
+                    {/* </Box> */}
+                </Dropdown>             
+        
         )
 	}
 }
