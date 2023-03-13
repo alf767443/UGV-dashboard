@@ -62,16 +62,6 @@ export default class ConnectivityIcon extends React.Component {
 			quality: 0
         };
     }  
-    
-    canUpdate(){ 
-		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
-			this.setState({ ticks: 10})
-			this.refreshPos();
-		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
-			// From MongoDB cloud
-			this.setState({ ticks: this.state.ticks - 1})
-		}
-	}
 
     refreshPos() {
         // Last point
@@ -80,6 +70,9 @@ export default class ConnectivityIcon extends React.Component {
 		.then((json) => {
 			this.setState({ last: json[0] });
 		})
+        .then(() => {
+            clearInterval(this.timer)
+        })
 		.catch((error) => {
 			console.log(error)
 		});
@@ -93,6 +86,9 @@ export default class ConnectivityIcon extends React.Component {
             this.setState({ data: json });
             //this.setState({ data: [...json, {x:-30.20, y:-30.60, count:null},{x:40.20, y:28.60, count:null}] });
         })
+        .then(() => {
+            this.refreshPos()
+        })
         .catch((error) => {
             console.log(error)
         });
@@ -100,7 +96,6 @@ export default class ConnectivityIcon extends React.Component {
 
     componentDidMount = () => {
 		this.refreshMap();
-        this.refreshPos();
 		this.timer();
     }
 
@@ -110,7 +105,7 @@ export default class ConnectivityIcon extends React.Component {
 
 	timer = () => {
 		setInterval(() => {
-			this.canUpdate();
+            this.refreshPos()
 		}, 1000)
 	}
   

@@ -67,15 +67,6 @@ export default class RotationRateDatetimeLine extends React.Component {
         };
     }
 
-	canUpdate(){
-		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
-			this.setState({ ticks: 10})
-			this.refreshList()
-		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
-			// From MongoDB cloud
-			this.setState({ ticks: this.state.ticks - 1})
-		}
-	}
 
     refreshList() {
 		fetch(url(), requestOptions(raw("left")))
@@ -83,18 +74,24 @@ export default class RotationRateDatetimeLine extends React.Component {
 		.then((json) => {
 			this.setState({ left: json });
 		})
-		.catch((error) => {
-			console.log(error);
-		});
-		fetch(url(), requestOptions(raw("right")))
-		.then((response) => response.json())
-		.then((json) => {
-			this.setState({ right: json });
+		.then(() => {
+			fetch(url(), requestOptions(raw("right")))
+			.then((response) => response.json())
+			.then((json) => {
+				this.setState({ right: json });
+			})
+			.then(() => {
+				this.setState({data: [...this.state.left, ...this.state.right]})
+				clearInterval(this.timer)
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+			
 		})
 		.catch((error) => {
 			console.log(error);
 		});
-		this.setState({data: [...this.state.left, ...this.state.right]})
     }
 
     componentDidMount = () => {
@@ -108,7 +105,7 @@ export default class RotationRateDatetimeLine extends React.Component {
 
 	timer = () => {
 		setInterval(() => {
-			this.canUpdate();
+			this.refreshList()
 		}, 1000)
 	}
 

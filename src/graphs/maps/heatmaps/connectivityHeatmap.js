@@ -155,16 +155,6 @@ export default class ConnectivityIcon extends React.Component {
 			quality: 0
         };
     }  
-    
-    canUpdate(){ 
-		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
-			this.setState({ ticks: 10})
-			this.refreshPos();
-		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
-			// From MongoDB cloud
-			this.setState({ ticks: this.state.ticks - 1})
-		}
-	}
 
     refreshPos() {
         // Last point
@@ -173,6 +163,9 @@ export default class ConnectivityIcon extends React.Component {
 		.then((json) => {
 			this.setState({ last: json[0] });
 		})
+        .then(() =>{
+			clearInterval(this.timer)
+        })
 		.catch((error) => {
 			console.log(error)
 		});
@@ -186,14 +179,16 @@ export default class ConnectivityIcon extends React.Component {
             this.setState({ data: [...json, {x:-30.20, y:-30.60, RTT:0},{x:40.20, y:28.60, RTT:0}] });
             console.log(this.state.data)
         })
+		.then(() => {
+            this.refreshPos()
+		})
         .catch((error) => {
             console.log(error)
         });
     }
 
     componentDidMount = () => {
-		this.refreshMap();
-        this.refreshPos();
+        this.refreshMap();
 		this.timer();
     }
 
@@ -203,7 +198,7 @@ export default class ConnectivityIcon extends React.Component {
 
 	timer = () => {
 		setInterval(() => {
-			this.canUpdate();
+            this.refreshPos();
 		}, 1000)
 	}
   
@@ -217,7 +212,7 @@ export default class ConnectivityIcon extends React.Component {
         limitInPlot: true,
         animation: false,
         sizeField: 5,
-        color: '#6E32C2-#1890FF-#12CCCC-#80FF73-#FAFFA8-#FFC838-#FF8C12-#FA541C-#F51D27',
+        color: '#F51D27-#FA541C-#FF8C12-#FFC838-#FAFFA8-#80FF73-#12CCCC-#1890FF-#6E32C2',
         annotations: [
             {
                 type: 'image',
