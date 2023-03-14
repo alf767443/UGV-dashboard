@@ -85,7 +85,7 @@ export default class VoltageDatetimeArea extends React.Component {
 	timer = () => {
 		setInterval(() => {
 			this.refreshList()
-		}, 1000)
+		}, 5000)
 	}
 
 	config = {

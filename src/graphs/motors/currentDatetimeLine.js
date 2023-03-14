@@ -103,7 +103,7 @@ export default class CurrentDatetimeLine extends React.Component {
 	timer = () => {
 		setInterval(() => {
 			this.refreshList()
-		}, 1000)
+		}, 5000)
 	}
 
 	config = {

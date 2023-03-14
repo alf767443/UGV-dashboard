@@ -67,7 +67,7 @@ export default class PWMBullet extends React.Component {
 	timer = () => {
 		setInterval(() => {
 			this.refreshList()
-		}, 1000)
+		}, 5000)
 	}
 
 	config = {

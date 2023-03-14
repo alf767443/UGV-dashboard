@@ -66,7 +66,7 @@ export default class ConnectivityIcon extends React.Component {
 	timer = () => {
 		setInterval(() => {
 			this.refreshList()
-		}, 1000)
+		}, 5000)
 	}
 
 	quality = () => {

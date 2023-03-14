@@ -143,7 +143,7 @@ export default class ConnectivityIcon extends React.Component {
 	timer = () => {
 		setInterval(() => {
 			this.refreshMap()
-		}, 1000)
+		}, 5000)
 	}
   
     config = {
