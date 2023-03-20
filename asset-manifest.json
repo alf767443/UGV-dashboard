@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/UGV-dashboard/static/css/main.432b3492.css",
-    "main.js": "/UGV-dashboard/static/js/main.59e0cfbd.js",
+    "main.css": "/UGV-dashboard/static/css/main.bdd857ca.css",
+    "main.js": "/UGV-dashboard/static/js/main.bfdbdc08.js",
     "static/js/781.8cfcc107.chunk.js": "/UGV-dashboard/static/js/781.8cfcc107.chunk.js",
-    "static/js/381.f7c3ccdf.chunk.js": "/UGV-dashboard/static/js/381.f7c3ccdf.chunk.js",
+    "static/js/381.422b005a.chunk.js": "/UGV-dashboard/static/js/381.422b005a.chunk.js",
     "static/js/296.e373516d.chunk.js": "/UGV-dashboard/static/js/296.e373516d.chunk.js",
     "static/js/355.c8b9084e.chunk.js": "/UGV-dashboard/static/js/355.c8b9084e.chunk.js",
     "static/js/283.05fee16f.chunk.js": "/UGV-dashboard/static/js/283.05fee16f.chunk.js",
@@ -16,12 +16,11 @@
     "static/js/236.df536b1b.chunk.js": "/UGV-dashboard/static/js/236.df536b1b.chunk.js",
     "static/js/490.8c7e3253.chunk.js": "/UGV-dashboard/static/js/490.8c7e3253.chunk.js",
     "static/js/522.6c7316c2.chunk.js": "/UGV-dashboard/static/js/522.6c7316c2.chunk.js",
-    "static/js/496.f594ce4b.chunk.js": "/UGV-dashboard/static/js/496.f594ce4b.chunk.js",
     "static/js/108.46d78314.chunk.js": "/UGV-dashboard/static/js/108.46d78314.chunk.js",
-    "static/js/672.9e63094f.chunk.js": "/UGV-dashboard/static/js/672.9e63094f.chunk.js",
+    "static/js/832.0f963e29.chunk.js": "/UGV-dashboard/static/js/832.0f963e29.chunk.js",
     "static/js/448.8fcbad19.chunk.js": "/UGV-dashboard/static/js/448.8fcbad19.chunk.js",
-    "static/js/754.c4d84226.chunk.js": "/UGV-dashboard/static/js/754.c4d84226.chunk.js",
-    "static/js/881.53cd5c0b.chunk.js": "/UGV-dashboard/static/js/881.53cd5c0b.chunk.js",
+    "static/js/887.277977fe.chunk.js": "/UGV-dashboard/static/js/887.277977fe.chunk.js",
+    "static/js/881.3ee52a1f.chunk.js": "/UGV-dashboard/static/js/881.3ee52a1f.chunk.js",
     "static/media/logo_CeDRI.png": "/UGV-dashboard/static/media/logo_CeDRI.35cc9641999496b689b0.png",
     "static/media/google.svg": "/UGV-dashboard/static/media/google.b7da2ce748745374ee27eb11dd475b9c.svg",
     "static/media/twitter.svg": "/UGV-dashboard/static/media/twitter.5b9c9738bc8e86846c91f27886cebacf.svg",
@@ -29,7 +28,7 @@
     "static/media/facebook.svg": "/UGV-dashboard/static/media/facebook.5b823a6232805871728da1033d817609.svg"
   },
   "entrypoints": [
-    "static/css/main.432b3492.css",
-    "static/js/main.59e0cfbd.js"
+    "static/css/main.bdd857ca.css",
+    "static/js/main.bfdbdc08.js"
   ]
 }
