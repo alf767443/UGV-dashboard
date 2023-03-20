@@ -19,6 +19,8 @@ const DatabaseConnection = Loadable(lazy(() => import('pages/database/pages/conn
 const DatabaseDiagnostics = Loadable(lazy(() => import('pages/database/pages/diagnostics')));
 const DatabaseOdometry = Loadable(lazy(() => import('pages/database/pages/odometry')));
 const DatabaseNodes = Loadable(lazy(() => import('pages/database/pages/nodes')));
+const DatabaseProcesses = Loadable(lazy(() => import('pages/database/pages/processes')));
+const DatabaseComputer = Loadable(lazy(() => import('pages/database/pages/computer')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -70,6 +72,12 @@ const MainRoutes = {
                         }, {
                             path: 'nodes',
                             element: <DatabaseNodes />
+                        }, {
+                            path: 'processes',
+                            element: <DatabaseProcesses />
+                        }, {
+                            path: 'computer',
+                            element: <DatabaseComputer />
                         }
 
                     ]
