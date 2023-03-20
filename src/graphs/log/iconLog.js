@@ -38,26 +38,15 @@ export default class IconLogger extends React.Component {
         };
     }
 
-	canUpdate(){
-		if (JSON.parse(window.localStorage.getItem('fromLocal')) || this.state.ticks <= 0) {
-			this.setState({ ticks: 10})
-			this.refreshList()
-		} else if (!JSON.parse(window.localStorage.getItem('fromLocal'))){
-			// From MongoDB cloud
-			this.setState({ ticks: this.state.ticks - 1})
-		}
-	}
-
     refreshList() {
 		fetch(url(), requestOptions(this.props.pipeline))
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ data: json });
 			this.setState({ msg: this.state.data[0].message})
-			// if(this.state.level != this.state.data[0].level){
-			// 	openNotification(this.props.title, this.state.data[0].message, this.icon(this.state.data[0]));
-			// 	this.setState({level: this.state.data[0].level})
-			// }
+		})
+		.then(() => {
+			clearInterval(this.timer)
 		})
 		.catch((error) => {
 			console.log(error);
@@ -76,8 +65,8 @@ export default class IconLogger extends React.Component {
 
 	timer = () => {
 		setInterval(() => {
-			this.canUpdate();
-		}, 1000)
+			this.refreshList()
+		}, 5000)
 	}
 
     icon = (item, style) => {

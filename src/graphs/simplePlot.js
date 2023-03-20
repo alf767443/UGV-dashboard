@@ -67,12 +67,12 @@ export default class SimpleGraph extends React.Component {
 			type: 'loading',
 			content: 'Uploading change...',
 			style: {
-				marginTop: '11vh',
+				marginTop: '8vh',
 			},
 			duration: 0,
 		});
 		fetch('http://192.168.217.183:8000/update/', requestOptions(raw(e.key).replace('coordinates', this.props.position)))
-		.then((response) => response.json())
+		// .then((response) => response.json())
 		.then(() => {
 			message.destroy(e.key)
 			message.open({
@@ -80,7 +80,7 @@ export default class SimpleGraph extends React.Component {
 				type: 'success',
 				content: 'Success, reloading the page',
 				style: {
-					marginTop: '11vh',
+					marginTop: '8vh',
 				},
 				duration: 2.5,
 			})

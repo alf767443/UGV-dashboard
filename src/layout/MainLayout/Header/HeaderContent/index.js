@@ -2,8 +2,8 @@
 import { Box, useMediaQuery } from '@mui/material';
 
 // project import
-import Notification from './Notification';
-import DBSwitch from 'components/Switch/DBSwitch';
+// import Notification from './Notification';
+// import DBSwitch from 'components/Switch/DBSwitch';
 import BatteryIcon from 'graphs/battery/batteryIcon';
 import ConnectivityIcon from 'graphs/connectivity/connectivityIcon';
 
@@ -18,8 +18,8 @@ const HeaderContent = () => {
             {matchesXs && <Box sx={{ width: '100%', ml: 1 }} />}
             <ConnectivityIcon height={30} width={30} length={20}/>
             <BatteryIcon height={45} width={40} length={20}/>
-            <DBSwitch />
-            <Notification />
+            {/* <DBSwitch /> */}
+            {/* <Notification /> */}
         </>
     );
 };

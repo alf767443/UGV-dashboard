@@ -61,7 +61,7 @@ export default class SimpleGraph extends React.Component {
 			type: 'loading',
 			content: 'Uploading change...',
 			style: {
-				marginTop: '11vh',
+				marginTop: '8vh',
 			},
 			duration: 0,
 		});
@@ -74,7 +74,7 @@ export default class SimpleGraph extends React.Component {
 				type: 'success',
 				content: 'Success, reloading the page',
 				style: {
-					marginTop: '11vh',
+					marginTop: '8vh',
 				},
 				duration: 2.5,
 			})

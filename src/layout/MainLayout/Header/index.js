@@ -11,6 +11,8 @@ import HeaderContent from './HeaderContent';
 // assets
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
+import SimpleGraph from 'components/GoToSelector/dropdown';
+
 // ==============================|| MAIN LAYOUT - HEADER ||============================== //
 
 const Header = ({ open, handleDrawerToggle }) => {
@@ -34,6 +36,7 @@ const Header = ({ open, handleDrawerToggle }) => {
                 {!open ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             </IconButton>
             <HeaderContent />
+            <SimpleGraph />
         </Toolbar>
     );
 
