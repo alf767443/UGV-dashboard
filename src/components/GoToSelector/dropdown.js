@@ -112,7 +112,8 @@ var raw = (key) => JSON.stringify({
                 'source': 2,
                 'command': key,
                 'msg': 'std_msgs/String',
-                'topic': '/navGo2'
+                'topic': '/navGo2',
+                'priority': 10
 			}
 		}
 	],
