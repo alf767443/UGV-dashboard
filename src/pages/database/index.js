@@ -10,6 +10,8 @@ import { ConnectionButtons } from './buttons/connectionButtons';
 import { DiagnosticButtons } from './buttons/diagnosticButtons';
 import { OdometryButtons } from './buttons/odometryButtons';
 import { NodesButtons } from './buttons/nodesButtons';
+import { ProcessesButtons } from './buttons/processButtons';
+import { ComputerButtons } from './buttons/computerButtons';
 
 import styles from './styles';
 
@@ -48,6 +50,12 @@ const DataBase = () => {
                 </Grid>
                 <Grid item {...styles.grid.button}>
                     <NodesButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <ProcessesButtons />
+                </Grid>
+                <Grid item {...styles.grid.button}>
+                    <ComputerButtons />
                 </Grid>
             </Grid>
 
