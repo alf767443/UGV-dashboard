@@ -90,7 +90,7 @@ export default class Carousel extends Component {
             <MainCard {...styles.box} >
                 <Stack {...styles.stack}>
                     <Typography {...styles.typography}>
-                        Battery plots
+                        {this.props.title}
                     </Typography>
                     {this.graphs()}
                     <Pagination count={this.numberPages()} defaultPage={1} siblingCount={0} page={this.state.page} onChange={this.hadleChange} />
