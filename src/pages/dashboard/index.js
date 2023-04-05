@@ -104,7 +104,7 @@ export default class DashboardDefault  extends React.Component {
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ data: json[0].dashboardLayout });
-            console.log(this.state.data)
+            // console.log(this.state.data)
             this.generate(json[0].dashboardLayout)
 		})
 		.catch((error) => {
@@ -127,7 +127,7 @@ export default class DashboardDefault  extends React.Component {
                 let graph_big = list.BigPlot.find(e => e.key == userLayout[item.coord].graph)
                 switch(userLayout[item.coord].type){
                     case 'simple':
-                        _temp.graph = <SimpleGraphBox graph={graph_simple.plot} title={graph_simple.title} position={item.coord}/>
+                        _temp.graph = <SimpleGraphBox graph={graph_simple.plot} title={graph_simple.title} position={item.coord} name={userLayout[item.coord].graph}/>
                         break;
                     case 'large':
                         _temp.graph = <LargeGraphBox graph={graph_large.plot} title={graph_large.title} position={item.coord}/>
@@ -142,7 +142,7 @@ export default class DashboardDefault  extends React.Component {
             _out.push(temp)
         }
         this.setState({graphs: _out})
-        console.log(this.state.graphs)
+        // console.log(this.state.graphs)
         this.forceUpdate()
     }
 

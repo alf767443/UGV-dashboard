@@ -13,7 +13,7 @@ const list = {
             plot: <CurrentDatetimeArea />,
             title: "Battery current by time",
             label: "Current by time",
-            key: "battery-current-time-are",
+            key: "battery-current-time-area",
         },
         {
             plot: <PercentageDatetimeArea />,
