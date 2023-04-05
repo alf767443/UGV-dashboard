@@ -124,12 +124,12 @@ export default class RotationRateDatetimeLine extends React.Component {
 		yAxis:{
 			tickCount: 10,
 			title: {
-				text: "Motor rrate [rpm?]"
+				text: "Motor rotation rate [rad/s]"
 			}
 		},tooltip: {
 			formatter: (data) => {
 				if (data['rrate'] != null){
-					return { name: 'Rotation rate', value: data['rrate'].toFixed(1) + ' rpm?' };
+					return { name: 'Rotation rate', value: data['rrate'].toFixed(1) + ' rad/s' };
 				}
 				return {};
 			},	
