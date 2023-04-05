@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import { Line } from '@ant-design/plots';
@@ -9,10 +8,10 @@ import { url, requestOptions } from 'API/url';
 
 import styles from "graphs/styles";
 
-var raw = (side) => JSON.stringify({
+var raw = (cpu) => JSON.stringify({
 	"dataSource": "CeDRI",
 	"database": "CeDRI_UGV_datalake",
-	"collection": "Motor",
+	"collection": "Processes",
 	"pipeline": [
 		{
 			'$project': {
@@ -22,8 +21,15 @@ var raw = (side) => JSON.stringify({
 						'unit': 'minute'
 					}
 				}, 
-				'leftRotateRate': 1, 
-				'rightRotateRate': 1
+				'computer.cpu_perc': 1
+			}
+		}, {
+			'$set': {
+				'cpuPercent': {
+					'$arrayElemAt': [
+						'$computer.cpu_perc', cpu
+					]
+				}
 			}
 		}, {
 			'$densify': {
@@ -37,8 +43,8 @@ var raw = (side) => JSON.stringify({
 		}, {
 			'$group': {
 				'_id': '$dateTime', 
-				'rrate': {
-					'$avg': "$" + side + "RotateRate"
+				'cpuPercent': {
+					'$avg': '$cpuPercent'
 				}
 			}
 		}, {
@@ -49,49 +55,63 @@ var raw = (side) => JSON.stringify({
 			'$limit': 100
 		}, {
 			'$addFields': {
-				'side': side
+				'cpu': cpu.toString()
 			}
 		}
 	]
 });
 
-export default class RotationRateDatetimeLine extends React.Component {
+export default class CurrentDatetimeLine extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
             data: [],
-			right: [],
-			left: [],
+			temp: [],
 			ticks: -1
         };
     }
 
-
     refreshList() {
-		fetch(url(), requestOptions(raw("left")))
+		fetch(url(), requestOptions(raw(0)))
 		.then((response) => response.json())
 		.then((json) => {
-			this.setState({ left: json });
+			this.setState({ _1: [...json] });
 		})
 		.then(() => {
-			fetch(url(), requestOptions(raw("right")))
+			fetch(url(), requestOptions(raw(1)))
 			.then((response) => response.json())
 			.then((json) => {
-				this.setState({ right: json });
+				this.setState({ _2: [...json] });
 			})
 			.then(() => {
-				this.setState({data: [...this.state.left, ...this.state.right]})
-				clearInterval(this.timer)
+				fetch(url(), requestOptions(raw(2)))
+				.then((response) => response.json())
+				.then((json) => {
+					this.setState({ _3: [...json] });
+				})
+				.then(() => {
+					fetch(url(), requestOptions(raw(3)))
+					.then((response) => response.json())
+					.then((json) => {
+						this.setState({ data: [...this.state._1, ...this.state._2, ...this.state._3, ...json] });
+						// console.log(this.state.data)
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-			
 		})
 		.catch((error) => {
 			console.log(error);
-		});
+		})
     }
 
     componentDidMount = () => {
@@ -101,7 +121,7 @@ export default class RotationRateDatetimeLine extends React.Component {
 
 	componentWillUnmount = () =>{
 		clearInterval(this.timer)
-	}
+	}		
 
 	timer = () => {
 		setInterval(() => {
@@ -111,8 +131,8 @@ export default class RotationRateDatetimeLine extends React.Component {
 
 	config = {
 		xField: '_id',
-		yField: 'rrate',
-		seriesField: 'side',
+		yField: 'cpuPercent',
+		seriesField: 'cpu',
 		xAxis: {
 			tickCount: 5,
 			type: 'time',
@@ -124,12 +144,12 @@ export default class RotationRateDatetimeLine extends React.Component {
 		yAxis:{
 			tickCount: 10,
 			title: {
-				text: "Motor rotation rate [rad/s]"
+				text: "CPU percent [%]"
 			}
 		},tooltip: {
 			formatter: (data) => {
-				if (data['rrate'] != null){
-					return { name: 'Rotation rate', value: data['rrate'].toFixed(1) + ' rad/s' };
+				if (data['cpuPercent'] != null){
+					return { name: 'CPU' + data['cpu'], value: data['cpuPercent'].toFixed(1) + ' %' };
 				}
 				return {};
 			},	

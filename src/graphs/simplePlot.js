@@ -7,6 +7,9 @@ import { Typography, Stack, Grid, Skeleton } from '@mui/material';
 
 import Battery from './battery/index'
 import Motors from './motors/index'
+import CPU from './computer/index'
+import Position from './position/index'
+import Connection from './connectivity/index'
 
 import { MoreVert } from '@mui/icons-material';
 import { Dropdown, message } from 'antd';
@@ -37,6 +40,21 @@ const items = [
 		label: 'Motor',
 		children: Motors.SimplePlot.sort((a, b) => sort(a.label, b.label))
 	},
+	{
+		key: 'cpu',
+		label: 'Computer',
+		children: CPU.SimplePlot.sort((a, b) => sort(a.label, b.label)),
+	},
+	{
+		key: 'position',
+		label: 'Position',
+		children: Position.SimplePlot.sort((a, b) => sort(a.label, b.label)),
+	},
+	{
+		key: 'connection',
+		label: 'Connection',
+		children: Connection.SimplePlot.sort((a, b) => sort(a.label, b.label)),
+	}
 ];
   
 var raw = (graph) => JSON.stringify({

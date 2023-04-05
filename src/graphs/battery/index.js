@@ -5,6 +5,7 @@ import VoltageDatetimeArea from './voltageDatetimeArea'
 import PowerDatetimeArea from './powerDatetimeArea'
 import BatteryBullets from './groupBullet'
 import TemperatureDatetimeArea from './temperatureDatetimeArea'
+// import PercentageDatetimePolarmap from './percentageDatetimePolarmap'
 
 const list = {
     SimplePlot: [
@@ -44,6 +45,12 @@ const list = {
             label: "Bullets",
             key: "battery-battery--bullet",
         },
+        // {
+        //     plot: <PercentageDatetimePolarmap />,
+        //     title: "Battery percentage polar map",
+        //     label: "Percent by weekday",
+        //     key: "battery-battery-percentage-polarmap",
+        // },
     ],
     LargePlot:  [],
     BigPlot:    [],
