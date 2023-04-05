@@ -5,6 +5,7 @@ import { TableCard } from 'tables/ComputerUses';
 import Carousel from 'carousels/carousel'
 import Plots from 'graphs/computer/index'
 
+
 import styles from './styles';
 
 // --------- database - odometry --------- \\
