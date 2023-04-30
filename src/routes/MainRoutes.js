@@ -29,16 +29,12 @@ const MainRoutes = {
     element: <MainLayout />,
     children: [
         {
-            path: '/',
+            path: 'dashboard',
             element: <Dashboard />
         },
         {
             path: 'information',
             children: [
-                {
-                    path: 'dashboard',
-                    element: <Dashboard />
-                },
                 {
                     path: 'dbs',
                     children: [

@@ -5,24 +5,28 @@ import Loadable from 'components/Loadable';
 import MinimalLayout from 'layout/MinimalLayout';
 
 // render - login
-const AuthLogin = Loadable(lazy(() => import('pages/authentication/Login')));
+// const AuthLogin = Loadable(lazy(() => import('pages/authentication/Login')));
 const AuthRegister = Loadable(lazy(() => import('pages/authentication/Register')));
+
+
+// Render - Debug
+const Debug = Loadable(lazy(() => import('pages/debug')));
 
 // ==============================|| AUTH ROUTING ||============================== //
 
-const DebugRoutes = {
+const LoginRoutes = {
     path: '/',
     element: <MinimalLayout />,
     children: [
         {
-            path: 'login',
-            element: <AuthLogin />
+            path: 'debug',
+            element: <Debug />
         },
         {
-            path: 'register',
+            path: 'debug1',
             element: <AuthRegister />
         }
     ]
 };
 
-export default DebugRoutes;
+export default LoginRoutes;

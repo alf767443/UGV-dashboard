@@ -1,7 +1,7 @@
 // ==============================|| THEME CONFIG  ||============================== //
 
 const config = {
-    defaultPath: '/UGV-dashboard/',
+    defaultPath: '/CeDRI_dashboard/',
     fontFamily: `'Public Sans', sans-serif`,
     i18n: 'en',
     miniDrawer: false,

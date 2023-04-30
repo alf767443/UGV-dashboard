@@ -3,11 +3,7 @@ import React from "react";
 // material-ui
 import Grid from '@mui/material/Unstable_Grid2';
 
-// import Position_Map from 'graphs/maps/pointmaps/positionMap';
-
 import { url, requestOptions } from 'API/url';
-
-// import Log_prompter from 'graphs/log/printLog'
 
 import SimpleGraphBox from 'graphs/simplePlot';
 import LargeGraphBox from 'graphs/largePlot';
@@ -16,7 +12,6 @@ import BigGraphBox from 'graphs/bigPlot';
 import list from "graphs/graphsList";
 
 import styles from './styles';
-
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
@@ -169,7 +164,6 @@ export default class DashboardDefault  extends React.Component {
                     </Grid>
                 </Grid>
             </Grid>
-
         );
     }
 }
