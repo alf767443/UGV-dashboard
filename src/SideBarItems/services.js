@@ -1,8 +1,8 @@
 // Imported Assets
-import { LoginOutlined, BugOutlined } from '@ant-design/icons';
+import { LogoutOutlined, BugOutlined } from '@ant-design/icons';
 
-// Icons
-const icons = { LoginOutlined, BugOutlined };
+// Icons<LogoutOutlined />
+const icons = { LogoutOutlined, BugOutlined };
 
 // --------- SideBar - Information --------- \\
 const services = {
@@ -11,21 +11,13 @@ const services = {
     type: 'group',
     children: [
         {
-            id: 'login',
-            title: 'Login',
+            id: 'logout',
+            title: 'Logout',
             type: 'item',
-            url: '/login',
-            icon: icons.LoginOutlined,
-            target: true
+            url: '/robot/login',
+            icon: icons.LogoutOutlined,
+            breadcrumbs: false
         },
-        {
-            id: 'debug',
-            title: 'debug',
-            type: 'item',
-            url: '/debug',
-            icon: icons.BugOutlined,
-            target: true
-        }
     ]
 };
 
