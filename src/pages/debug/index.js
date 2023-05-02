@@ -1,13 +1,16 @@
+
+/* eslint-disable no-unused-vars */
 import RobotWrapper from "pages/robot/styles/RobotWrapper";
-// import RobotRegister from "pages/robot/RobotRegister";
+import UploadImage from "components/ImagePicker/index";
+import ImageCarousel from "components/ImagePicker/carrousel";
 
 const DebugPage = () => {
     return(
         <div>
-            {/* <Login /> */}
-            {/* <UploadImage /> */}
             <RobotWrapper>
                 {/* <RobotRegister /> */}
+                {UploadImage(null)}
+                <ImageCarousel />
             </RobotWrapper>
         </div>
     );

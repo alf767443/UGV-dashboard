@@ -1,21 +1,17 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { djangoFetch } from 'API/url';
+// import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import {
     Button,
-    Checkbox,
-    // Divider,
-    FormControlLabel,
     FormHelperText,
     Grid,
-    Link,
     IconButton,
     InputAdornment,
     InputLabel,
     OutlinedInput,
     Stack,
-    Typography
 } from '@mui/material';
 
 // third party
@@ -23,7 +19,6 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
-// import FirebaseSocial from './FirebaseSocial';
 import AnimateButton from 'components/@extended/AnimateButton';
 
 // assets
@@ -32,9 +27,8 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const RobotLogin = () => {
-    const [checked, setChecked] = React.useState(false);
-
     const [showPassword, setShowPassword] = React.useState(false);
+    const [robot, setRobot] =  React.useState(false);
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -43,19 +37,47 @@ const RobotLogin = () => {
         event.preventDefault();
     };
 
+    window.localStorage.setItem('robotID', null);
+
     return (
         <>
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    robot: '',
+                    password: '',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+                    robot: Yup.string().max(255).required('Robot is required'),
                     password: Yup.string().max(255).required('Password is required')
                 })}
-                onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+                onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => { 
+                    const sendJSON = {
+                        'robot': values.robot,
+                        'password': values.password,
+                    }
+                    djangoFetch('/robot', '/', 'OPTIONS', JSON.stringify(sendJSON))
+                        .then((response) => {
+                            if(response.status === 202){
+                                setStatus({ success: true });
+                                setRobot(true);
+                                setSubmitting(false);
+                            }
+                            else{
+                                setStatus({ success: false });
+                                setErrors({ submit: 'Incorrect password or robot' });
+                                setSubmitting(false);
+                            }
+                            return response.json()
+                        })
+                        .then(data => {
+                            if(robot){
+                                window.localStorage.setItem('robotID', data['name'])
+                                window.location.href = '/CeDRI_dashboard/dashboard';
+                            }
+                        })
+                        .catch((e) => console.error(e))
+
                     try {
                         setStatus({ success: false });
                         setSubmitting(false);
@@ -71,21 +93,21 @@ const RobotLogin = () => {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="email-login">Email Address</InputLabel>
+                                    <InputLabel htmlFor="robot-login">Robot</InputLabel>
                                     <OutlinedInput
-                                        id="email-login"
-                                        type="email"
-                                        value={values.email}
-                                        name="email"
+                                        id="robot-login"
+                                        type="robot"
+                                        value={values.robot}
+                                        name="robot"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        placeholder="Enter email address"
+                                        placeholder="Robot nickname"
                                         fullWidth
-                                        error={Boolean(touched.email && errors.email)}
+                                        error={Boolean(touched.robot && errors.robot)}
                                     />
-                                    {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
+                                    {touched.robot && errors.robot && (
+                                        <FormHelperText error id="standard-weight-helper-text-robot-login">
+                                            {errors.robot}
                                         </FormHelperText>
                                     )}
                                 </Stack>
@@ -125,7 +147,7 @@ const RobotLogin = () => {
                                 </Stack>
                             </Grid>
 
-                            <Grid item xs={12} sx={{ mt: -1 }}>
+                            {/* <Grid item xs={12} sx={{ mt: -1 }}>
                                 <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
                                     <FormControlLabel
                                         control={
@@ -143,7 +165,7 @@ const RobotLogin = () => {
                                         Forgot Password?
                                     </Link>
                                 </Stack>
-                            </Grid>
+                            </Grid> */}
                             {errors.submit && (
                                 <Grid item xs={12}>
                                     <FormHelperText error>{errors.submit}</FormHelperText>

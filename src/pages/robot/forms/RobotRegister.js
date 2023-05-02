@@ -84,14 +84,15 @@ const RobotRegister = () => {
                             'ssh': values.ssh,
                             'password': values.password,
                             'robot': values.robot,
+                            'comment': null, 
+                            'img': null, 
                         }
-                        
 
                         djangoFetch('/robot', '/', 'POST', JSON.stringify(sendJSON))
                         .then((response) => {
-                            console.log(response)
+                            // console.log(response)
                             if(response.status === 201){
-                                window.location.href = '/CeDRI_dashboard/login';
+                                window.location.href = '/CeDRI_dashboard/robot/login';
                                 setStatus({ success: true });
                                 setSubmitting(false);
                             }
