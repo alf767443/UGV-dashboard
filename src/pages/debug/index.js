@@ -1,17 +1,12 @@
 
 /* eslint-disable no-unused-vars */
-import RobotWrapper from "pages/robot/styles/RobotWrapper";
-import UploadImage from "components/ImagePicker/index";
-import ImageCarousel from "components/ImagePicker/carrousel";
+import GraphEditor from "components/GraphEditor/index";
+import PlotTile from "components/Tiles/tableTile";
 
 const DebugPage = () => {
     return(
         <div>
-            <RobotWrapper>
-                {/* <RobotRegister /> */}
-                {UploadImage(null)}
-                <ImageCarousel />
-            </RobotWrapper>
+            <GraphEditor graphID={"64526b3840275ce9ed3eec28"}/>
         </div>
     );
 }

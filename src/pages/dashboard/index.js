@@ -144,7 +144,6 @@ export default class DashboardDefault  extends React.Component {
     render(){
         return (
             <Grid container {...styles.grid.main}>
-
                 <Grid container {...styles.grid.column.header}>
                     <Grid container  {...styles.grid.column.subheader}>
                     {/* Bullets */}
@@ -156,8 +155,7 @@ export default class DashboardDefault  extends React.Component {
                         </Grid>
                     </Grid>
                 </Grid>
-
-
+                
                 <Grid container {...styles.grid.column.map}>
                     <Grid item {...styles.grid.column.subheader}>
                         {this.state.graphs[2].map(e => e.graph)}

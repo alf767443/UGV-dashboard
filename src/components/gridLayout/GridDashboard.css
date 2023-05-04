@@ -1,0 +1,15 @@
+.resize-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    bottom: 0;
+    right: 0;
+    background-color: #f0f0f0;
+    cursor: se-resize;
+  }
+  
+  .react-grid-item.resizing .resize-handle {
+    background-color: #ccc;
+    cursor: se-resize;
+  }
+  
