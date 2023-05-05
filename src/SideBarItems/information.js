@@ -26,14 +26,6 @@ const information = {
             icon: icons.CloudServerOutlined,
             breadcrumbs: false
         },
-        {
-            id: 'logs',
-            title: 'Logs',
-            type: 'item',
-            url: '/information/logs',
-            icon: icons.FileTextOutlined,
-            breadcrumbs: false
-        }
     ]
 };
 

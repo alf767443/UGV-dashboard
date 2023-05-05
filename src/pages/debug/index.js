@@ -6,7 +6,7 @@ import PlotTile from "components/Tiles/tableTile";
 const DebugPage = () => {
     return(
         <div>
-            <GraphEditor graphID={"64526b3840275ce9ed3eec28"}/>
+            <GraphEditor graphID={"6453e23840275ce9ed3eec2d"}/>
         </div>
     );
 }

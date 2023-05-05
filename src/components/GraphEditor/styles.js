@@ -1,7 +1,7 @@
 const styles = {
-
-    graph:{style: {height: '50vh',maxHeight: '50vh', overflowY: 'auto'}},
-    code:{style: {height: '50vh',maxHeight: '50vh', overflowY: 'auto'}},
+    main:{style: {height: '100%'}},
+    graph:{style: {height: '49vh',overflowY: 'auto'}},
+    code:{style: {height: '70vh', overflowY: 'auto'}},
 
     typography: {
         title: {

@@ -117,20 +117,6 @@ export default class TableTile extends React.Component {
 		const { loading, data, columns } = this.state;
 		return (
 			<MainCard style={{ width: '100%', height: '100%' }}>	
-				<div className="div-pai">
-					<div className="TitleBox">
-					<Grid
-						container
-						direction="row"
-						justifyContent="center"
-						alignItems="center"
-					>
-						<Typography {...styles.typography.title}>
-							{this.state.tile ? this.state.tile['title'] : 'No graph find' }
-						</Typography>
-					</Grid>
-					</div>
-				</div>
 				{this.state.data ? 
 				<Table
 					columns={columns}

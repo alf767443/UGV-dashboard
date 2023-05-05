@@ -22,6 +22,8 @@ const DatabaseNodes = Loadable(lazy(() => import('pages/database/pages/nodes')))
 const DatabaseProcesses = Loadable(lazy(() => import('pages/database/pages/processes')));
 const DatabaseComputer = Loadable(lazy(() => import('pages/database/pages/computer')));
 
+const EditPlot = Loadable(lazy(() => import('pages/edit')));
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -81,7 +83,20 @@ const MainRoutes = {
                 {
                     path: 'logs',
                     element: <Dashboard />
+                },
+                {
+                    path: 'dashboard',
+                    element: <Dashboard />
                 }
+            ]
+        },
+        {
+            path: 'edit',
+            children: [
+                {
+                    path: 'chart',
+                    element: <EditPlot />
+                }, 
             ]
         },
     ]

@@ -214,19 +214,7 @@ export default class PlotTile extends React.Component {
 							<MoreVert sx={{color:'#b3b3b3'}} />
 						</Dropdown>
 					</div>}
-					<div className="TitleBox">
-					<Grid
-						container
-						direction="row"
-						justifyContent="center"
-						alignItems="center"
-					>
-						<Typography {...styles.typography.title}>
-							{this.state.tile ? this.state.tile['title'] : 'No graph find' }
-						</Typography>
-					</Grid>
-					</div>
-				</div>
+				</div>	
 				{this.state.option && this.state.data ? <div id={this.state.graphID} style={this._styles()} ></div> : <Skeleton animation="wave" height="100%" width="100%"/> }
 			</MainCard>
 		);

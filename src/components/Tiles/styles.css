@@ -2,7 +2,7 @@
   position: relative;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 0;
   width: 100%;
 }
 
@@ -12,10 +12,11 @@
   top: 0;
   right: 0;
   transform: translate(-50%, 0); /* Translada a div 50% para a esquerda */
-  z-index: 2; 
+  z-index: 1; 
 }
 
 .div-pai {
   width: 100%;
   position: relative; /* Define a posição como referência para as divs filhas */
+  z-index: 0;
 }
