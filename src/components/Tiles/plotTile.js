@@ -1,222 +1,230 @@
-/* eslint-disable no-unused-vars */
-import React, { Component } from 'react';
-import * as echarts from 'echarts';
-import { djangoFetch } from 'API/url';
+	/* eslint-disable no-unused-vars */
+	import React, { Component } from 'react';
+	import * as echarts from 'echarts';
+	import { djangoFetch } from 'API/url';
 
-import MainCard from "components/MainCard";
+	import MainCard from "components/MainCard";
 
-import styles from "graphs/styles";
-import { Typography, Stack, Grid, Skeleton } from '@mui/material';
+	import styles from "graphs/styles";
+	import { Typography, Stack, Grid, Skeleton } from '@mui/material';
 
-import { MoreVert } from '@mui/icons-material';
-import { Dropdown, message } from 'antd';
-import {  url, requestOptions } from 'API/url';
+	import { MoreVert } from '@mui/icons-material';
+	import { Dropdown, message } from 'antd';
+	import {  url, requestOptions } from 'API/url';
 
-import "./styles.css";
-import { random } from 'lodash';
+	import "./styles.css";
+	import { random } from 'lodash';
 
-var raw = (graph) => JSON.stringify({
-	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_dashboard",
-	"collection": "config",
-	"filter": {'user': 'default'},
-	"update": [
-		{
-			'$set': {
-				'dashboardLayout': {
-					'coordinates': {'graph': graph, 'type': 'simple'}
-				},
-			}
-		}
-	],
-});
-
-var list = JSON.stringify(
-	{
+	var raw = (graph) => JSON.stringify({
 		"dataSource": "CeDRI",
 		"database": "CeDRI_UGV_dashboard",
-		"collection": "graphs",    
-		"pipeline": [
+		"collection": "config",
+		"filter": {'user': 'default'},
+		"update": [
 			{
-				'$group': {
-					'_id': '$group', 
-					'key': {
-						'$first': '$group'
-					}, 
-					'label': {
-						'$first': '$group'
-					}, 
-					'children': {
-						'$push': {
-							'key': '$name', 
-							'label': '$title', 
-							'title': '$title'
+				'$set': {
+					'dashboardLayout': {
+						'coordinates': {'graph': graph, 'type': 'simple'}
+					},
+				}
+			}
+		],
+	});
+
+	var list = JSON.stringify(
+		{
+			"dataSource": "CeDRI",
+			"database": "CeDRI_UGV_dashboard",
+			"collection": "graphs",    
+			"pipeline": [
+				{
+					'$group': {
+						'_id': '$group', 
+						'key': {
+							'$first': '$group'
+						}, 
+						'label': {
+							'$first': '$group'
+						}, 
+						'children': {
+							'$push': {
+								'key': '$name', 
+								'label': '$title', 
+								'title': '$title'
+							}
 						}
 					}
-				}
-			},
-		]
-	}
-)
-
-
-
-export default class PlotTile extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			graphID: this.props.graphID + this.randomString(5),
-			list: null,
-			data: null,
-			option: null,
-			tile: null,
-		};
-	}
-
-	randomString(length) {
-		const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		let result = '';
-		for (let i = length; i > 0; --i) {
-			result += chars[Math.floor(Math.random() * chars.length)];
+				},
+			]
 		}
-		return result;
-	}
+	)
 
-	getData(){
-		console.log(this.state.graphID)
-		djangoFetch('/chart', '/?name=' + this.state.graphID, 'GET', '')
-		.then(response => response.json())
-		.then((json) => {
-			const _json = json
-			this.setState({data: !this.props.data?_json.data:this.props.data})
-			this.setState({option: !this.props.option?_json.option:this.props.option})
-			this.setState({tite: !this.props.tite?_json.tite:this.props.tite})
+
+
+	export default class PlotTile extends React.Component {
+		constructor(props) {
+			super(props);
+
+			this.state = {
+				graphID: this.props.graphID + this.randomString(5),
+				list: null,
+				data: null,
+				option: null,
+				tile: null,
+				doc: null,
+				chart: null, 
+			};
+		}
+
+		randomString(length) {
+			const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			let result = '';
+			for (let i = length; i > 0; --i) {
+				result += chars[Math.floor(Math.random() * chars.length)];
+			}
+			return result;
+		}
+
+		getData(){
+			console.log(this.state.graphID)
+			djangoFetch('/chart', '/?name=' + this.props.graphID, 'GET', '')
+			.then(response => response.json())
+			.then((json) => {
+				const _json = json
+				this.setState({data: !this.props.data?_json.data:this.props.data})
+				this.setState({option: !this.props.option?_json.option:this.props.option})
+				this.setState({tite: !this.props.tite?_json.tite:this.props.tite})
+				this.setState({doc: !this.state.doc?document.getElementById(this.state.graphID):this.state.doc})
+				console.log(this.state)
+				this.state.data && this.state.doc && this.state.option?this.chart():''
+			})
+			.catch((e) => console.error(e))
+		}
+
+	chart(){
+		try{
+			// var chartDom = document.getElementById(this.state.graphID);
+			console.log(this.state.doc)
+			// console.log(chartDom)
+			if(this.state.chart === null){
+				this.setState({chart: echarts.init(this.state.doc)})
+			}
 			console.log(this.state)
-			this.chart()
-		})
-		.catch((e) => console.error(e))
+			// var  myChart = !echarts.getInstanceByDom(chartDom)?echarts.init(chartDom):echarts.getInstanceByDom(chartDom)
+			var data = this.state.data
+			var option = eval(this.state.option)
+			option && this.state.chart.setOption(option);
+		}
+		catch(e){
+			console.log(e)
+		}
 	}
 
-  chart(){
-	var chartDom = document.getElementById(this.state.graphID);
-	var  myChart = !echarts.getInstanceByDom(chartDom)?echarts.init(chartDom):echarts.getInstanceByDom(chartDom)
-    var data = this.state.data
-    var option = eval(this.state.option)
-    option && myChart.setOption(option);
-  }
-
-	handleMenuClick = (e) => {
-		console.log(e)
-		message.open({
-			key: e.key,
-			type: 'loading',
-			content: 'Uploading change...',
-			style: {
-				marginTop: '8vh',
-			},
-			duration: 0,
-		});
-		fetch('http://192.168.217.183:8000/update/', requestOptions(raw(e.key).replace('coordinates', this.props.position)))
-		.then((response) => response.json())
-		.then(() => {
-			message.destroy(e.key)
+		handleMenuClick = (e) => {
+			console.log(e)
 			message.open({
 				key: e.key,
-				type: 'success',
-				content: 'Success, reloading the page',
+				type: 'loading',
+				content: 'Uploading change...',
 				style: {
 					marginTop: '8vh',
 				},
-				duration: 2.5,
+				duration: 0,
+			});
+			fetch('http://192.168.217.183:8000/update/', requestOptions(raw(e.key).replace('coordinates', this.props.position)))
+			.then((response) => response.json())
+			.then(() => {
+				message.destroy(e.key)
+				message.open({
+					key: e.key,
+					type: 'success',
+					content: 'Success, reloading the page',
+					style: {
+						marginTop: '8vh',
+					},
+					duration: 2.5,
+				})
+				.then(
+					window.location.reload(true)
+				);
 			})
-			.then(
-				window.location.reload(true)
-			);
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-	};
+			.catch((error) => {
+				console.log(error);
+			});
+		};
 
-	getList(){
-		fetch(url(), requestOptions(list, 'POST'))
-		.then((response) => response.json())
-		.then((json) => {
-			this.setState({list: json})
-			console.log(this.state.list)
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-	}
-
-  refreshList() {
-		fetch(url(), requestOptions(JSON.stringify(this.state.query)))
-		.then((response) => response.json())
-		.then((json) => {
-			this.setState({ data: json });
-		})
-		.then(() => {
-			clearInterval(this.timer)
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-    }
-
-	update(){
-		if(this.state.list == null){
-			// this.getList()
+		getList(){
+			fetch(url(), requestOptions(list, 'POST'))
+			.then((response) => response.json())
+			.then((json) => {
+				this.setState({list: json})
+				console.log(this.state.list)
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 		}
-		else{
-			// this.refreshList();
+
+	refreshList() {
+			fetch(url(), requestOptions(JSON.stringify(this.state.query)))
+			.then((response) => response.json())
+			.then((json) => {
+				this.setState({ data: json });
+			})
+			.then(() => {
+				clearInterval(this.timer)
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 		}
-		!this.props.editor?this.setState({list: null}): ''
-		this.getData()
-	}
 
-    componentDidMount = () => {
-		this.update();
-		this.timer();
-    }
+		update(){
+			!this.props.editor?this.setState({list: null}): ''
+			this.getData()
+		}
 
-	componentWillUnmount = () =>{
-		clearInterval(this.timer)
-	}
-
-	timer = () => {
-		setInterval(() => {
+		componentDidMount = () => {
 			this.update();
-		}, 5000)
-	}
+			this.timer();
+		}
 
-	_styles = () =>{
-		const editPlot = { width: '100%', height: '100%' }
-		const bigPlot = { width: '100%', height: '66vh' }
-		const smallPlot = { width: '100%', height: '33vh' }
-		return this.props.editor?editPlot:(this.props.bigPlot?bigPlot:smallPlot)
-	}
+		componentWillUnmount = () =>{
+			clearInterval(this.timer)
+		}
 
-	render() {
-		return (
-			<MainCard style={{ width: '100%', height: '100%' }}>	
-				<div className="div-pai">
-					{this.props.static? <></>: 
-					<div className="MoreOptions">
-						<Dropdown
-							menu={{
-							items: !this.props.editor?this.state.list:[],
-							onClick: this.handleMenuClick,
-							}}
-							trigger={['click']}
-						>
-							<MoreVert sx={{color:'#b3b3b3'}} />
-						</Dropdown>
-					</div>}
-				</div>	
-				{this.state.option && this.state.data ? <div id={this.state.graphID} style={this._styles()} ></div> : <Skeleton animation="wave" height="100%" width="100%"/> }
-			</MainCard>
-		);
+		timer = () => {
+			setInterval(() => {
+				this.update();
+			}, 1000)
+		}
+
+		_styles = () =>{
+			const editPlot = { width: '100%', height: '100%' }
+			const bigPlot = { width: '100%', height: '66vh' }
+			const smallPlot = { width: '100%', height: '33vh' }
+			return this.props.editor?editPlot:(this.props.bigPlot?bigPlot:smallPlot)
+		}
+
+		render() {
+			return (
+				<MainCard style={{ width: '100%', height: '100%' }}>	
+					<div className="div-pai">
+						{this.props.static? <></>: 
+						<div className="MoreOptions">
+							<Dropdown
+								menu={{
+								items: !this.props.editor?this.state.list:[],
+								onClick: this.handleMenuClick,
+								}}
+								trigger={['click']}
+							>
+								<MoreVert sx={{color:'#b3b3b3'}} />
+							</Dropdown>
+						</div>}
+					</div>
+					{this.state.option && this.state.data ? <div id={this.state.graphID} style={this._styles()} ></div> : <Skeleton animation="wave" height="100%" width="100%"/> }
+				</MainCard>
+			);
+		}
 	}
-}
