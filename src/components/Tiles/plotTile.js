@@ -1,7 +1,9 @@
 	/* eslint-disable no-unused-vars */
-	import React, { Component } from 'react';
+	import React, { Component, useRef } from 'react';
 	import * as echarts from 'echarts';
 	import { djangoFetch } from 'API/url';
+	
+	import { Table } from 'antd';
 
 	import MainCard from "components/MainCard";
 
@@ -14,6 +16,7 @@
 
 	import "./styles.css";
 	import { random } from 'lodash';
+import e from 'cors';
 
 	var raw = (graph) => JSON.stringify({
 		"dataSource": "CeDRI",
@@ -58,9 +61,7 @@
 			]
 		}
 	)
-
-
-
+	
 	export default class PlotTile extends React.Component {
 		constructor(props) {
 			super(props);
@@ -68,11 +69,14 @@
 			this.state = {
 				graphID: this.props.graphID + this.randomString(5),
 				list: null,
-				data: null,
-				option: null,
-				tile: null,
+				data: this.props.data,
+				option: this.props.option,
+				table: this.props.table,
 				doc: null,
 				chart: null, 
+				update: true,
+				columns: [],
+				pagination: {},
 			};
 		}
 
@@ -91,34 +95,34 @@
 			.then(response => response.json())
 			.then((json) => {
 				const _json = json
-				this.setState({data: !this.props.data?_json.data:this.props.data})
-				this.setState({option: !this.props.option?_json.option:this.props.option})
-				this.setState({tite: !this.props.tite?_json.tite:this.props.tite})
-				this.setState({doc: !this.state.doc?document.getElementById(this.state.graphID):this.state.doc})
-				console.log(this.state)
-				this.state.data && this.state.doc && this.state.option?this.chart():''
+				console.log(JSON.stringify(_json.data) != JSON.stringify(this.state.data) || json.option != this.state.option)
+				if(JSON.stringify(_json.data) != JSON.stringify(this.state.data) || json.option != this.state.option){	
+					console.error(_json)
+					this.setState({update: true})
+					this.setState(_json)	
+				}
+			})
+			.then(()=>{
+				this.chart(this.state);
 			})
 			.catch((e) => console.error(e))
 		}
 
-	chart(){
-		try{
-			// var chartDom = document.getElementById(this.state.graphID);
-			console.log(this.state.doc)
-			// console.log(chartDom)
-			if(this.state.chart === null){
-				this.setState({chart: echarts.init(this.state.doc)})
+		chart = (_config) => {
+			var data = _config.data;
+			var option = eval(_config.option);
+			console.debug(_config)
+			if(this.props.table == undefined || this.props.table == null){
+				!_config.doc && _config.graphID?this.setState({doc: document.getElementById(_config.graphID)}):''
+				!_config.chart && _config.doc?this.setState({chart: echarts.init(_config.doc)}):''
+				_config.chart && _config.update && option && data?(_config.chart.setOption(option),this.setState({update: false})):''
 			}
-			console.log(this.state)
-			// var  myChart = !echarts.getInstanceByDom(chartDom)?echarts.init(chartDom):echarts.getInstanceByDom(chartDom)
-			var data = this.state.data
-			var option = eval(this.state.option)
-			option && this.state.chart.setOption(option);
+			else{
+				const columns = this.generateColumns(data);
+				this.setState({columns: columns})
+				this.setState({update: false})
+			}
 		}
-		catch(e){
-			console.log(e)
-		}
-	}
 
 		handleMenuClick = (e) => {
 			console.log(e)
@@ -165,7 +169,7 @@
 			});
 		}
 
-	refreshList() {
+		refreshList() {
 			fetch(url(), requestOptions(JSON.stringify(this.state.query)))
 			.then((response) => response.json())
 			.then((json) => {
@@ -182,6 +186,8 @@
 		update(){
 			!this.props.editor?this.setState({list: null}): ''
 			this.getData()
+			// console.error(this.state.chart)
+			this.state.data && this.state.option?this.chart(this.state):'' 
 		}
 
 		componentDidMount = () => {
@@ -196,7 +202,7 @@
 		timer = () => {
 			setInterval(() => {
 				this.update();
-			}, 1000)
+			}, 2000)
 		}
 
 		_styles = () =>{
@@ -206,25 +212,84 @@
 			return this.props.editor?editPlot:(this.props.bigPlot?bigPlot:smallPlot)
 		}
 
+		generateColumns = data => {
+			if (data[0] === null){
+				return null
+			}
+		
+			const columns = Object.keys(data[0]).map(key => {      
+				return {
+					title: key,
+					dataIndex: key,
+					key: key,
+					sorter: true,
+					filtered:true,
+					render: (text) => {
+						if (typeof text === 'object') {
+							const nestedColumns = this.generateColumns([text]);
+							const nestedData = [text];
+							return <Table columns={nestedColumns} dataSource={nestedData} pagination={false} size = {'small'}/>;
+						}
+						return text;
+					}
+				};
+			});
+			return columns.sort((a, b) => this.sortColumn(a.title,b.title));
+		};
+		
+		sortColumn = (a, b) => {
+			if (a == 'dateTime'){
+				return -1
+			}else if (b == 'dateTime'){
+				return 1
+			}else if (a.toUpperCase() < b.toUpperCase() ){
+				return -1
+			}else if (a.toUpperCase() > b.toUpperCase() ){
+				return 1
+			}else{
+				return 0
+			}
+		}
+		
+		handleTableChange = (pagination, filters, sorter) => {
+			const pager = { ...this.state.pagination };
+			pager.current = pagination.current;
+			this.setState({ pagination: pager });
+		};
+
 		render() {
 			return (
 				<MainCard style={{ width: '100%', height: '100%' }}>	
-					<div className="div-pai">
-						{this.props.static? <></>: 
-						<div className="MoreOptions">
-							<Dropdown
-								menu={{
-								items: !this.props.editor?this.state.list:[],
-								onClick: this.handleMenuClick,
-								}}
-								trigger={['click']}
-							>
-								<MoreVert sx={{color:'#b3b3b3'}} />
-							</Dropdown>
-						</div>}
-					</div>
-					{this.state.option && this.state.data ? <div id={this.state.graphID} style={this._styles()} ></div> : <Skeleton animation="wave" height="100%" width="100%"/> }
+				<div className="div-pai">
+					{this.props.static? <></>: 
+					<div className="MoreOptions">
+						<Dropdown
+							menu={{
+							items: !this.props.editor?this.state.list:[],
+							onClick: this.handleMenuClick,
+							}}
+							trigger={['click']}
+						>
+							<MoreVert sx={{color:'#b3b3b3'}} />
+						</Dropdown>
+					</div>}
+					{this.state.option && this.state.data ? 
+						(!this.props.table?
+							<div className='Graph' id={this.state.graphID}></div>:
+							<Table
+								className='Graph'
+								columns={this.state.columns}
+								dataSource={this.state.data}
+								pagination={true}
+								onChange={this.handleTableChange}
+								scroll = {{scrollToFirstRowOnChange: true, x: true, y: true}}
+								size = {'small'}
+								tableLayout = {'auto'}
+								width = {'auto'}
+							/>): 
+						<Skeleton className='Graph' animation="wave" height="90%" width="95%"/>}
+				</div>
 				</MainCard>
 			);
-		}
+		}	
 	}
