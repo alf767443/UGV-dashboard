@@ -26,7 +26,6 @@ import { Formik } from 'formik';
 import MainCard from "components/MainCard";
 
 import PlotTile from 'components/Tiles/plotTile';
-import TableTile from 'components/Tiles/tableTile';
 
 import AnimateButton from 'components/@extended/AnimateButton';
 import ReactPrismEditor from "react-prism-editor";
@@ -78,7 +77,7 @@ export default class GraphEditor extends React.Component {
 				columns={16}
 				spacing={1}
 				>
-				<Grid item xs={8}>
+				<Grid item xs={16} sm={16} md={8} lg={8}>
 					<Grid
 						container
 						direction="column"
@@ -94,12 +93,12 @@ export default class GraphEditor extends React.Component {
 						</Grid>
 						<Grid item>
 							<div {...styles.graph}>
-								{this.state.data && this.state.option && this.state.tile?<TableTile {...this.state}/>:<div></div>}							
+								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state} table={true}/>:<div></div>}							
 							</div>
 						</Grid>
 					</Grid>
 				</Grid>
-				<Grid item xs={8}>
+				<Grid item xs={16} sm={16} md={8} lg={8}>
 					<Grid
 						container
 						direction="column"
@@ -199,7 +198,7 @@ export default class GraphEditor extends React.Component {
 							columns={20}
 							spacing={2}
 						>
-							<Grid item xs={9}>
+							<Grid item xs={20} sm={20} md={9} lg={9}>
 								<InputLabel htmlFor="name">Chart name</InputLabel>
 								<OutlinedInput
 									id="name"
@@ -212,7 +211,7 @@ export default class GraphEditor extends React.Component {
 									fullWidth
 									error={Boolean(touched.name && errors.name)} />
 							</Grid>
-							<Grid item xs={9}>
+							<Grid item xs={20} sm={20} md={9} lg={9}>
 								<InputLabel htmlFor="name">Chart group</InputLabel>
 								<OutlinedInput
 									id="group"
@@ -225,7 +224,7 @@ export default class GraphEditor extends React.Component {
 									fullWidth
 									error={Boolean(touched.group && errors.group)} />
 							</Grid>
-							<Grid item xs={9}>
+							<Grid item xs={20} sm={20} md={9} lg={9}>
 								<InputLabel htmlFor="name">Query database</InputLabel>
 								<OutlinedInput
 									id="database"
@@ -238,7 +237,7 @@ export default class GraphEditor extends React.Component {
 									fullWidth
 									error={Boolean(touched.database && errors.database)} />
 							</Grid>
-							<Grid item xs={9}>
+							<Grid item xs={20} sm={20} md={9} lg={9}>
 								<InputLabel htmlFor="name">Query collection</InputLabel>
 								<OutlinedInput
 									id="collection"
@@ -259,7 +258,7 @@ export default class GraphEditor extends React.Component {
 								columns={20}
 								spacing={1}
 							>
-								<Grid item xs={2} >
+								<Grid item >
 									<Button
 										disableElevation
 										disabled={isSubmitting}
@@ -291,7 +290,7 @@ export default class GraphEditor extends React.Component {
 			columns={16}
 			spacing={1}
 		>
-			<Grid item xs={8}>
+			<Grid item xs={16} sm={16} md={8} lg={8}>
 				{this.state.option ?
 					<MainCard>
 						<Typography {...styles.typography.title}>
@@ -314,7 +313,7 @@ export default class GraphEditor extends React.Component {
 					</MainCard> :
 					<div></div>}
 			</Grid>
-			<Grid item xs={8}>
+			<Grid item xs={16} sm={16} md={8} lg={8}>
 				{this.state.query ?
 					<MainCard>
 						<Typography {...styles.typography.title}>

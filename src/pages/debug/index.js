@@ -1,7 +1,6 @@
 
 /* eslint-disable no-unused-vars */
 import GraphEditor from "components/GraphEditor/index";
-import PlotTile from "components/Tiles/tableTile";
 
 const DebugPage = () => {
     return(

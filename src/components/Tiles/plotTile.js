@@ -8,15 +8,13 @@
 	import MainCard from "components/MainCard";
 
 	import styles from "graphs/styles";
-	import { Typography, Stack, Grid, Skeleton } from '@mui/material';
+	import {  Skeleton } from '@mui/material';
 
 	import { MoreVert } from '@mui/icons-material';
 	import { Dropdown, message } from 'antd';
 	import {  url, requestOptions } from 'API/url';
 
 	import "./styles.css";
-	import { random } from 'lodash';
-import e from 'cors';
 
 	var raw = (graph) => JSON.stringify({
 		"dataSource": "CeDRI",
@@ -90,14 +88,11 @@ import e from 'cors';
 		}
 
 		getData(){
-			console.log(this.state.graphID)
 			djangoFetch('/chart', '/?name=' + this.props.graphID, 'GET', '')
 			.then(response => response.json())
 			.then((json) => {
 				const _json = json
-				console.log(JSON.stringify(_json.data) != JSON.stringify(this.state.data) || json.option != this.state.option)
 				if(JSON.stringify(_json.data) != JSON.stringify(this.state.data) || json.option != this.state.option){	
-					console.error(_json)
 					this.setState({update: true})
 					this.setState(_json)	
 				}
@@ -111,11 +106,13 @@ import e from 'cors';
 		chart = (_config) => {
 			var data = _config.data;
 			var option = eval(_config.option);
-			console.debug(_config)
 			if(this.props.table == undefined || this.props.table == null){
-				!_config.doc && _config.graphID?this.setState({doc: document.getElementById(_config.graphID)}):''
-				!_config.chart && _config.doc?this.setState({chart: echarts.init(_config.doc)}):''
-				_config.chart && _config.update && option && data?(_config.chart.setOption(option),this.setState({update: false})):''
+				if(!_config.doc || !_config.chart){
+					var _doc =  document.getElementById(_config.graphID)
+					var _chart =  echarts.init(_doc) 
+					this.setState({doc: _doc, chart: _chart})
+				}
+				_config.chart && _config.update && option && data?(_config.chart.setOption(option),this.setState({update: false})):''				
 			}
 			else{
 				const columns = this.generateColumns(data);
@@ -186,7 +183,6 @@ import e from 'cors';
 		update(){
 			!this.props.editor?this.setState({list: null}): ''
 			this.getData()
-			// console.error(this.state.chart)
 			this.state.data && this.state.option?this.chart(this.state):'' 
 		}
 
@@ -203,13 +199,6 @@ import e from 'cors';
 			setInterval(() => {
 				this.update();
 			}, 2000)
-		}
-
-		_styles = () =>{
-			const editPlot = { width: '100%', height: '100%' }
-			const bigPlot = { width: '100%', height: '66vh' }
-			const smallPlot = { width: '100%', height: '33vh' }
-			return this.props.editor?editPlot:(this.props.bigPlot?bigPlot:smallPlot)
 		}
 
 		generateColumns = data => {
@@ -260,35 +249,35 @@ import e from 'cors';
 		render() {
 			return (
 				<MainCard style={{ width: '100%', height: '100%' }}>	
-				<div className="div-pai">
-					{this.props.static? <></>: 
-					<div className="MoreOptions">
-						<Dropdown
-							menu={{
-							items: !this.props.editor?this.state.list:[],
-							onClick: this.handleMenuClick,
-							}}
-							trigger={['click']}
-						>
-							<MoreVert sx={{color:'#b3b3b3'}} />
-						</Dropdown>
-					</div>}
-					{this.state.option && this.state.data ? 
-						(!this.props.table?
-							<div className='Graph' id={this.state.graphID}></div>:
-							<Table
-								className='Graph'
-								columns={this.state.columns}
-								dataSource={this.state.data}
-								pagination={true}
-								onChange={this.handleTableChange}
-								scroll = {{scrollToFirstRowOnChange: true, x: true, y: true}}
-								size = {'small'}
-								tableLayout = {'auto'}
-								width = {'auto'}
-							/>): 
-						<Skeleton className='Graph' animation="wave" height="90%" width="95%"/>}
-				</div>
+					<div className="div-pai">
+						{this.props.static? <></>: 
+						<div className="MoreOptions">
+							<Dropdown
+								menu={{
+								items: !this.props.editor?this.state.list:[],
+								onClick: this.handleMenuClick,
+								}}
+								trigger={['click']}
+							>
+								<MoreVert sx={{color:'#b3b3b3'}} />
+							</Dropdown>
+						</div>}
+						{this.state.option && this.state.data ? 
+							(!this.props.table?
+								<div className='Graph' id={this.state.graphID} {...this.props}></div>:
+								<Table
+									className='Graph'
+									columns={this.state.columns}
+									dataSource={this.state.data}
+									pagination={true}
+									onChange={this.handleTableChange}
+									scroll = {{scrollToFirstRowOnChange: true, x: true, y: true}}
+									size = {'small'}
+									tableLayout = {'auto'}
+									width = {'auto'}
+								/>): 
+							<Skeleton className='Graph' animation="wave" height="90%" width="95%"/>}
+					</div>
 				</MainCard>
 			);
 		}	

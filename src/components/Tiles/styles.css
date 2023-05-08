@@ -1,10 +1,3 @@
-.TitleBox {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-}
 
 .MoreOptions {
   position: absolute;
@@ -12,11 +5,29 @@
   top: 0;
   right: 0;
   transform: translate(-50%, 0); /* Translada a div 50% para a esquerda */
-  z-index: 1; 
+  z-index: 10; 
+}
+
+.Graph {
+  position: relative; 
+  width: 99%;
+  height: 99%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .div-pai {
-  width: 100%;
   position: relative; /* Define a posição como referência para as divs filhas */
-  z-index: 0;
+  height: 100%;
+  z-index: 1;
+}
+
+.Graph .ant-table-tbody > tr > td {
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
 }

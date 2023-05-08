@@ -31,19 +31,16 @@ const MainRoutes = {
     element: <MainLayout />,
     children: [
         {
-            path: 'dashboard',
-            element: <Dashboard />
-        },
-        {
             path: 'information',
             children: [
                 {
-                    path: 'dbs',
+                    path: 'dbs',     
                     children: [
                         {
                             path: '',
                             element: <Database />
-                        }, {
+                        },
+                        {
                             path: 'battery',
                             element: <DatabaseBattery />
                         }, {
