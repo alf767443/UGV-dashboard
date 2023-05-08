@@ -44,7 +44,7 @@ export default class GraphEditor extends React.Component {
 			option: null,
 			tile: null,
 			query: null,
-			editor: true,
+			editor: false,
 		};
 	}
 
@@ -68,7 +68,6 @@ export default class GraphEditor extends React.Component {
 	render() {
 		console.log(this.state)
 		return (
-			<div {...styles.main}>
 			<Grid
 				container
 				direction="row"
@@ -88,12 +87,12 @@ export default class GraphEditor extends React.Component {
 						>
 						<Grid item>
 							<div {...styles.graph}>
-								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state}/>:<div></div>}
+								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state}/>:<></>}
 							</div>
 						</Grid>
 						<Grid item>
 							<div {...styles.graph}>
-								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state} table={true}/>:<div></div>}							
+								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state} table={true}/>:<></>}							
 							</div>
 						</Grid>
 					</Grid>
@@ -116,7 +115,6 @@ export default class GraphEditor extends React.Component {
 					</Grid>
 				</Grid>
 			</Grid>
-			</div>
 		);
 	}
 
@@ -311,7 +309,7 @@ export default class GraphEditor extends React.Component {
 								} } />
 						</div>
 					</MainCard> :
-					<div></div>}
+					<></>}
 			</Grid>
 			<Grid item xs={16} sm={16} md={8} lg={8}>
 				{this.state.query ?
@@ -336,7 +334,7 @@ export default class GraphEditor extends React.Component {
 								
 						</div>
 					</MainCard> :
-					<div></div>}
+					<></>}
 			</Grid>
 		</Grid>;
 	}
