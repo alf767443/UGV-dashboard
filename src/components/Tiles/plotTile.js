@@ -94,6 +94,7 @@ export default class PlotTile extends React.Component {
 		.then((json) => {
 			const _json = json
 			this.setState({list: _json})
+			console.log(_json)
 		})
 		.catch((e) => console.error(e))
 	}
@@ -234,25 +235,27 @@ export default class PlotTile extends React.Component {
 
 	render() {
 		return (
-			<MainCard style={{ width: '100%', height: '100%' }}>	
-				<div className="div-pai">
+			<MainCard style={{ width: '100%', height: '100%' }} key={this.state.graphID+'MainCard'}>	
+				<div className="div-pai" key={this.state.graphID+'div-pai'}>
 					{!this.props.editor? 
-						<div className="MoreOptions">
-							<Dropdown
+						<div className="MoreOptions" key={this.state.graphID+'MoreOption'}>
+							<Dropdown 
+								key={this.state.graphID+'Dropdown'}
 								menu={{
 								items: this.state.list,
 								onClick: this.handleMenuClick,
 								}}
 								trigger={['click']}
 							>
-								<MoreVert sx={{color:'#b3b3b3'}} />
+								<MoreVert sx={{color:'#b3b3b3'}} key={this.state.graphID+'Icon'}/>
 							</Dropdown>
 						</div>:
 						<></>}
 					{this.state.option && this.state.data ? 
 						(!this.props.table?
-							<div className='Graph' id={this.state.graphID} {...this.props}></div>:
+							<div className='Graph' id={this.state.graphID} {...this.props} key={this.state.graphID}/>:
 							<Table
+								key={this.state.graphID+'Table'}
 								className='Graph'
 								columns={this.state.columns}
 								dataSource={this.state.data}
@@ -263,7 +266,7 @@ export default class PlotTile extends React.Component {
 								tableLayout = {'auto'}
 								width = {'auto'}
 							/>): 
-						<Skeleton className='Graph' animation="wave" height="90%" width="95%"/>}
+						<Skeleton className='Graph' animation="wave" height="90%" width="95%" key={this.state.graphID+'Skeleton'}/>}
 				</div>
 			</MainCard>
 		);
