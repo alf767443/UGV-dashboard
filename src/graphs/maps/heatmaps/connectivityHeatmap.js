@@ -167,7 +167,7 @@ export default class ConnectivityIcon extends React.Component {
 			clearInterval(this.timer)
         })
 		.catch((error) => {
-			console.log(error)
+			//console.log(error)
 		});
     }
 
@@ -177,13 +177,13 @@ export default class ConnectivityIcon extends React.Component {
         .then((response) => response.json())
         .then((json) => {
             this.setState({ data: [...json, {x:-30.20, y:-30.60, RTT:0},{x:40.20, y:28.60, RTT:0}] });
-            console.log(this.state.data)
+            ////console.log(this.state.data)
         })
 		.then(() => {
             this.refreshPos()
 		})
         .catch((error) => {
-            console.log(error)
+            //console.log(error)
         });
     }
 

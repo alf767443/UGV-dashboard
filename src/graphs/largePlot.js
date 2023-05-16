@@ -55,7 +55,7 @@ export default class SimpleGraph extends React.Component {
     }
 
 	handleMenuClick = (e) => {
-		console.log(e)
+		//console.log(e)
 		message.open({
 			key: e.key,
 			type: 'loading',
@@ -83,7 +83,7 @@ export default class SimpleGraph extends React.Component {
 			);
 		})
 		.catch((error) => {
-			console.log(error);
+			//console.log(error);
 		});
 	};
 

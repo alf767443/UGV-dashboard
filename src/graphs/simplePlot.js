@@ -124,7 +124,7 @@ export default class SimpleGraph extends React.Component {
 	}
 
 	handleMenuClick = (e) => {
-		console.log(e)
+		//console.log(e)
 		message.open({
 			key: e.key,
 			type: 'loading',
@@ -152,7 +152,7 @@ export default class SimpleGraph extends React.Component {
 			);
 		})
 		.catch((error) => {
-			console.log(error);
+			//console.log(error);
 		});
 	};
 
@@ -161,10 +161,10 @@ export default class SimpleGraph extends React.Component {
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({list: json})
-			console.log(this.state.list)
+			////console.log(this.state.list)
 		})
 		.catch((error) => {
-			console.log(error);
+			//console.log(error);
 		});
 	}
 
@@ -178,7 +178,7 @@ export default class SimpleGraph extends React.Component {
 			clearInterval(this.timer)
 		})
 		.catch((error) => {
-			console.log(error);
+			//console.log(error);
 		});
     }
 
@@ -190,10 +190,10 @@ export default class SimpleGraph extends React.Component {
 			this.setState({plot: this.plot()})
 		})
 		.then(() => {
-			console.log(this.state)
+			////console.log(this.state)
 		})
 		.catch((error) => {
-			console.log(error);
+			//console.log(error);
 		});
 	}
 

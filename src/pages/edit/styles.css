@@ -1,0 +1,26 @@
+.Header {
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  z-index: 9999;
+  display: inline;
+}
+
+.Header .SelectGraph {
+  position: relative;
+  left: 50%;
+  transform: translate(0, 0); 
+}
+
+.Header .AddIcon {
+  position: relative;
+  left: 30%;
+  transform: translate(-50%, 0); 
+}
+
+.main {
+  position: relative; /* Define a posição como referência para as divs filhas */
+  height: 100%;
+  z-index: 1;
+}
+

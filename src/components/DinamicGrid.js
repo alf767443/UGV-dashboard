@@ -6,10 +6,10 @@ import React from 'react';
 
 const DinamicGrid = (Itens) => {
     const sizeItens = (Itens.First != null) + (Itens.Second != null) + (Itens.Third != null) + (Itens.Fourth != null);
-    console.log('Hello');
-    console.log(Itens);
-    console.log(sizeItens);
-    console.log('End');
+    ////console.log('Hello');
+    ////console.log(Itens);
+    ////console.log(sizeItens);
+    ////console.log('End');
     switch (sizeItens) {
         case 1:
             return (

@@ -29,7 +29,7 @@ export default class App extends React.Component {
             .then((response) => response.json())
             .then((json) => {
                 this.setState({ data: json});
-                console.log(json)
+                //console.log(json)
             });
     }
 
@@ -72,10 +72,10 @@ export default class App extends React.Component {
     queue(){
         let content = []
         let action
-        console.log(this.state.data)
+        ////console.log(this.state.data)
         for(let item in this.state.data){
             action = this.state.data[item]['Action']
-            console.log(action['Status'])
+            //console.log(action['Status'])
             content.push(this.addItem(action['Code'], action['Source'], action['Status']))
         }
         return content

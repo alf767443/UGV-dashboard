@@ -41,7 +41,7 @@ export default class Carousel extends Component {
         
         switch(true){
             case this.state.page <= round(this.props.Plot.SimplePlot.length/2):
-                console.log('a');
+                ////console.log('a');
                 init = ((this.state.page - 1) * 2)
                 end = (this.state.page * 2 > this.props.Plot.SimplePlot.length ? init + 1: init + 2)
                 return (
@@ -54,7 +54,7 @@ export default class Carousel extends Component {
                     </Grid>
                 )
             case this.state.page > round(this.props.Plot.SimplePlot.length/2) &&  this.state.page <= round(this.props.Plot.SimplePlot.length/2) + this.props.Plot.LargePlot.length :
-                console.log('b');
+                ////console.log('b');
                 init = (this.state.page - round(this.props.Plot.SimplePlot.length/2)) - 1
                 end = init + 1
                 return (
@@ -67,10 +67,10 @@ export default class Carousel extends Component {
                     </Grid>
                 )
             case this.state.page > round(this.props.Plot.SimplePlot.length/2) + this.props.Plot.LargePlot.length &&  this.state.page <= round(this.props.Plot.SimplePlot.length/2) + this.props.Plot.LargePlot.length + this.props.Plot.BigPlot.length :
-                console.log('c')      
+                ////console.log('c')      
                 init = (this.state.page - round(this.props.Plot.SimplePlot.length/2) + this.props.Plot.LargePlot.length) - 1
                 end = init + 1
-                console.log(this.props.Plot.BigPlot.slice( init , end)) 
+                //////console.log(this.props.Plot.BigPlot.slice( init , end)) 
                 return (
                     <Grid container {...styles.grid.main} >
                         { this.props.Plot.BigPlot.slice( init , end).map(element => (

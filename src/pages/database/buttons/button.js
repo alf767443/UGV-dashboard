@@ -12,7 +12,7 @@ export default class DataBaseButtons extends React.Component {
     }
 
     render() {
-        console.log(this.props.Icon)
+        ////console.log(this.props.Icon)
         return (
             <MainCard {...styles.maincard}>
                 <Box {...styles.box}>

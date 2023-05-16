@@ -112,7 +112,7 @@ export default class ConnectivityIcon extends React.Component {
 		})
         .then(() => clearInterval())
 		.catch((error) => {
-			console.log(error)
+			//console.log(error)
 		});
     }
 
@@ -127,7 +127,7 @@ export default class ConnectivityIcon extends React.Component {
             this.refreshPos()
         })
         .catch((error) => {
-            console.log(error)
+            //console.log(error)
         });
     }
 

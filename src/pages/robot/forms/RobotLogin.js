@@ -28,7 +28,6 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 const RobotLogin = () => {
     const [showPassword, setShowPassword] = React.useState(false);
-    const [robot, setRobot] =  React.useState(false);
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -52,16 +51,18 @@ const RobotLogin = () => {
                     password: Yup.string().max(255).required('Password is required')
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => { 
+                    var status = null
                     const sendJSON = {
                         'robot': values.robot,
                         'password': values.password,
                     }
+                    try {
                     djangoFetch('/robot', '/', 'OPTIONS', JSON.stringify(sendJSON))
                         .then((response) => {
-                            if(response.status === 202){
-                                setStatus({ success: true });
-                                setRobot(true);
-                                setSubmitting(false);
+                            status = response.status
+                            if(status === 202){
+                                // setStatus({ success: true });
+                                // setSubmitting(false);
                             }
                             else{
                                 setStatus({ success: false });
@@ -70,17 +71,28 @@ const RobotLogin = () => {
                             }
                             return response.json()
                         })
-                        .then(data => {
-                            if(robot){
-                                window.localStorage.setItem('robotID', data['name'])
-                                window.location.href = '/CeDRI_dashboard/dashboard';
+                        .then((data) => {
+                            const _data = data
+                            if(status === 202){
+                                window.localStorage.setItem('robotID', _data['name'])
+                                setStatus({ success: true });
+                                setSubmitting(false);
+                                window.location.href = '/CeDRI_dashboard/information/dashboard';
+                                // djangoFetch('/robot', '/?name=' + data.name, 'GET', '')
+                                //     .then((response) => response.json())
+                                //     .then((robot) => {
+                                //         //console.debug(robot)
+                                //         window.localStorage.setItem('robot.img', robot.img);
+                                //         setStatus({ success: true });
+                                //         setSubmitting(false);
+                                //         //console.debug(window.localStorage.getItem('robot'));
+                                //         // window.location.href = '/CeDRI_dashboard/information/dashboard';
+                                //         }                    
+                                //     )
+                                //     .catch((e) => console.error(e))
                             }
                         })
                         .catch((e) => console.error(e))
-
-                    try {
-                        setStatus({ success: false });
-                        setSubmitting(false);
                     } catch (err) {
                         setStatus({ success: false });
                         setErrors({ submit: err.message });

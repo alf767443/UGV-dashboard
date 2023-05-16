@@ -74,7 +74,7 @@ const AuthRegister = () => {
                         setStatus({ success: false });
                         setSubmitting(false);
                     } catch (err) {
-                        console.error(err);
+                        //console.error(err);
                         setStatus({ success: false });
                         setErrors({ submit: err.message });
                         setSubmitting(false);

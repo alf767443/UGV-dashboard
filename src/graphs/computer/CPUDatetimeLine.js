@@ -95,22 +95,22 @@ export default class CurrentDatetimeLine extends React.Component {
 					.then((response) => response.json())
 					.then((json) => {
 						this.setState({ data: [...this.state._1, ...this.state._2, ...this.state._3, ...json] });
-						// console.log(this.state.data)
+						// ////console.log(this.state.data)
 					})
 					.catch((error) => {
-						console.log(error);
+						//console.log(error);
 					});
 				})
 				.catch((error) => {
-					console.log(error);
+					//console.log(error);
 				});
 			})
 			.catch((error) => {
-				console.log(error);
+				//console.log(error);
 			});
 		})
 		.catch((error) => {
-			console.log(error);
+			//console.log(error);
 		})
     }
 

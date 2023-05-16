@@ -78,7 +78,7 @@ const RobotRegister = () => {
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         const sendJSON = {
-                            'name': values.robotname,
+                            'long_name': values.robotname,
                             'project': values.projectname,
                             'database': values.database,
                             'ssh': values.ssh,
@@ -90,7 +90,7 @@ const RobotRegister = () => {
 
                         djangoFetch('/robot', '/', 'POST', JSON.stringify(sendJSON))
                         .then((response) => {
-                            // console.log(response)
+                            // //console.log(response)
                             if(response.status === 201){
                                 window.location.href = '/CeDRI_dashboard/robot/login';
                                 setStatus({ success: true });
@@ -100,7 +100,7 @@ const RobotRegister = () => {
                         .catch((e) => console.error(e))
 
                     } catch (err) {
-                        console.error(err);
+                        //console.error(err);
                         setStatus({ success: false });
                         setErrors({ submit: err.message });
                         setSubmitting(false);
@@ -297,7 +297,6 @@ const RobotRegister = () => {
                                         component={RouterLink} 
                                         to="/robot/login"
                                         style={{ cursor: 'pointer' }}
-                                        onClick={()=>console.info('hello')}
                                     >
                                         Sign up with a robot
                                     </Typography>

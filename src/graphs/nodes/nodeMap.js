@@ -147,7 +147,7 @@ export default class NodeMap extends React.Component {
       this.refreshEdges();
 		})
 		.catch((error) => {
-			console.log(error);
+			//console.log(error);
 		});
     }
   
@@ -160,7 +160,7 @@ export default class NodeMap extends React.Component {
       this.forceUpdate()
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
     }); 
     }
 

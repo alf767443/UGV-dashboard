@@ -85,12 +85,12 @@ export default class RotationRateDatetimeLine extends React.Component {
 				clearInterval(this.timer)
 			})
 			.catch((error) => {
-				console.log(error);
+				//console.log(error);
 			});
 			
 		})
 		.catch((error) => {
-			console.log(error);
+			//console.log(error);
 		});
     }
 

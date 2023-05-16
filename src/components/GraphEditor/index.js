@@ -27,7 +27,6 @@ import MainCard from "components/MainCard";
 
 import PlotTile from 'components/Tiles/plotTile';
 
-import AnimateButton from 'components/@extended/AnimateButton';
 import ReactPrismEditor from "react-prism-editor";
 
 import SaveIcon from "@mui/icons-material/Save";
@@ -48,74 +47,21 @@ export default class GraphEditor extends React.Component {
 		};
 	}
 
-  getData(){
-	console.log(this.state.graphID)
-    djangoFetch('/chart', '/?name=' + this.state.graphID, 'GET', '')
-		.then(response => response.json())
-		.then((json) => {
-			const _json = json
-			this.setState(_json)	
-			this.setState({pipeline: JSON.stringify(_json.query.pipeline, null, '\t')})
-			console.info(this.state)
-      })
-      .catch((e) => console.error(e))
-  }
+	getData(){
+		////console.log(this.state.graphID)
+		djangoFetch('/chart', '/?name=' + this.state.graphID, 'GET', '')
+			.then(response => response.json())
+			.then((json) => {
+				const _json = json
+				this.setState(_json)	
+				this.setState({pipeline: JSON.stringify(_json.query.pipeline, null, '\t')})
+				////console.info(this.state)
+			})
+			.catch((e) => console.error(e))
+		}
 
-  componentDidMount = () => {
-    this.getData();
-  }
-
-	render() {
-		console.log(this.state)
-		return (
-			<Grid
-				container
-				direction="row"
-				justifyContent="space-evenly"
-				alignItems="stretch"
-				columns={16}
-				spacing={1}
-				>
-				<Grid item xs={16} sm={16} md={8} lg={8}>
-					<Grid
-						container
-						direction="column"
-						justifyContent="space-evenly"
-						alignItems="stretch"
-						columns={16}
-						spacing={1}
-						>
-						<Grid item>
-							<div {...styles.graph}>
-								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state}/>:<></>}
-							</div>
-						</Grid>
-						<Grid item>
-							<div {...styles.graph}>
-								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state} table={true}/>:<></>}							
-							</div>
-						</Grid>
-					</Grid>
-				</Grid>
-				<Grid item xs={16} sm={16} md={8} lg={8}>
-					<Grid
-						container
-						direction="column"
-						justifyContent="space-evenly"
-						alignItems="stretch"
-						columns={16}
-						spacing={1}
-					>
-						<Grid item>
-							{this.state.query && this.state.tile?this.CharForm():<></>}
-						</Grid>
-						<Grid item>
-							{this.state.pipeline?this.OptionPipelineEditor():<></>}
-						</Grid>
-					</Grid>
-				</Grid>
-			</Grid>
-		);
+	componentDidMount = () => {
+		this.getData();
 	}
 
 	CharForm() {
@@ -135,7 +81,7 @@ export default class GraphEditor extends React.Component {
 				collection: Yup.string().max(255).required('Robot is required'),
 			})}
 			onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-				console.log(JSON.parse(this.state.pipeline))
+				//console.log(JSON.parse(this.state.pipeline))
 				const sendJSON = {
 					"filter": {'name': this.state.graphID},
 					"update": 
@@ -151,11 +97,11 @@ export default class GraphEditor extends React.Component {
 									'collection': values.collection,
 									'pipeline': JSON.parse(this.state.pipeline)
 								},
-								'option': this.state.query.option
+								'option': this.state.option
 							}
 						}
 				};
-				console.log(sendJSON)
+				//console.log(sendJSON)
 				djangoFetch('/chart', '/?name='+this.state.graphID, 'PUT', JSON.stringify(sendJSON))
 					.then((response) => {
 						if (response.status === 202) {
@@ -338,4 +284,58 @@ export default class GraphEditor extends React.Component {
 			</Grid>
 		</Grid>;
 	}
+	
+	render() {
+		////console.log(this.state)
+		return (
+			<Grid
+				container
+				direction="row"
+				justifyContent="space-evenly"
+				alignItems="stretch"
+				columns={16}
+				spacing={1}
+				>
+				<Grid item xs={16} sm={16} md={8} lg={8}>
+					<Grid
+						container
+						direction="column"
+						justifyContent="space-evenly"
+						alignItems="stretch"
+						columns={16}
+						spacing={1}
+						>
+						<Grid item>
+							<div {...styles.graph}>
+								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state}/>:<></>}
+							</div>
+						</Grid>
+						<Grid item>
+							<div {...styles.graph}>
+								{this.state.data && this.state.option && this.state.tile?<PlotTile {...this.state} table={true}/>:<></>}							
+							</div>
+						</Grid>
+					</Grid>
+				</Grid>
+				<Grid item xs={16} sm={16} md={8} lg={8}>
+					<Grid
+						container
+						direction="column"
+						justifyContent="space-evenly"
+						alignItems="stretch"
+						columns={16}
+						spacing={1}
+					>
+						<Grid item>
+							{this.state.query && this.state.tile?this.CharForm():<></>}
+						</Grid>
+						<Grid item>
+							{this.state.pipeline?this.OptionPipelineEditor():<></>}
+						</Grid>
+					</Grid>
+				</Grid>
+			</Grid>
+		);
+	}
+
 }

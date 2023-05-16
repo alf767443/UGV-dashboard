@@ -43,7 +43,7 @@ function UploadImage(imageSrc = null) {
   //   const file = event.target.files[0];
   //   setSelectedFile(file);
   //   getBase64(file).then((base64) => {
-  //     console.debug("file stored", file.name, base64);
+  //     //console.debug("file stored", file.name, base64);
   //     setImageSrc(base64);
   //   });
   // };

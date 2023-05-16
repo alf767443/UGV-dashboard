@@ -1,9 +1,30 @@
-.TitleBox {
+.Tile {
   position: relative;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
+}
+
+.Tile .Delete {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  transform: translate(0%, 0%);
+  z-index: 10; 
+}
+
+.Tile .Edit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  transform: translate(0%, 0%);
+  z-index: 10; 
+}
+
+
+.Tile .Drag  {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10; 
 }
 
 .MoreOptions {
@@ -12,15 +33,29 @@
   top: 0;
   right: 0;
   transform: translate(-50%, 0); /* Translada a div 50% para a esquerda */
-  z-index: 2; 
+  z-index: 10; 
+}
+
+.Graph {
+  position: relative; 
+  width: 99%;
+  height: 99%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .div-pai {
-  width: 100%;
   position: relative; /* Define a posição como referência para as divs filhas */
+  height: 100%;
+  z-index: 1;
 }
 
-.SmallGraph {
-  width: 100%;
-  height: 10vh;
+.Graph .ant-table-tbody > tr > td {
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
 }

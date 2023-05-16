@@ -47,9 +47,9 @@ class ImageCarousel extends React.Component {
     }
 
     render(){    
-        console.log(this.state.robots)
+        ////console.log(this.state.robots)
         if(this.state.robots !== null){
-            console.log(this.state.robots.map((robot, index)  => {console.log(robot); console.log(index)}))
+            ////console.log(this.state.robots.map((robot, index)  => {//console.log(robot); //console.log(index)}))
             return (
                 <Slider {...this.state.settings}>
                     {this.state.robots.map((robot, index) => (
