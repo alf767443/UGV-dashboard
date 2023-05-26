@@ -22,7 +22,8 @@ const DatabaseNodes = Loadable(lazy(() => import('pages/database/pages/nodes')))
 const DatabaseProcesses = Loadable(lazy(() => import('pages/database/pages/processes')));
 const DatabaseComputer = Loadable(lazy(() => import('pages/database/pages/computer')));
 
-const EditPlot = Loadable(lazy(() => import('pages/edit')));
+const EditPlot = Loadable(lazy(() => import('pages/editGraph')));
+const EditorScript = Loadable(lazy(() => import('pages/editScript')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -93,6 +94,10 @@ const MainRoutes = {
                 {
                     path: 'chart',
                     element: <EditPlot />
+                }, 
+                {
+                    path: 'script',
+                    element: <EditorScript />
                 }, 
             ]
         },

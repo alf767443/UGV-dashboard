@@ -1,61 +1,104 @@
-.Tile {
-  position: relative;
-}
+  .main{
+    position: relative;
+    /* width: fit-content; */
+  }
 
-.Tile .Delete {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  transform: translate(0%, 0%);
-  z-index: 10; 
-}
+  .layout{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+  }
+  
+  .Tile {
+    position: relative;
+  }
 
-.Tile .Edit {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  transform: translate(0%, 0%);
-  z-index: 10; 
-}
+  .Tile .Delete {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transform: translate(0%, 0%);
+    z-index: 10; 
+  }
 
+  .Tile .Edit {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transform: translate(0%, 0%);
+    z-index: 11; 
+  }
 
-.Tile .Drag  {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10; 
-}
+  .Tile .b-add {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 11; 
+  }
 
-.MoreOptions {
-  position: absolute;
-  width: 12px;
-  top: 0;
-  right: 0;
-  transform: translate(-50%, 0); /* Translada a div 50% para a esquerda */
-  z-index: 10; 
-}
+  .Tile .b-min {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+    z-index: 11; 
+  }
 
-.Graph {
-  position: relative; 
-  width: 99%;
-  height: 99%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
+  .Tile .r-add {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(0%, -50%);
+    z-index: 11; 
+  }
 
-.div-pai {
-  position: relative; /* Define a posição como referência para as divs filhas */
-  height: 100%;
-  z-index: 1;
-}
+  .Tile .r-min {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(-100%, -50%);
+    z-index: 11; 
+  }
 
-.Graph .ant-table-tbody > tr > td {
-  white-space: nowrap;
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  z-index: 1;
-}
+  .Tile .Drag  {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 12;
+  }
+
+  .VoidCard {
+    height: 100%;
+    width: 100%;
+  }
+
+  .Header {
+    position: relative;
+  }
+
+  .Header .Add{
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translate(-175%, -100%);
+    z-index: 1501; 
+  }
+  .Header .Move{
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    z-index: 1502; 
+  }
+  .Header .Upload{
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translate(75%, -100%);
+    z-index: 1503; 
+  }

@@ -84,14 +84,13 @@ export default class PlotTile extends React.Component {
 	}
 
 	getData = () => {
-		// //console.log(this.state)
 		this.setState({canRequest: false})
-		djangoFetch('/chart', '/?name=' + this.state._id, 'GET', '')
+		djangoFetch('/chart', '/?name=' + this.props.graphID, 'GET', '')
 		.then(response => response.json())
 		.then((json) => {
 			const _json = json
-			if(JSON.stringify(_json.data) != JSON.stringify(this.state.data) || json.option != this.state.option){
-				this.setState({update: true})	
+			if(JSON.stringify(_json.data) != JSON.stringify(this.state.data) || _json.option != this.state.option){
+				this.setState({update: true})
 			}
 			if(this.props.data != undefined || this.props.data != null || !this.props.data){
 				this.setState({data: _json.data})
@@ -101,6 +100,7 @@ export default class PlotTile extends React.Component {
 			}
 		})	
 		.then(() => this.chart(this.state))
+		.then(() => this.timer())
 		.catch((e) => console.error(e))
 		.finally(() => this.setState({canRequest: true}))
 	}
@@ -129,12 +129,12 @@ export default class PlotTile extends React.Component {
 	}
 
 	update = () => {
-		this.state._id && this.state.canRequest?this.getData():''
-		this.state._id && this.state.data && this.state.option?this.chart(this.state):'' 
+		this.props.graphID && this.state.canRequest?this.getData():''
+		this.props.graphID && this.state.data && this.state.option?this.chart(this.state):'' 
 	}
 
 	componentDidMount = () => {
-		this.timer();
+		this.update();
 	}
 
 	componentWillUnmount = () =>{
@@ -142,7 +142,7 @@ export default class PlotTile extends React.Component {
 	}
 
 	timer = () => {
-		setInterval(() => {
+		setTimeout(() => {
 			this.update();
 		}, 1000)
 	}

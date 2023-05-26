@@ -2,6 +2,8 @@
 import React, { Component  } from 'react';
 import * as echarts from 'echarts';
 import { djangoFetch } from 'API/url';
+import { useLocation } from 'react-router-dom';
+
 
 import {
 	Typography,
@@ -38,7 +40,6 @@ export default class GraphEditor extends React.Component {
 
 		this.state = {
 			graphID: this.props.graphID,
-			list: null,
 			data: null,
 			option: null,
 			tile: null,
@@ -48,14 +49,12 @@ export default class GraphEditor extends React.Component {
 	}
 
 	getData(){
-		////console.log(this.state.graphID)
 		djangoFetch('/chart', '/?name=' + this.state.graphID, 'GET', '')
 			.then(response => response.json())
 			.then((json) => {
 				const _json = json
 				this.setState(_json)	
 				this.setState({pipeline: JSON.stringify(_json.query.pipeline, null, '\t')})
-				////console.info(this.state)
 			})
 			.catch((e) => console.error(e))
 		}
@@ -284,9 +283,8 @@ export default class GraphEditor extends React.Component {
 			</Grid>
 		</Grid>;
 	}
-	
+
 	render() {
-		////console.log(this.state)
 		return (
 			<Grid
 				container

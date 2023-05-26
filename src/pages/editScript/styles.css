@@ -1,0 +1,43 @@
+.Header {
+  position: relative;
+}
+
+.Header .Add{
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translate(-145px, -100%);
+  z-index: 1501; 
+}
+
+.Header .SelectGraph {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  z-index: 1502; 
+}
+
+.Header .Remove{
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translate(109px, -100%);
+  z-index: 1503; 
+}
+
+.main{
+  position: relative;
+  /* width: fit-content; */
+}
+
+.layout{
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+}
+
+.ant-message{
+  z-index: 9999;
+}
