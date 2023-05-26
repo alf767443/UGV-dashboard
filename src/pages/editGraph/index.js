@@ -101,7 +101,9 @@ export default class EditPage extends React.Component {
             "robot": this.state.robotID 
         }
         message.open({
-            top: 9999,
+      top: Infinity,
+style: {zIndex: Infinity},
+
 			key: messageID,
 			type: 'loading',
 			content: 'Creating a chart',
@@ -115,7 +117,9 @@ export default class EditPage extends React.Component {
             }
         })
         .then(() => message.open({
-            top: 9999,
+      top: Infinity,
+style: {zIndex: Infinity},
+
 			key: messageID,
 			type: 'success',
 			content: 'Chart created',
@@ -123,7 +127,9 @@ export default class EditPage extends React.Component {
         }))
         .catch((e) => console.error(e))
         .catch(() => message.open({
-            top: 9999,
+      top: Infinity,
+style: {zIndex: Infinity},
+
 			key: messageID,
 			type: 'error',
 			content: 'Error when creating',
@@ -134,7 +140,9 @@ export default class EditPage extends React.Component {
     removeChartClick = () => {
         const messageID = randomString(5) + this.state.robotID
         message.open({
-            top: 9999,
+      top: Infinity,
+style: {zIndex: Infinity},
+
 			key: messageID,
 			type: 'loading',
 			content: 'Deleting the chart',
@@ -149,7 +157,9 @@ export default class EditPage extends React.Component {
             }
         })
         .then(() => message.open({
-            top: 9999,
+      top: Infinity,
+style: {zIndex: Infinity},
+
 			key: messageID,
 			type: 'success',
 			content: 'Chart deleted',
@@ -157,7 +167,9 @@ export default class EditPage extends React.Component {
         }))
         .catch((e) => console.error(e))
         .catch(() => message.open({
-            top: 9999,
+      top: Infinity,
+style: {zIndex: Infinity},
+
 			key: messageID,
 			type: 'error',
 			content: 'Error when deleting',

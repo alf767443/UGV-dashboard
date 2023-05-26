@@ -253,7 +253,7 @@ export default class PercentageDatetimeArea extends React.Component {
 		},
 		},
 		yAxis: {
-		top: true,
+		top: Infinity,
 		line: null,
 		grid: null,
 		tickLine: null,

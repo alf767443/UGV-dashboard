@@ -1,0 +1,40 @@
+.main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    padding: 15px;
+    /* width: fit-content; */
+}
+
+.CardContent {
+    position: relative;
+    display: inline;
+    width: 100%;
+    height: 100%;
+}
+.CardContent .StatusIcon{
+    position: absolute;
+    top: 0px;
+    left: -1px;
+    width: 55px;
+    height: 100%;
+}
+.CardContent .LogIcon{
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    width: 55px;
+    height: 100%;
+}
+
+.CardContent .Text{
+    position: relative;
+    top: 0px;
+    left: 75px;
+    height: 100%;
+}
+.CardContent .Text .Title{
+    position: absolute;
+
+}

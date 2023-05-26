@@ -2,11 +2,11 @@
 /* eslint-disable no-unused-vars */
 import GraphEditor from "components/GraphEditor/index";
 import DashboardLayout from "components/gridLayout/index";
+import ScriptList from "components/ScriptLoggerDetail/index";
 
 const DebugPage = () => {
     return(
-        <DashboardLayout edit={true}/>
-        // <GraphEditor graphID={"6453e23840275ce9ed3eec2d"}/>
+        <ScriptList />
     );
 }
 

@@ -1,0 +1,62 @@
+.main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    padding: 15px;
+    /* width: fit-content; */
+}
+
+.Title {
+    position: relative;
+    left: 20px;
+}
+
+.message {
+    z-index: 9999;
+}
+
+
+
+
+.CardContent {
+    position: relative;
+    display: inline;
+    width: 100%;
+    height: 100%;
+}
+.CardContent .StatusIcon{
+    position: absolute;
+    top: 0px;
+    left: -1px;
+    width: 55px;
+    height: 100%;
+}
+
+.CardContent .PlayStop{
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    width: 55px;
+    height: 50%;
+}
+
+.CardContent .Edit{
+    position: absolute;
+    bottom: 0px;
+    right: -1px;
+    width: 55px;
+    height: 50%;
+}
+
+
+.CardContent .Text{
+    position: relative;
+    top: 0px;
+    left: 75px;
+    height: 100%;
+}
+.CardContent .Text .Title{
+    position: absolute;
+
+}

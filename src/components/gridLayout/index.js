@@ -53,7 +53,9 @@ export default class DashboardLayout extends React.Component {
         "graph": this.state.graph
     }}}
     message.open({
-      top: 9999,
+top: Infinity,
+style: {zIndex: Infinity},
+
       key: messageID,
       type: 'loading',
       content: 'Saving layout',
@@ -62,7 +64,9 @@ export default class DashboardLayout extends React.Component {
     djangoFetch('/robot', '/', 'PUT', JSON.stringify(sendJSON))
       .then((response) => {response.json()})
       .then(() => message.open({
-        top: 9999,
+  top: Infinity,
+style: {zIndex: Infinity},
+
         key: messageID,
         type: 'success',
         content: 'Saved successfully',
@@ -70,7 +74,9 @@ export default class DashboardLayout extends React.Component {
       }))
       .catch((e) => console.error(e))
       .catch(() => message.open({
-        top: 9999,
+  top: Infinity,
+style: {zIndex: Infinity},
+
         key: messageID,
         type: 'error',
         content: 'Error on saving',
