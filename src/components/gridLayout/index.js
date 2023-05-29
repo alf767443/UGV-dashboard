@@ -247,7 +247,7 @@ style: {zIndex: Infinity},
     );
     const activeColor = '#454545';
     return (
-      <div className='main'>
+      <div className='gridLayout'>
           <div className='Header'>
             <div className='Add'>
               <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" onClick={this.onAddChart} >

@@ -43,19 +43,23 @@ export default class ScriptList extends React.Component {
                 "robot": this.state.robotID
             }
         }, {
-            "$lookup": {
-                "from": "logs", 
-                "localField": "scripts", 
-                "foreignField": "name", 
-                "as": "lastLog", 
-                "pipeline": [
+            '$lookup': {
+                'from': 'logs', 
+                'localField': 'name', 
+                'foreignField': 'script', 
+                'as': 'lastLog', 
+                'pipeline': [
                     {
-                        "$limit": 1
+                        '$sort': {
+                            'datetime': -1
+                        }
                     }, {
-                        "$project": {
-                            "msg": 1, 
-                            "datetime": 1, 
-                            "type": 1
+                        '$limit': 1
+                    }, {
+                        '$project': {
+                            'msg': 1, 
+                            'datetime': 1, 
+                            'type': 1
                         }
                     }
                 ]
@@ -110,11 +114,13 @@ export default class ScriptList extends React.Component {
   fontLogColor = (status) => {
     switch(status){
         case 'info':
-            return "#048104"
+            return "#0078d4"
         case 'error':
             return "#c42b1c"
         case 'debug':
-            return "#0078d4"
+            return "#048104"
+        case 'warn':
+            return "#ffb833"
         default:
             return "#textSecondary"
     }
@@ -135,7 +141,7 @@ export default class ScriptList extends React.Component {
 
   render(){
     return (
-      <div className='main'>  
+      <div className='loggerList'>  
         <Grid container
             direction="column"
             justifyContent="flex-start"
@@ -171,9 +177,10 @@ export default class ScriptList extends React.Component {
                                     <Typography align='left' variant='h5' color='textSecondary'>
                                         Last log:&nbsp;&nbsp;
                                     </Typography>
+                                    {script.lastLog[0]?
                                     <Typography align='left' variant='h5' color={this.fontLogColor(script.lastLog[0].type)}>
                                         ({this.ISOdate2string(script.lastLog[0].datetime)}) &nbsp;{">>"}&nbsp; {script.lastLog[0].msg}
-                                    </Typography>
+                                    </Typography>:<></>}
                                 </Grid>
                                 <Grid item>
                                     <Typography align='left' variant='h5' color='textSecondary'>

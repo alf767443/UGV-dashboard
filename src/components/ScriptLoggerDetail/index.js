@@ -44,6 +44,12 @@ export default class ScriptList extends React.Component {
       "update": {"$set":{
         "status": (this.state.script.status === 'run' || this.state.script.status === 'wait')?'stop':'wait'
     }}}
+    const addLog = {
+        "script": this.state._id,
+        "robot": this.state.robotID,
+        "msg": sendJSON.update.$set.status === 'stop'?"Script was paused":"Script was started",
+        "type": 'debug',
+    }
     message.open({
         top: Infinity,
         style: {zIndex: Infinity},
@@ -54,14 +60,26 @@ export default class ScriptList extends React.Component {
     });
     djangoFetch('/script', '/', 'PUT', JSON.stringify(sendJSON))
       .then((response) => {response.json()})
-      .then(() => message.open({
-        top: Infinity,
-        style: {zIndex: Infinity},
-        key: messageID,
-        type: 'success',
-        content: 'Changed successfully',
-        duration: 2,
-      }))
+      .then(() => {
+        djangoFetch('/log','/', 'POST', JSON.stringify(addLog))
+        .then(() => message.open({
+            top: Infinity,
+            style: {zIndex: Infinity},
+            key: messageID,
+            type: 'success',
+            content: 'Changed successfully',
+            duration: 2,
+        }))
+        .catch((e) => console.error(e))
+        .catch(() => message.open({
+            top: Infinity,
+            style: {zIndex: Infinity},
+            key: messageID,
+            type: 'error',
+            content: 'Error on Changing',
+            duration: 2,
+        }))
+      })
       .catch((e) => console.error(e))
       .catch(() => message.open({
         top: Infinity,
@@ -72,6 +90,7 @@ export default class ScriptList extends React.Component {
         duration: 2,
       }))
       .finally(() => this.getScript())
+      .finally(() => this.getLog())
   }
 
   getScript = () => {
@@ -137,11 +156,13 @@ export default class ScriptList extends React.Component {
   fontLogColor = (status) => {
     switch(status){
         case 'info':
-            return "#048104"
+            return "#0078d4"
         case 'error':
             return "#c42b1c"
         case 'debug':
-            return "#0078d4"
+            return "#048104"
+        case 'warn':
+            return "#ffb833"
         default:
             return "#textSecondary"
     }
@@ -162,7 +183,7 @@ export default class ScriptList extends React.Component {
 
   render(){
     return (
-      <div className='main'>
+      <div className='loggerDetail'>
         <Grid container
             direction="column"
             justifyContent="space-between"
@@ -236,13 +257,13 @@ export default class ScriptList extends React.Component {
                             >
                             <Grid item>
                                 <div style={{backgroundColor: this.fontLogColor(log.type)}}>
-                                    <Typography  align='center' variant='h5' color={'#ffff'} width={54}>
+                                    <Typography  align='center' variant='h5' color={'#ffff'} width={65}>
                                         ({log.type})
                                     </Typography>
                                 </div>
                             </Grid>
                             <Grid item>
-                                <Typography  align='left' variant='h5' color={"textSecondary"} width={160}>
+                                <Typography  align='left' variant='h5' color={"textSecondary"} width={170}>
                                     &nbsp;{this.ISOdate2string(log.datetime)}
                                 </Typography>
                             </Grid>
