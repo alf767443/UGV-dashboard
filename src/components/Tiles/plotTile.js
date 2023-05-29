@@ -2,18 +2,9 @@
 import React from "react";
 import * as echarts from 'echarts';
 import { djangoFetch } from 'API/url';
-
 import { Table } from 'antd';
-
 import MainCard from "components/MainCard";
-
-import styles from "graphs/styles";
 import {  Skeleton } from '@mui/material';
-
-import { MoreVert } from '@mui/icons-material';
-import { Dropdown, message } from 'antd';
-import {  url, requestOptions } from 'API/url';
-
 import "./styles.css";
 
 
@@ -149,22 +140,24 @@ export default class PlotTile extends React.Component {
 
 	render() {
 		return (
-			<MainCard style={{ width: '100%', height: '100%' }}>	
-				{this.state.option && this.state.data ? 
-					(!this.props.table?
-						<div className='Graph' id={this.state.ID} {...this.props}/>:
-						<Table
-							className='Graph'
-							columns={this.state.columns}
-							dataSource={this.state.data}
-							pagination={true}
-							scroll = {{scrollToFirstRowOnChange: true, x: true, y: true}}
-							size = {'small'}
-							tableLayout = {'auto'}
-							width = {'auto'}
-						/>): 
-					<Skeleton className='Graph' animation="wave" height="90%" width="95%"/>}
-			</MainCard>
+			<div className="graphTile" id={'tile' + this.state.ID}>
+				<MainCard style={{ width: '100%', height: '100%' }}>	
+					{this.state.option && this.state.data ? 
+						(!this.props.table?
+							<div className='graph' id={this.state.ID} {...this.props}/>:
+							<Table
+								className='table'
+								columns={this.state.columns}
+								dataSource={this.state.data}
+								pagination={true}
+								scroll = {{scrollToFirstRowOnChange: true, x: true, y: true}}
+								size = {'small'}
+								tableLayout = {'auto'}
+								width = {'auto'}
+							/>): 
+						<Skeleton className='skeleton' animation="wave" height="90%" width="95%"/>}
+				</MainCard>				
+			</div>
 		);
 	}	
 }

@@ -1,15 +1,10 @@
-
-.MoreOptions {
-  position: absolute;
-  width: 12px;
-  top: 0;
-  right: 0;
-  transform: translate(-50%, 0); /* Translada a div 50% para a esquerda */
-  z-index: 10; 
+.graphTile {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.Graph {
-  position: relative; 
+.graphTile .graph {
   width: 99%;
   height: 99%;
   top: 50%;
@@ -18,13 +13,25 @@
   z-index: 1;
 }
 
-.div-pai {
-  position: relative; /* Define a posição como referência para as divs filhas */
-  height: 100%;
+.graphTile .title {
+  width: 99%;
+  height: 99%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 1;
 }
 
-.Graph .ant-table-tbody > tr > td {
+.graphTile .skeleton {
+  width: 99%;
+  height: 99%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.graphTile .graph .ant-table-tbody > tr > td {
   white-space: nowrap;
   max-width: 200px;
   overflow: hidden;
