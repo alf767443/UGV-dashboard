@@ -194,7 +194,7 @@ export default class ScriptList extends React.Component {
                         
                         <div className='LogIcon'>  
                             <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} href={'/CeDRI_dashboard/information/logs/history?id='+script.name}>
-                                <Description sx={{color:'dark', width:'100%' , height: '100%'}} justifyContent="center" alignItems="center"/>
+                                <Description sx={{color:'dark', width:'100%' , height: '100%'}}/>
                             </IconButton>
                         </div>
                     </div>

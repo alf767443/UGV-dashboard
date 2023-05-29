@@ -144,7 +144,7 @@ export default class PlotTile extends React.Component {
 				<MainCard style={{ width: '100%', height: '100%' }}>	
 					{this.state.option && this.state.data ? 
 						(!this.props.table?
-							<div className='graph' id={this.state.ID} {...this.props}/>:
+							<div className='graph' id={this.state.ID}/>:
 							<Table
 								className='table'
 								columns={this.state.columns}

@@ -232,14 +232,14 @@ export default class ScriptList extends React.Component {
                         <div className='PlayStop' onClick={this.pausePlayClick}>   
                             <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}}>
                                 {this.state.script.status === 'run' || this.state.script.status === 'wait'?
-                                    <PauseCircle sx={{color:'dark', width:'130%' , height: '130%'}} justifyContent="center" alignItems="center"/>:
-                                    <PlayCircle sx={{color:'dark', width:'130%' , height: '130%'}} justifyContent="center" alignItems="center"/>
+                                    <PauseCircle sx={{color:'dark', width:'130%' , height: '130%'}}/>:
+                                    <PlayCircle sx={{color:'dark', width:'130%' , height: '130%'}}/>
                                 }
                             </IconButton>
                         </div>
                         <div className='Edit'>  
                             <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} href={'/CeDRI_dashboard/edit/script?id='+this.state._id}>
-                                <Edit sx={{color:'dark', width:'130%' , height: '130%'}} justifyContent="center" alignItems="center"/>
+                                <Edit sx={{color:'dark', width:'130%' , height: '130%'}}/>
                             </IconButton>
                         </div>
                     </div>:<></>}

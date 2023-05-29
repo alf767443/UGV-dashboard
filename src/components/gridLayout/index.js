@@ -54,7 +54,6 @@ export default class DashboardLayout extends React.Component {
     }}}
     message.open({
 top: Infinity,
-style: {zIndex: Infinity},
 
       key: messageID,
       type: 'loading',
@@ -65,7 +64,6 @@ style: {zIndex: Infinity},
       .then((response) => {response.json()})
       .then(() => message.open({
   top: Infinity,
-style: {zIndex: Infinity},
 
         key: messageID,
         type: 'success',
@@ -75,7 +73,6 @@ style: {zIndex: Infinity},
       .catch((e) => console.error(e))
       .catch(() => message.open({
   top: Infinity,
-style: {zIndex: Infinity},
 
         key: messageID,
         type: 'error',
@@ -96,19 +93,21 @@ style: {zIndex: Infinity},
     var layout = _local.filter((chart) => chart.i !== chartId);
     var newTiles = null
     var outTiles = null
+    var delta = null
     switch(local){
       case 'bottom':
         newTiles = layout.filter((chart) => ((tile.x < (chart.x + chart.w) && tile.x >= chart.x) || (chart.x < (tile.x + tile.w) && chart.x >= tile.x) ) && chart.y > tile.y);
         outTiles = layout.filter((chart) => ((tile.x >= (chart.x + chart.w) && tile.x < chart.x) || (chart.x >= (tile.x + tile.w) && chart.x < tile.x) ) || chart.y <= tile.y);
+        delta = 10
         switch(type){
           case '+':
-            tile.h += 10;
-            newTiles.forEach((chart) => {chart.y += 10})
+            tile.h += delta;
+            newTiles.forEach((chart) => {chart.y += delta})
             console.log('b+')
             break;
           case '-':
-            tile.h -= 10;
-            newTiles.forEach((chart) => {chart.y -= 10})
+            tile.h -= delta;
+            newTiles.forEach((chart) => {chart.y -= delta})
             console.log('b-')
             break;
           default:
@@ -119,15 +118,16 @@ style: {zIndex: Infinity},
       case 'right':
         newTiles = layout.filter((chart) => ((tile.y < (chart.y + chart.h) && tile.y >= chart.y) || (chart.y < (tile.y + tile.h) && chart.y >= tile.y) ) && chart.y > tile.y);
         outTiles = layout.filter((chart) => ((tile.y >= (chart.y + chart.h) && tile.y < chart.y) || (chart.y >= (tile.y + tile.h) && chart.y < tile.y) ) || chart.y <= tile.y);
+        delta = 1
         switch(type){
           case '+':
-            tile.w += 10;
-            newTiles.forEach((chart) => {chart.y += 10})
+            tile.w += delta;
+            newTiles.forEach((chart) => {chart.y += delta})
             console.log('r+')
             break;
           case '-':
-            tile.w -= 10;
-            newTiles.forEach((chart) => {chart.y -= 10})
+            tile.w -= delta;
+            newTiles.forEach((chart) => {chart.y -= delta})
             console.log('r-')
             break;
           default:
@@ -137,7 +137,6 @@ style: {zIndex: Infinity},
       default:
         break;
     }
-    console.log(_local)
     this.setState({layout: _local})
   }
 
@@ -149,7 +148,7 @@ style: {zIndex: Infinity},
       minW: 1,
       maxW: 16,
       minH:1,
-      maxH: 16,
+      maxH: 300,
       w: 10,
       h: 20,
     };
@@ -167,17 +166,17 @@ style: {zIndex: Infinity},
   }
 
   onLayoutChange = (newLayout) => {
-    console.log(newLayout)
     const _graph = [...this.state.graph]
     const _layout = [...newLayout]
-    _graph.forEach((graph) => {
-      const _id = randomString(10)
-      const tile = _layout.filter((chart) => chart.i === graph.i)[0];
-      tile.i = _id
-      graph.i = _id
-    })
+
+    // _graph.forEach((graph) => {
+    //   // const _id = randomString(10)
+    //   const tile = _layout.filter((chart) => chart.i === graph.i)[0];
+    //   // tile.i = _id
+    //   // graph.i = _id
+    // })
+
     this.setState({layout: _layout, graph: _graph})
-    console.log(this.state)
   };
 
 
@@ -186,7 +185,6 @@ style: {zIndex: Infinity},
       .then((response) => response.json())
       .then((json) => {
         const _json = json[0]
-        //console.log(_json)
         this.setState({layout: _json.layout})
         this.setState({graph: _json.graph})
       })
@@ -246,27 +244,29 @@ style: {zIndex: Infinity},
       </Menu>
     );
     const activeColor = '#454545';
+    const layout = this.state.layout;
     return (
       <div className='gridLayout' id='GridLayout'>
+          {this.state.edit?
           <div className='editHeader' id='GridLayout-EditHeader'>
             <div className='buttonAdd' id='GridLayout-EditHeader-AddButton'>
-              <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" onClick={this.onAddChart} >
-                  <Addchart sx={{color:activeColor, width:'130%' , height: '130%'}} justifyContent="center" alignItems="center" />
+              <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} onClick={this.onAddChart} >
+                  <Addchart sx={{color:activeColor, width:'130%' , height: '130%'}} />
               </IconButton>
             </div>
             <div className='buttonMove' id='GridLayout-EditHeader-MoveButton'>
-              <IconButton sx={{ flexShrink: 0, backgroundColor:!this.state.draggable?'grey.100':'#37bbdb', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" onClick={this.onDrag} >
-                  <OpenWith sx={{color:!this.state.draggable?activeColor:'#ffffff', width:'130%' , height: '130%'}} justifyContent="center" alignItems="center" />
+              <IconButton sx={{ flexShrink: 0, backgroundColor:!this.state.draggable?'grey.100':'#37bbdb', color:'', height:36, width:36, borderRadius:2}} onClick={this.onDrag} >
+                  <OpenWith sx={{color:!this.state.draggable?activeColor:'#ffffff', width:'130%' , height: '130%'}} />
               </IconButton>
             </div>
             <div className='buttonUpload' id='GridLayout-EditHeader-UploadButton'>
-              <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center"  onClick={this.uploadHandle} >
-                  <Save sx={{color:activeColor, width:'130%' , height: '130%'}} justifyContent="center" alignItems="center" />
+              <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.uploadHandle} >
+                  <Save sx={{color:activeColor, width:'130%' , height: '130%'}} />
               </IconButton>
             </div>
-          </div>
+          </div>:<></>}
           <GridLayout className="grid" id='GridLayout-Grid'
-              layout={this.state.layout}
+              layout={layout}
               cols={16}
               rowHeight={10}
               margin={[5, 5]}
@@ -277,17 +277,17 @@ style: {zIndex: Infinity},
             >
               {this.state.layout && this.state.graph?this.state.graph.map((chart) => (
                 <div key={chart.i} className="tile" id={'GridLayout-Grid-' + chart.i}>
-                  {this.state.draggable?
+                  {this.state.draggable && this.state.edit?
                   <div className='buttonDrag' id={'GridLayout-Grid-Button-Drag-' + chart.i}>
                     <OpenWith sx={{ height: '100%', width: '100%' }}/>
                   </div>:<></>}
-                  {!this.state.draggable?
+                  {!this.state.draggable && this.state.edit?
                   <>
                     <div className='buttonDelete' id={'GridLayout-Grid-Button-Delete-' + chart.i}>
                       <Button onClick={() => this.onRemoveChart(chart.i)} icon={<Delete style={{color:activeColor}} disabled={this.state.draggable} />} />
                     </div>
                     <div className='buttonEdit' id={'GridLayout-Grid-Button-Edit-' + chart.i}>
-                      <Dropdown overlay={menu(chart)} >
+                      <Dropdown menu={menu(chart)} >
                         <Button icon={<EditOutlined style={{color:activeColor}} />} />
                       </Dropdown>
                     </div>
@@ -309,7 +309,7 @@ style: {zIndex: Infinity},
                     <PlotTile graphID={chart.chart} />:<MainCard className='VoidCard'></MainCard>}
                 </div>
               )):<></>}
-            </GridLayout>
+          </GridLayout>
       </div>
     );
   }

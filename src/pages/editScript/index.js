@@ -245,14 +245,14 @@ style: {zIndex: Infinity},
                     </div>
                     
                     <div className='Add'>
-                        <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center"  onClick={this.addChartClick} >
-                            <Addchart sx={{color:activeColor, width:'130%' , height: '130%'}} justifyContent="center" alignItems="center" />
+                        <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.addChartClick} >
+                            <Addchart sx={{color:activeColor, width:'130%' , height: '130%'}} />
                         </IconButton>
                     </div>
 
                     <div className='Remove'>
-                        <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center"  onClick={this.removeChartClick} >
-                            <Delete sx={{color:activeColor, width:'130%' , height: '130%'}} justifyContent="center" alignItems="center" />
+                        <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.removeChartClick} >
+                            <Delete sx={{color:activeColor, width:'130%' , height: '130%'}} />
                         </IconButton>
                     </div>
                 </div>

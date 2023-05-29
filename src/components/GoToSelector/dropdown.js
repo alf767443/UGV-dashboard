@@ -172,9 +172,9 @@ export default class SimpleGraph extends React.Component {
                 }}
                 trigger={['click']}
                 >
-                    {/* <Box sx={{ flexShrink: 0, ml: 0.75, backgroundColor: 'grey.100', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" > */}
-                    <IconButton sx={{ flexShrink: 0, ml: 0.75, backgroundColor: 'grey.100', color:'dark', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" >
-                        <AddLocationAltOutlined sx={{color:'dark', width:'100%' , height: '100%'}} justifyContent="center" alignItems="center" />
+                    {/* <Box sx={{ flexShrink: 0, ml: 0.75, backgroundColor: 'grey.100', height:36, width:36, borderRadius:2}} > */}
+                    <IconButton sx={{ flexShrink: 0, ml: 0.75, backgroundColor: 'grey.100', color:'dark', height:36, width:36, borderRadius:2}} >
+                        <AddLocationAltOutlined sx={{color:'dark', width:'100%' , height: '100%'}} />
                     </IconButton>
                     
                     {/* </Box> */}

@@ -11,7 +11,7 @@ export default class DashboardDefault  extends React.Component {
     render(){
         return (
             <>
-                <DashboardLayout />
+                <DashboardLayout edit={true}/>
             </>
         );
     }
