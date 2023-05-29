@@ -247,26 +247,25 @@ style: {zIndex: Infinity},
     );
     const activeColor = '#454545';
     return (
-      <div className='gridLayout'>
-          <div className='Header'>
-            <div className='Add'>
+      <div className='gridLayout' id='GridLayout'>
+          <div className='editHeader' id='GridLayout-EditHeader'>
+            <div className='buttonAdd' id='GridLayout-EditHeader-AddButton'>
               <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" onClick={this.onAddChart} >
                   <Addchart sx={{color:activeColor, width:'130%' , height: '130%'}} justifyContent="center" alignItems="center" />
               </IconButton>
             </div>
-            <div className='Move'>
+            <div className='buttonMove' id='GridLayout-EditHeader-MoveButton'>
               <IconButton sx={{ flexShrink: 0, backgroundColor:!this.state.draggable?'grey.100':'#37bbdb', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center" onClick={this.onDrag} >
                   <OpenWith sx={{color:!this.state.draggable?activeColor:'#ffffff', width:'130%' , height: '130%'}} justifyContent="center" alignItems="center" />
               </IconButton>
             </div>
-            <div className='Upload'>
+            <div className='buttonUpload' id='GridLayout-EditHeader-UploadButton'>
               <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} justifyContent="center" alignItems="center"  onClick={this.uploadHandle} >
                   <Save sx={{color:activeColor, width:'130%' , height: '130%'}} justifyContent="center" alignItems="center" />
               </IconButton>
             </div>
           </div>
-          <GridLayout
-              className="layout"
+          <GridLayout className="grid" id='GridLayout-Grid'
               layout={this.state.layout}
               cols={16}
               rowHeight={10}
@@ -277,36 +276,37 @@ style: {zIndex: Infinity},
               isResizable={true}
             >
               {this.state.layout && this.state.graph?this.state.graph.map((chart) => (
-                <div key={chart.i} className="Tile">
+                <div key={chart.i} className="tile" id={'GridLayout-Grid-' + chart.i}>
                   {this.state.draggable?
-                  <div className='Drag'>
+                  <div className='buttonDrag' id={'GridLayout-Grid-Button-Drag-' + chart.i}>
                     <OpenWith sx={{ height: '100%', width: '100%' }}/>
                   </div>:<></>}
                   {!this.state.draggable?
                   <>
-                    <div className='Delete'>
+                    <div className='buttonDelete' id={'GridLayout-Grid-Button-Delete-' + chart.i}>
                       <Button onClick={() => this.onRemoveChart(chart.i)} icon={<Delete style={{color:activeColor}} disabled={this.state.draggable} />} />
                     </div>
-                    <div className='Edit'>
+                    <div className='buttonEdit' id={'GridLayout-Grid-Button-Edit-' + chart.i}>
                       <Dropdown overlay={menu(chart)} >
                         <Button icon={<EditOutlined style={{color:activeColor}} />} />
                       </Dropdown>
                     </div>
-                    <div className='b-add'>
+                    <div className='button-b-add' id={'GridLayout-Grid-Button-b-add-' + chart.i}>
                       <Button onClick={() => this.onAddSizeClick('bottom','+', chart.i)} icon={<AddCircleRounded style={{color:activeColor}} />} shape="circle" type="text" />
                     </div>
-                    <div className='b-min'>
+                    <div className='button-b-min' id={'GridLayout-Grid-Button-b-min-' + chart.i}>
                       <Button onClick={() => this.onAddSizeClick('bottom','-', chart.i)} icon={<RemoveCircleRounded style={{color:activeColor}} />} shape="circle" type="text" />
                     </div>
-                    <div className='r-add'>
+                    <div className='button-r-add' id={'GridLayout-Grid-Button-r-add-' + chart.i}>
                       <Button onClick={() => this.onAddSizeClick('right','+', chart.i)} icon={<AddCircleRounded style={{color:activeColor}} />} shape="circle" type="text" />
                     </div>
-                    <div className='r-min'>
+                    <div className='button-r-min' id={'GridLayout-Grid-Button-r-min-' + chart.i}>
                       <Button onClick={() => this.onAddSizeClick('right','-', chart.i)} icon={<RemoveCircleRounded style={{color:activeColor}} />} shape="circle" type="text" />
                     </div>
                   </>:<></>
                   }
-                  {chart.chart && chart.chart!=='null'?<PlotTile graphID={chart.chart} />:<MainCard className='VoidCard'></MainCard>}
+                  {chart.chart && chart.chart!=='null'?
+                    <PlotTile graphID={chart.chart} />:<MainCard className='VoidCard'></MainCard>}
                 </div>
               )):<></>}
             </GridLayout>

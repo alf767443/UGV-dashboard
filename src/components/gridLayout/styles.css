@@ -3,18 +3,18 @@
     /* width: fit-content; */
   }
 
-  .layout{
+  .gridLayout .grid{
     position: relative;
     width: fit-content;
     height: fit-content;
     padding: 5px;
   }
   
-  .Tile {
+  .gridLayout .grid .tile {
     position: relative;
   }
 
-  .Tile .Delete {
+  .gridLayout .grid .tile .buttonDelete {
     position: absolute;
     top: 5px;
     left: 5px;
@@ -22,7 +22,7 @@
     z-index: 10; 
   }
 
-  .Tile .Edit {
+  .gridLayout .grid .tile .buttonEdit {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -30,7 +30,7 @@
     z-index: 11; 
   }
 
-  .Tile .b-add {
+  .gridLayout .grid .tile .button-b-add {
     position: absolute;
     bottom: 0%;
     left: 50%;
@@ -38,7 +38,7 @@
     z-index: 11; 
   }
 
-  .Tile .b-min {
+  .gridLayout .grid .tile .button-b-min {
     position: absolute;
     bottom: 0%;
     left: 50%;
@@ -46,7 +46,7 @@
     z-index: 11; 
   }
 
-  .Tile .r-add {
+  .gridLayout .grid .tile .button-r-add {
     position: absolute;
     top: 50%;
     right: 0%;
@@ -54,7 +54,7 @@
     z-index: 11; 
   }
 
-  .Tile .r-min {
+  .gridLayout .grid .tile .button-r-min {
     position: absolute;
     top: 50%;
     right: 0%;
@@ -62,7 +62,7 @@
     z-index: 11; 
   }
 
-  .Tile .Drag  {
+  .gridLayout .grid .tile .buttonDrag  {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -77,25 +77,25 @@
     width: 100%;
   }
 
-  .Header {
+  .gridLayout .editHeader {
     position: relative;
   }
 
-  .Header .Add{
+  .gridLayout .editHeader .buttonAdd{
     position: absolute;
     top: -13px;
     left: 50%;
     transform: translate(-175%, -100%);
     z-index: 1501; 
   }
-  .Header .Move{
+  .gridLayout .editHeader .buttonMove{
     position: absolute;
     top: -13px;
     left: 50%;
     transform: translate(-50%, -100%);
     z-index: 1502; 
   }
-  .Header .Upload{
+  .gridLayout .editHeader .buttonUpload{
     position: absolute;
     top: -13px;
     left: 50%;
