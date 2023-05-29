@@ -72,11 +72,6 @@
     z-index: 12;
   }
 
-  .VoidCard {
-    height: 100%;
-    width: 100%;
-  }
-
   .gridLayout .editHeader {
     position: relative;
   }
