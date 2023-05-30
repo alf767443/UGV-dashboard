@@ -81,19 +81,19 @@
     top: -13px;
     left: 50%;
     transform: translate(-175%, -100%);
-    z-index: 1501; 
+    z-index: 1199; 
   }
   .gridLayout .editHeader .buttonMove{
     position: absolute;
     top: -13px;
     left: 50%;
     transform: translate(-50%, -100%);
-    z-index: 1502; 
+    z-index: 1199; 
   }
   .gridLayout .editHeader .buttonUpload{
     position: absolute;
     top: -13px;
     left: 50%;
     transform: translate(75%, -100%);
-    z-index: 1503; 
+    z-index: 1199; 
   }
