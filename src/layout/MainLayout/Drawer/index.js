@@ -15,7 +15,7 @@ import { drawerWidth } from 'config';
 
 const MainDrawer = ({ open, handleDrawerToggle, window }) => {
     const theme = useTheme();
-    const matchDownMD = useMediaQuery(theme.breakpoints.down('lg'));
+    const matchDownMD = useMediaQuery(theme.breakpoints.down('lg')) || true;
 
     // responsive drawer container
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -39,7 +39,8 @@ const MainDrawer = ({ open, handleDrawerToggle, window }) => {
                     onClose={handleDrawerToggle}
                     ModalProps={{ keepMounted: true }}
                     sx={{
-                        display: { xs: 'block', lg: 'none' },
+                        // display: { xs: 'block', lg: 'none' },
+                        display: { xs: 'block', lg: 'block' },
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,

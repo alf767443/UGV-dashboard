@@ -232,6 +232,7 @@ top: Infinity,
   }
 
   render(){
+    console.log(this.state.list)
     const menu = (chart) => (
       <Menu onClick={(e) => this.handleMenuClick(chart,e)}>
         {this.state.list?this.state.list.map((option) => (
@@ -287,7 +288,7 @@ top: Infinity,
                       <Button onClick={() => this.onRemoveChart(chart.i)} icon={<Delete style={{color:activeColor}} disabled={this.state.draggable} />} />
                     </div>
                     <div className='buttonEdit' id={'GridLayout-Grid-Button-Edit-' + chart.i}>
-                      <Dropdown menu={menu(chart)} >
+                      <Dropdown overlay={menu(chart)} >
                         <Button icon={<EditOutlined style={{color:activeColor}} />} />
                       </Dropdown>
                     </div>

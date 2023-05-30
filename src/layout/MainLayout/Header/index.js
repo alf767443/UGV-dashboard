@@ -17,7 +17,7 @@ import SimpleGraph from 'components/GoToSelector/dropdown';
 
 const Header = ({ open, handleDrawerToggle }) => {
     const theme = useTheme();
-    const matchDownMD = useMediaQuery(theme.breakpoints.down('lg'));
+    const matchDownMD = useMediaQuery(theme.breakpoints.down('lg')) || true;
 
     const iconBackColor = 'grey.100';
     const iconBackColorOpen = 'grey.200';
