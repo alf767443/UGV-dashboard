@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { Component, useState } from 'react';
+import React from 'react';
 import { Link  } from 'react-router-dom';
 import { djangoFetch } from 'API/url';
 import { AvTimer, Warning, Help, Terminal, StopCircle, Description } from '@mui/icons-material';
@@ -9,16 +8,6 @@ import { IconButton } from '@mui/material';
 import { Typography, Grid } from '@mui/material';
 
 import "./styles.css";
-
-
-const randomString = (length) => {
-	const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	let result = '';
-	for (let i = length; i > 0; --i) {
-		result += chars[Math.floor(Math.random() * chars.length)];
-	}
-	return result;
-}
 
 export default class ScriptList extends React.Component {
   constructor(props){
