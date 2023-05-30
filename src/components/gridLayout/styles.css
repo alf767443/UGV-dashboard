@@ -22,9 +22,17 @@
     z-index: 10; 
   }
 
-  .gridLayout .grid .tile .buttonEdit {
+  .gridLayout .grid .tile .buttonChange {
     position: absolute;
     top: 5px;
+    right: 5px;
+    transform: translate(0%, 0%);
+    z-index: 11; 
+  }
+  
+  .gridLayout .grid .tile .buttonEdit {
+    position: absolute;
+    bottom: 5px;
     right: 5px;
     transform: translate(0%, 0%);
     z-index: 11; 

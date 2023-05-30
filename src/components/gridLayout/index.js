@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { Component, useState } from 'react';
+import { Link  } from 'react-router-dom';
 import GridLayout from 'react-grid-layout';
 import { Button } from 'antd';
 // import { Grid } from '@mui/material';
 import PlotTile from 'components/Tiles/plotTile';
 import { djangoFetch } from 'API/url';
-import { EditOutlined, Delete, DragIndicator, Save, OpenWith, AddCircleRounded, RemoveCircleRounded, Addchart, FileUpload} from '@mui/icons-material';
+import { EditOutlined, Delete, Settings, Save, OpenWith, AddCircleRounded, RemoveCircleRounded, Addchart} from '@mui/icons-material';
 import { Dropdown, message, Menu  } from 'antd';
 import MainCard from 'components/MainCard';
 
@@ -53,8 +54,6 @@ export default class DashboardLayout extends React.Component {
         "graph": this.state.graph
     }}}
     message.open({
-top: Infinity,
-
       key: messageID,
       type: 'loading',
       content: 'Saving layout',
@@ -63,8 +62,6 @@ top: Infinity,
     djangoFetch('/robot', '/', 'PUT', JSON.stringify(sendJSON))
       .then((response) => {response.json()})
       .then(() => message.open({
-  top: Infinity,
-
         key: messageID,
         type: 'success',
         content: 'Saved successfully',
@@ -72,8 +69,6 @@ top: Infinity,
       }))
       .catch((e) => console.error(e))
       .catch(() => message.open({
-  top: Infinity,
-
         key: messageID,
         type: 'error',
         content: 'Error on saving',
@@ -285,12 +280,17 @@ top: Infinity,
                   {!this.state.draggable && this.state.edit?
                   <>
                     <div className='buttonDelete' id={'GridLayout-Grid-Button-Delete-' + chart.i}>
-                      <Button onClick={() => this.onRemoveChart(chart.i)} icon={<Delete style={{color:activeColor}} disabled={this.state.draggable} />} />
+                      <Button onClick={() => this.onRemoveChart(chart.i)} icon={<Delete style={{color:activeColor}} />} />
+                    </div>
+                    <div className='buttonChange' id={'GridLayout-Grid-Button-Change-' + chart.i}>
+                      <Dropdown overlay={menu(chart)} >
+                        <Button icon={<Settings style={{color:activeColor}} />} />
+                      </Dropdown>
                     </div>
                     <div className='buttonEdit' id={'GridLayout-Grid-Button-Edit-' + chart.i}>
-                      <Dropdown overlay={menu(chart)} >
+                      <Link to={"/edit/chart?id="+chart.chart}>
                         <Button icon={<EditOutlined style={{color:activeColor}} />} />
-                      </Dropdown>
+                      </Link>
                     </div>
                     <div className='button-b-add' id={'GridLayout-Grid-Button-b-add-' + chart.i}>
                       <Button onClick={() => this.onAddSizeClick('bottom','+', chart.i)} icon={<AddCircleRounded style={{color:activeColor}} />} shape="circle" type="text" />
