@@ -1,16 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { Component, useState } from 'react';
-import GridLayout from 'react-grid-layout';
-import { Button } from 'antd';
-// import { Grid } from '@mui/material';
-import PlotTile from 'components/Tiles/plotTile';
+import { Link  } from 'react-router-dom';
 import { djangoFetch } from 'API/url';
 import { AvTimer, Warning, Help, Terminal, StopCircle, Description } from '@mui/icons-material';
-import { Dropdown, message, Menu  } from 'antd';
 import MainCard from 'components/MainCard';
 
 import { IconButton } from '@mui/material';
-import { Typography, Stack, Grid, Skeleton } from '@mui/material';
+import { Typography, Grid } from '@mui/material';
 
 import "./styles.css";
 
@@ -192,10 +188,12 @@ export default class ScriptList extends React.Component {
                             </Grid>
                         </div>
                         
-                        <div className='LogIcon'>  
-                            <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} href={'/CeDRI_dashboard/information/logs/history?id='+script.name}>
-                                <Description sx={{color:'dark', width:'100%' , height: '100%'}}/>
-                            </IconButton>
+                        <div className='LogIcon'>
+                            <Link to={'/information/logs/history?id='+script.name}>
+                                <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} >
+                                    <Description sx={{color:'dark', width:'100%' , height: '100%'}}/>
+                                </IconButton>
+                            </Link>
                         </div>
                     </div>
                 </MainCard>
