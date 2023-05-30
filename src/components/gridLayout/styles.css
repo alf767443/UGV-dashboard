@@ -14,6 +14,18 @@
     position: relative;
   }
 
+  .gridLayout .grid .tile .void{
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }  
+
+  .gridLayout .grid .tile .void .buttonEdit{
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }  
+
   .gridLayout .grid .tile .buttonDelete {
     position: absolute;
     top: 5px;
