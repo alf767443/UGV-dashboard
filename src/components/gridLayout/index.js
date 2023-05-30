@@ -6,7 +6,7 @@ import { Button } from 'antd';
 // import { Grid } from '@mui/material';
 import PlotTile from 'components/Tiles/plotTile';
 import { djangoFetch } from 'API/url';
-import { EditOutlined, Delete, Settings, Save, OpenWith, AddCircleRounded, RemoveCircleRounded, Addchart} from '@mui/icons-material';
+import { EditOutlined, Delete, Settings, Save, OpenWith, AddCircleRounded, RemoveCircleRounded, Addchart, Help} from '@mui/icons-material';
 import { Dropdown, message, Menu  } from 'antd';
 import MainCard from 'components/MainCard';
 
@@ -132,7 +132,7 @@ export default class DashboardLayout extends React.Component {
       default:
         break;
     }
-    this.setState({layout: _local})
+    this.onLayoutChange(_local)
   }
 
   onAddChart = () => {
@@ -144,7 +144,7 @@ export default class DashboardLayout extends React.Component {
       maxW: 16,
       minH:1,
       maxH: 300,
-      w: 10,
+      w: 4,
       h: 20,
     };
     const newGraph = {
@@ -163,6 +163,13 @@ export default class DashboardLayout extends React.Component {
   onLayoutChange = (newLayout) => {
     const _graph = [...this.state.graph]
     const _layout = [...newLayout]
+    console.log(newLayout)
+
+    // Algoritmo de Fisher-Yates para embaralhar o array
+    for (let i = _layout.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [_layout[i], _layout[j]] = [_layout[j], _layout[i]];
+    }
 
     // _graph.forEach((graph) => {
     //   // const _id = randomString(10)
@@ -173,7 +180,6 @@ export default class DashboardLayout extends React.Component {
 
     this.setState({layout: _layout, graph: _graph})
   };
-
 
   getLayout = () => {
     djangoFetch('/robot', '/?name=', 'GET', '')
@@ -240,7 +246,6 @@ export default class DashboardLayout extends React.Component {
       </Menu>
     );
     const activeColor = '#454545';
-    const layout = this.state.layout;
     return (
       <div className='gridLayout' id='GridLayout'>
           {this.state.edit?
@@ -262,7 +267,7 @@ export default class DashboardLayout extends React.Component {
             </div>
           </div>:<></>}
           <GridLayout className="grid" id='GridLayout-Grid'
-              layout={layout}
+              layout={this.state.layout}
               cols={16}
               rowHeight={10}
               margin={[5, 5]}
@@ -307,7 +312,10 @@ export default class DashboardLayout extends React.Component {
                   </>:<></>
                   }
                   {chart.chart && chart.chart!=='null'?
-                    <PlotTile graphID={chart.chart} />:<MainCard className='VoidCard'></MainCard>}
+                    <PlotTile graphID={chart.chart} />:
+                    <MainCard className='void'>
+                      <Help style={{height:'100%', width:'100%', color:'#f5f5f5'}} />
+                    </MainCard>}
                 </div>
               )):<></>}
           </GridLayout>
