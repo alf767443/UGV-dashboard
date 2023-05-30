@@ -235,7 +235,7 @@ export default class ScriptList extends React.Component {
                             </IconButton>
                         </div>
                         <div className='Edit'>  
-                            <Link to={'/CeDRI_dashboard/edit/script?id='+this.state._id}>
+                            <Link to={'/edit/script?id='+this.state._id}>
                                 <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} >
                                     <Edit sx={{color:'dark', width:'130%' , height: '130%'}}/>
                                 </IconButton>
