@@ -1,12 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { Component, useState } from 'react';
-import GridLayout from 'react-grid-layout';
-import { Button } from 'antd';
-// import { Grid } from '@mui/material';
-import PlotTile from 'components/Tiles/plotTile';
+import React from 'react';
+import { Link  } from 'react-router-dom';
 import { djangoFetch } from 'API/url';
 import { AvTimer, Warning, Help, Terminal, StopCircle, Edit, PlayCircle, PauseCircle } from '@mui/icons-material';
-import { Dropdown, message, Menu  } from 'antd';
+import { message  } from 'antd';
 import MainCard from 'components/MainCard';
 
 import { IconButton } from '@mui/material';
@@ -238,9 +235,11 @@ export default class ScriptList extends React.Component {
                             </IconButton>
                         </div>
                         <div className='Edit'>  
-                            <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} href={'/CeDRI_dashboard/edit/script?id='+this.state._id}>
-                                <Edit sx={{color:'dark', width:'130%' , height: '130%'}}/>
-                            </IconButton>
+                            <Link to={'/CeDRI_dashboard/edit/script?id='+this.state._id}>
+                                <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} >
+                                    <Edit sx={{color:'dark', width:'130%' , height: '130%'}}/>
+                                </IconButton>
+                            </Link>
                         </div>
                     </div>:<></>}
                 </MainCard>
