@@ -18,7 +18,7 @@ position: absolute;
 top: -13px;
 left: 50%;
 transform: translate(-145px, -100%);
-z-index: 1501; 
+z-index: 1199; 
 }
 
 .graphEditor .Header .SelectGraph {
@@ -26,7 +26,7 @@ position: absolute;
 top: -13px;
 left: 50%;
 transform: translate(-50%, -100%);
-z-index: 1502; 
+z-index: 1199; 
 }
 
 .graphEditor .Header .Remove{
@@ -34,7 +34,7 @@ position: absolute;
 top: -13px;
 left: 50%;
 transform: translate(109px, -100%);
-z-index: 1503; 
+z-index: 1199; 
 }
 
 .graphEditor .Header .Save{
@@ -42,5 +42,5 @@ position: absolute;
 top: -13px;
 left: 50%;
 transform: translate(154px, -100%);
-z-index: 1504; 
+z-index: 1199; 
 }
