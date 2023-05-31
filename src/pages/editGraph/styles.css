@@ -26,6 +26,14 @@
   z-index: 1503; 
 }
 
+.Header .Save{
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translate(154px, -100%);
+  z-index: 1504; 
+}
+
 .main{
   position: relative;
   /* width: fit-content; */

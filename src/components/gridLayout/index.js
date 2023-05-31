@@ -165,19 +165,10 @@ export default class DashboardLayout extends React.Component {
     const _layout = [...newLayout]
     console.log(newLayout)
 
-    // Algoritmo de Fisher-Yates para embaralhar o array
     for (let i = _layout.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [_layout[i], _layout[j]] = [_layout[j], _layout[i]];
     }
-
-    // _graph.forEach((graph) => {
-    //   // const _id = randomString(10)
-    //   const tile = _layout.filter((chart) => chart.i === graph.i)[0];
-    //   // tile.i = _id
-    //   // graph.i = _id
-    // })
-
     this.setState({layout: _layout, graph: _graph})
   };
 

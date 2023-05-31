@@ -6,7 +6,7 @@ import ScriptList from "components/ScriptLoggerDetail/index";
 
 const DebugPage = () => {
     return(
-        <ScriptList />
+        <></>
     );
 }
 
