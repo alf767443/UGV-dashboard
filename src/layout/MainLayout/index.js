@@ -34,8 +34,8 @@ const MainLayout = () => {
 
     // set media wise responsive drawer
     useEffect(() => {
-        setOpen(!matchDownLG);
-        dispatch(openDrawer({ drawerOpen: !matchDownLG }));
+        setOpen(matchDownLG);
+        dispatch(openDrawer({ drawerOpen: matchDownLG }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [matchDownLG]);
 
