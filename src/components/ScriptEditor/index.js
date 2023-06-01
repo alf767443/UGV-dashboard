@@ -215,6 +215,7 @@
 						style={{
 							fontFamily: '"Fira code", "Fira Mono", monospace',
 							fontSize: 16,
+							height:'100%'
 						}}
 						/>
 				</MainCard>
@@ -349,8 +350,21 @@
 			}
 
 			render() {
-				console.log(this.state)
 				const activeColor = '#454545';
+				const compact = this.componentBreakpoint(1400)
+				const layout = [
+					{
+						i: 'Form',
+						x: 0, y: 0,
+						w: !compact?4:4, h:  !compact?.5:1.5,
+						item: this.state.script && this.state.sample?this.FormEditor():null
+					}, {
+						i: 'Editor',
+						x: 0, y: 1,
+						w: !compact?4:4, h: 3.5,
+						item: this.state.code?this.CodeEditor():null
+					}, 
+				]
 				return (
 					<div className='scriptEditor' id='ScriptEditor'>
 						<div className="Header" id='ScriptEditor-Header'>
@@ -388,19 +402,22 @@
 								</IconButton>
 							</div>
 						</div>
-						<Grid container
-							padding={2}
-							rowSpacing={2}
-							direction="column"
-							justifyContent="flex-start"
-							alignItems="stretch">
-							<Grid item>
-								{this.state.script && this.state.sample?this.FormEditor():<MainCard />}
-							</Grid>
-							<Grid item>
-								{this.state.code?this.CodeEditor():<MainCard />}
-							</Grid>
-						</Grid>
+						<GridLayout className="grid" id='GraphEditor-GridLayout-Grid'
+							layout={layout}
+							cols={4}
+							rowHeight={window.innerHeight/4 - 25}
+							width={window.innerWidth - 20}
+							margin={[5, 5]}
+							autoSize={true}
+							isDraggable={false}
+							isResizable={false}
+							>
+								{layout?layout.map((tile)=>
+									<div key={tile.i} className='Tile' id={'GridLayout-Grid-'+tile.i}>
+										{tile.item?tile.item:<MainCard style={{height:'100%', with:'100%'}}/>}
+									</div>
+								):<></>}
+						</GridLayout>
 					</div>
 				);
 			}
