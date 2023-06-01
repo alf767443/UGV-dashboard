@@ -44,3 +44,11 @@ left: 50%;
 transform: translate(154px, -100%);
 z-index: 1199; 
 }
+
+.graphEditor-Form-Save{
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translate(154px, -100%);
+    z-index: -1; 
+    }
