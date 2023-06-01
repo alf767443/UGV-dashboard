@@ -32,10 +32,7 @@
 		import 'prismjs/components/prism-json';
 		import 'prismjs/themes/prism.css'; //Example style, you can use another
 
-		import styles from './styles';
-
 		import "./styles.css";
-import { values } from 'lodash';
 
 		const randomString = (length) => {
 			const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -264,7 +261,7 @@ import { values } from 'lodash';
 
 			CharForm() {
 				return <MainCard style={{height:'100%', width:'100%'}}>
-				<Typography {...styles.typography.title}>
+				<Typography align='center' variant='h5' color='textSecondary' >
 					Chart configurations
 				</Typography>
 				<Formik
@@ -411,7 +408,7 @@ import { values } from 'lodash';
 			PipelineCodeEditor(){
 				return(
 					<MainCard style={{height:'100%', width:'100%'}}>
-						<Typography {...styles.typography.title}>
+						<Typography align='center' variant='h5' color='textSecondary' >
 							Pipeline of data
 						</Typography>
 						<Editor
@@ -432,7 +429,7 @@ import { values } from 'lodash';
 			OptionCodeEditor(){
 				return(
 					<MainCard style={{height:'100%', width:'100%'}}>
-						<Typography {...styles.typography.title}>
+						<Typography align='center' variant='h5' color='textSecondary' >
 							Chart options
 						</Typography>
 						<Editor
