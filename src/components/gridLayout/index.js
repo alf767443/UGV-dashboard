@@ -173,10 +173,10 @@ export default class DashboardLayout extends React.Component {
   };
 
   getLayout = () => {
-    djangoFetch('/robot', '/?name=', 'GET', '')
+    djangoFetch('/robot', '/?name=' + this.state.robotID, 'GET', '')
       .then((response) => response.json())
       .then((json) => {
-        const _json = json[0]
+        const _json = json
         this.setState({layout: _json.layout})
         this.setState({graph: _json.graph})
       })
