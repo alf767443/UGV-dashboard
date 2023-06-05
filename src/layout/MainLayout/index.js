@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // Imported from MUI
 import { useTheme } from '@mui/material/styles';
 import { Box, Toolbar, useMediaQuery } from '@mui/material';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate, useLocation  } from 'react-router-dom';
 
 // Imported from project
 import Drawer from './Drawer';
@@ -16,6 +16,7 @@ import Breadcrumbs from 'components/@extended/Breadcrumbs';
 
 // types
 import { openDrawer } from 'store/reducers/menu';
+import ThemeRoutes from 'routes/index';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
@@ -24,6 +25,7 @@ const MainLayout = () => {
     const matchDownLG = useMediaQuery(theme.breakpoints.down('xl'));
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const { drawerOpen } = useSelector((state) => state.menu);
 
@@ -49,7 +51,9 @@ const MainLayout = () => {
     if (!window.localStorage.getItem('robotID')){
         navigate('/robot/login');
     }
-    else
+    else if (location.pathname === '/'){
+        navigate('/information/dashboard');
+    }
 
     return (
         <Box sx={{ display: 'flex', width: '100%' }}>
