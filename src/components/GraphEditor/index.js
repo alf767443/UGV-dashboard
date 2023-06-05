@@ -219,7 +219,20 @@
 				djangoFetch('/chart', '/', 'OPTIONS', JSON.stringify(sendJSON))
 				.then((response) => response.json())
 				.then((json) => {
-					const _json = json
+					var _json = json
+					_json.sort((function(a, b) {
+						console.log(a)
+						console.log(b)
+						var aValue = a.label ; // Convert to lowercase for case-insensitive sorting
+						var bValue = b.label; // Convert to lowercase for case-insensitive sorting						
+						if (aValue < bValue) {
+							return -1;
+						}
+						if (aValue > bValue) {
+							return 1;
+						}
+						return 0;
+					}))
 					this.setState({list: _json})
 					console.log(_json)
 				})
@@ -279,6 +292,8 @@
 						collection: Yup.string().max(255).required('Robot is required'),
 					})}
 					onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+						console.log(this.state.pipeline)
+						console.log(JSON.parse(this.state.pipeline))
 						const sendJSON = {
 							"filter": {'name': this.state.graphID},
 							"update": 
@@ -298,6 +313,7 @@
 									}
 								}
 						};
+						console.log(this.state.pipeline)
 						djangoFetch('/chart', '/?name='+this.state.graphID, 'PUT', JSON.stringify(sendJSON))
 							.then((response) => {
 								if (response.status === 202) {

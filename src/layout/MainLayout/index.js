@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // Imported from MUI
 import { useTheme } from '@mui/material/styles';
 import { Box, Toolbar, useMediaQuery } from '@mui/material';
+import { useNavigate  } from 'react-router-dom';
 
 // Imported from project
 import Drawer from './Drawer';
@@ -22,6 +23,7 @@ const MainLayout = () => {
     const theme = useTheme();
     const matchDownLG = useMediaQuery(theme.breakpoints.down('xl'));
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { drawerOpen } = useSelector((state) => state.menu);
 
@@ -43,6 +45,11 @@ const MainLayout = () => {
         if (open !== drawerOpen) setOpen(drawerOpen);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [drawerOpen]);
+
+    if (!window.localStorage.getItem('robotID')){
+        navigate('/robot/login');
+    }
+    else
 
     return (
         <Box sx={{ display: 'flex', width: '100%' }}>
