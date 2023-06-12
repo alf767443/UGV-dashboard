@@ -37,6 +37,14 @@ transform: translate(109px, -100%);
 z-index: 1199; 
 }
 
+.scriptEditor .Header .History{
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translate(-190px, -100%);
+    z-index: 1199; 
+    }
+
 .scriptEditor .Header .Save{
 position: absolute;
 top: -13px;

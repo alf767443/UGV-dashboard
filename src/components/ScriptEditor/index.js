@@ -5,7 +5,7 @@
 		import { MenuItem, Select, Button } from '@mui/material';
 
 		import { IconButton } from '@mui/material';
-		import { NoteAdd, Delete, Save } from '@mui/icons-material';
+		import { NoteAdd, Delete, Save, Article} from '@mui/icons-material';
 		import { message } from 'antd';
 
 		import {
@@ -399,6 +399,12 @@
 							<div className='Save' id='ScriptEditor-Header-SaveButton'>
 								<IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} onClick={this.handleSubmitForm}>
 									<Save sx={{color:activeColor, width:'130%' , height: '130%'}}/>
+								</IconButton>
+							</div>
+
+							<div className='History' id='ScriptEditor-Header-SaveButton'>
+								<IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} href={"/CeDRI_dashboard/information/logs/history?id=" + this.state.scriptID}>
+									<Article sx={{color:activeColor, width:'130%' , height: '130%'}}/>
 								</IconButton>
 							</div>
 						</div>
