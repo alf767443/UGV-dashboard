@@ -3,60 +3,36 @@ import React from "react";
 
 import { Liquid } from "@ant-design/plots";
 
-// Import from project
-import { url, requestOptions } from 'API/url';
 import { round } from "lodash";
 
+import { djangoFetch } from 'API/url';
+
 import "../styles.css"
-
-
-var raw = JSON.stringify({
-	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_datalake",
-	"collection": "Battery",
-	"pipeline": [
-		{
-			'$project': {
-				'dateTime': 1,
-				'percentage': 1
-			}
-		}, {
-			'$sort': {
-				'dateTime': -1
-				}
-		}, {
-			'$limit': 1
-		}
-	]
-   });
 
 export default class BatteryIcon extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-            data: [],
-			ticks: -1
+			robotID: window.localStorage.getItem('robotID'),
+			data: {
+				battery_percentage: null,
+				lastCheck: null
+			}
         };
+		
     }
 
-    refreshList() {
-		fetch(url(), requestOptions(raw))
-		.then((response) => response.json())
-		.then((json) => {
-			this.setState({ data: json[0]['percentage'] });
-		})
-		.then(() => {
-			clearInterval(this.timer)
-		})
-		.catch((error) => {
-			//console.log(error);
-		});
+	refreshList() {
+		djangoFetch('/robot', '/?name='+this.state.robotID, 'GET', '')
+			.then((response)=>response.json())
+			.then((json)=>this.setState({data: json.status}))
+			.catch((e) => console.error(e))
+			// .finally(() => this.timer())
     }
 
     componentDidMount = () => {
-		this.refreshList();
-		this.timer();
+		this.timer()
     }
 
 	componentWillUnmount = () =>{
@@ -188,11 +164,10 @@ export default class BatteryIcon extends React.Component {
 
 	statistic = [null];
 
-	color() {
-		let percent = this.state.data;
-		let color = parseInt(round((percent)*80,0) - 1)
-		if (color < 0){
-			return "#B3B3B3"; 
+	color(data) {
+		let color  = parseInt(round((data.battery_percentage)*80,0) - 1)
+		if (color < 0 || !(Date.now() - Date.parse(data.lastCheck) < 20000)){
+			return "#b3b3b3"; 
 		}
 		return this.pallet[color]
 	}
@@ -202,8 +177,8 @@ export default class BatteryIcon extends React.Component {
 			<div className={"BatteryIcon"}>
 				<Liquid
 					{...this.config}
-					color={this.color()}
-					percent={this.state.data}
+					color={this.color(this.state.data)}
+					percent={this.state.data.battery_percentage}
 					width={this.props.width}
 					height={this.props.height}
 					statistic={this.statistic}

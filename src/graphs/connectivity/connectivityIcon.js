@@ -2,90 +2,67 @@
 import React from "react";
 
 // Import from project
-import { url, requestOptions } from 'API/url';
+import { djangoFetch } from 'API/url';
 import { SignalWifi1Bar, SignalWifi2Bar, SignalWifi3Bar, SignalWifi4Bar,  SignalWifiStatusbarConnectedNoInternet4, SignalWifiOff } from '@mui/icons-material';
 
 
 import styles from './styles';
-
-var raw = JSON.stringify({
-	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_datalake",
-	"collection": "Connection",
-	"pipeline": [
-		{
-			'$project': {
-				'dateTime': 1,
-				'RTT': 1,
-				'Connect': 1
-			}
-		}, {
-			'$sort': {
-				'dateTime': -1
-				}
-		}, {
-			'$limit': 1
-		}
-	]
-   });
 
 export default class ConnectivityIcon extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-            data: [],
-			ticks: -1,
-			quality: 0
+            status:{
+				is_alive: null,
+				rtt_avg: null,
+				lastCheck: null
+			},
+			quality: 0,
+			robotID: window.localStorage.getItem('robotID'),
         };
     }
+
     refreshList() {
-		fetch(url(), requestOptions(raw))
-		.then((response) => response.json())
-		.then((json) => {
-			this.setState({ data: json[0] });
-			this.quality();
-		})
-		.then(() => {
-			clearInterval(this.timer)
-		})
-		.catch((error) => {
-			//console.log(error)
-		});
+		djangoFetch('/robot', '/?name='+this.state.robotID, 'GET', '')
+			.then((response)=>response.json())
+			.then((json)=>this.setState({status: json.status}))
+			.catch((e) => console.error(e))
+			.finally(() => this.quality())
     }
 
-    componentDidMount = () => {
-		this.refreshList();
-		this.timer();
-    }
+	componentDidMount = () => {
+		this.timer()
+	}
 
 	componentWillUnmount = () =>{
 		clearInterval(this.timer)
 	}
 
 	timer = () => {
-		setInterval(() => {
-			this.refreshList()
-		}, 5000)
+		setTimeout(() => {
+			this.refreshList();
+		}, 1000)
 	}
 
 	quality = () => {
-		
-		
-		if (this.state.data['Connect'] && (Date.now() - Date.parse(this.state.data['dateTime'])) < 30000){
-			if (this.state.data['RTT'] < 1){
+		const status = this.state.status
+		console.log(status)
+		console.log((Date.now() - Date.parse(status.lastCheck)) < 20000)
+		if (status.is_alive && (Date.now() - Date.parse(status.lastCheck)) < 20000){
+			if (status.rtt_avg < 1){
 				this.setState({ quality:  1 });
 			}
-			else if (this.state.data['RTT'] < 10){
+			else if (status.rtt_avg < 10){
 				this.setState({ quality:  2 });
 			}
-			else if (this.state.data['RTT'] < 20){
+			else if (status.rtt_avg < 20){
 				this.setState({ quality:  3 });
 			}	
-			else if (this.state.data['RTT'] < 40){
+			else if (status.rtt_avg < 40){
 				this.setState({ quality:  4 });
 			}	
-			else if (this.state.data['RTT'] < 80){
+			else if (status.rtt_avg < 80){
 				this.setState({ quality:  5 });
 			}
 			else

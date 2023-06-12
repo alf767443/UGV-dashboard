@@ -25,6 +25,7 @@ const MainLayout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    const locationPath = location.pathname
 
     const { drawerOpen } = useSelector((state) => state.menu);
 
@@ -50,7 +51,7 @@ const MainLayout = () => {
     if (!window.localStorage.getItem('robotID')){
         navigate('/robot/login');
     }
-    else if (location.pathname === '/'){
+    else if (locationPath == '/'){
         navigate('/information/dashboard');
     }
 
