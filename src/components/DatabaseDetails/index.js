@@ -50,7 +50,13 @@ export default class DatabaseList extends React.Component {
     const database = searchParams.get('db');
     const collection = searchParams.get('coll');
     const numberDocs = searchParams.get('n');
-    const url = {
+    const url = !database||!collection||!numberDocs?
+    {
+      db: 'null',
+      coll: 'null',
+      n: 0,
+    }:
+    {
       db: database,
       coll: collection,
       n: numberDocs,
@@ -64,14 +70,15 @@ export default class DatabaseList extends React.Component {
       <div className='loggerList'>  
         <Grid container
             direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
+            justifyContent="center"
+            alignItems="stretch"
             spacing={2} 
         >
-          <MainCard >
-            asdsadasd
-            {this.state.data?<PlotTile table={true} data={this.state.data} option={'option={}'}/>:<></>}
-          </MainCard>
+          <Grid item>
+            <MainCard >
+              {this.state.data?<PlotTile table={true} data={this.state.data} option={'option={}'} graphID={'table'}/>:<></>}
+            </MainCard>
+          </Grid>
         </Grid>
       </div>
     );

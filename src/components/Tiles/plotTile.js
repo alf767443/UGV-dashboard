@@ -76,24 +76,26 @@ export default class PlotTile extends React.Component {
 
 	getData = () => {
 		this.setState({canRequest: false})
-		djangoFetch('/chart', '/?name=' + this.props.graphID, 'GET', '')
-		.then(response => response.json())
-		.then((json) => {
-			const _json = json
-			if(JSON.stringify(_json.data) != JSON.stringify(this.state.data) || _json.option != this.state.option){
-				this.setState({update: true})
-			}
-			if(this.props.data != undefined || this.props.data != null || !this.props.data){
-				this.setState({data: _json.data})
-			}
-			if(this.props.option != undefined || this.props.option != null || !this.props.option){
-				this.setState({option: _json.option})
-			}
-		})	
-		.then(() => this.chart(this.state))
-		.then(() => this.timer())
-		.catch((e) => console.error(e))
-		.finally(() => this.setState({canRequest: true}))
+		this.state.data && this.state.option?
+			this.chart(this.state):
+			djangoFetch('/chart', '/?name=' + this.props.graphID, 'GET', '')
+			.then(response => response.json())
+			.then((json) => {
+				const _json = json
+				if(JSON.stringify(_json.data) != JSON.stringify(this.state.data) || _json.option != this.state.option){
+					this.setState({update: true})
+				}
+				if(this.props.data != undefined || this.props.data != null || !this.props.data){
+					this.setState({data: _json.data})
+				}
+				if(this.props.option != undefined || this.props.option != null || !this.props.option){
+					this.setState({option: _json.option})
+				}
+			})	
+			.then(() => this.chart(this.state))
+			.then(() => this.timer())
+			.catch((e) => console.error(e))
+			.finally(() => this.setState({canRequest: true}))
 	}
 
 	chart = (_config) => {
