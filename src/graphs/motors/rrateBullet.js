@@ -50,7 +50,7 @@ export default class RrateBullet extends React.Component {
 			clearInterval(this.timer)
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
     
   }

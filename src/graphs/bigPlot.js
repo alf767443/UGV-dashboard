@@ -89,7 +89,7 @@ export default class SimpleGraph extends React.Component {
 			);
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
 	};
 

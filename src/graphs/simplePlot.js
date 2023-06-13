@@ -152,7 +152,7 @@ export default class SimpleGraph extends React.Component {
 			);
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
 	};
 
@@ -164,7 +164,7 @@ export default class SimpleGraph extends React.Component {
 			////console.log(this.state.list)
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
 	}
 
@@ -178,7 +178,7 @@ export default class SimpleGraph extends React.Component {
 			clearInterval(this.timer)
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
     }
 
@@ -193,7 +193,7 @@ export default class SimpleGraph extends React.Component {
 			////console.log(this.state)
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
 	}
 

@@ -184,7 +184,7 @@ export default class PercentageDatetimeArea extends React.Component {
 			clearInterval(this.timer)
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
 
 		// fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/polar-heatmap.json')

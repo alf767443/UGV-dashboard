@@ -103,7 +103,7 @@ export default class DashboardDefault  extends React.Component {
             this.generate(json[0].dashboardLayout)
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
     }
 

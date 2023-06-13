@@ -49,7 +49,7 @@ export default class IconLogger extends React.Component {
 			clearInterval(this.timer)
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		});
 		this.generate()
     }
