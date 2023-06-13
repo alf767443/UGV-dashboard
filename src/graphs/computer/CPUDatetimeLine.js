@@ -98,19 +98,19 @@ export default class CurrentDatetimeLine extends React.Component {
 						// ////console.log(this.state.data)
 					})
 					.catch((error) => {
-						//console.log(error);
+						console.log(error);
 					});
 				})
 				.catch((error) => {
-					//console.log(error);
+					console.log(error);
 				});
 			})
 			.catch((error) => {
-				//console.log(error);
+				console.log(error);
 			});
 		})
 		.catch((error) => {
-			//console.log(error);
+			console.log(error);
 		})
     }
 

@@ -32,7 +32,7 @@ export default class DataTable extends Component {
         // //console.log(data)
       })
       .catch(error => {
-        //console.log(error);
+        console.log(error);
         this.setState({ loading: false });
       });
   };

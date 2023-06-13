@@ -31,6 +31,6 @@ export default DebugPage
 //   fetch('http://192.168.217.183:8000/update/', requestOptions(raw(e)))
 //     .then(()=>//console.log('Ok'))
 //     .catch((error) => {
-//       //console.log(error);
+//       console.log(error);
 //     });
 // }
