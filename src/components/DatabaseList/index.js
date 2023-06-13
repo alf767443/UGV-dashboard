@@ -28,8 +28,8 @@ export default class DatabaseList extends React.Component {
       .then((json) => {
         const _json = json
         this.setState({database: _json.database})
-        this.getList()
       })
+      .finally(() => this.componentDidMount())
       
   }
 
@@ -44,8 +44,9 @@ export default class DatabaseList extends React.Component {
   }
 
   componentDidMount = () => {
-    this.getDatabase()
-  }
+    !this.state.database?this.getDatabase():null
+    this.state.database?this.getList():null
+    }
 
   render(){
     return (
@@ -66,9 +67,11 @@ export default class DatabaseList extends React.Component {
                                 </Typography>
                             </div>
                             <div className='TableIconButton'>
-                                <IconButton sx={{color:'dark', height:'100%', width:'100%', borderRadius:0}} >
-                                    <Description sx={{color:'dark', width:'100%' , height: '100%'}}/>
-                                </IconButton>
+                                <Link to={'/information/dbs/detail?db='+this.state._id}>
+                                    <IconButton sx={{color:'dark', height:'100%', width:'100%', borderRadius:0}} >
+                                        <TableChart sx={{color:'dark', width:'100%' , height: '100%'}}/>
+                                    </IconButton>
+                                </Link>
                             </div>
                             <div className='DetailsText'>
                                 <Grid container

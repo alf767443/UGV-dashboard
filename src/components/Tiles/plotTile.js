@@ -99,8 +99,8 @@ export default class PlotTile extends React.Component {
 	chart = (_config) => {
 		try{
 			var data = _config.data;
-			var option = eval(_config.option);
 			if(this.props.table == undefined || this.props.table == null){
+				var option = eval(_config.option);
 				if(!_config.doc || !_config.chart){
 					var _doc =  document.getElementById(_config.ID)
 					var _chart =  echarts.init(_doc) 
