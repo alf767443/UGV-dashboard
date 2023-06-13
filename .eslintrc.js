@@ -20,11 +20,12 @@ module.exports = {
     ],
     "rules": {
         "indent": "off",
-		"linebreak-style": "off",
-		"quotes": "off",
-		"semi": "off",
+        "linebreak-style": "off",
+        "quotes": "off",
+        "semi": "off",
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off",
-        "react/display-name": "off" 
+        "react/display-name": "off",
+        "no-unused-vars": "off" // Ignorar variáveis declaradas, mas não usadas
     }
 }
