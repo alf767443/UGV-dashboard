@@ -6,7 +6,7 @@ import { Button } from 'antd';
 // import { Grid } from '@mui/material';
 import PlotTile from 'components/Tiles/plotTile';
 import { djangoFetch } from 'API/url';
-import { EditOutlined, Delete, Settings, Save, OpenWith, AddCircleRounded, RemoveCircleRounded, Addchart, Help} from '@mui/icons-material';
+import { EditOutlined, Delete, Settings, Save, OpenWith, AddCircleRounded, RemoveCircleRounded, Addchart, Help, AppRegistration } from '@mui/icons-material';
 import { Dropdown, message, Menu  } from 'antd';
 import MainCard from 'components/MainCard';
 
@@ -31,7 +31,7 @@ export default class DashboardLayout extends React.Component {
     this.state = {
       layout: [],
       graph: [],
-      edit: this.props.edit,
+      edit: false,
       draggable: false,
       list: null,
       robotID: window.localStorage.getItem('robotID'),
@@ -160,6 +160,11 @@ export default class DashboardLayout extends React.Component {
     this.setState({draggable: !draggable})
   }
 
+  onEdit = () => {
+    const editable = this.state.edit
+    this.setState({edit: !editable})
+  }
+
   onLayoutChange = (newLayout) => {
     const _graph = [...this.state.graph]
     const _layout = [...newLayout]
@@ -239,8 +244,14 @@ export default class DashboardLayout extends React.Component {
     const activeColor = '#454545';
     return (
       <div className='gridLayout' id='GridLayout'>
-          {this.state.edit?
           <div className='editHeader' id='GridLayout-EditHeader'>
+            <div className='buttonEdit' id='GridLayout-EditHeader-EditButton'>
+              <IconButton sx={{ flexShrink: 0, backgroundColor:!this.state.edit?'grey.100':'#37bbdb', color:'', height:36, width:36, borderRadius:2}} onClick={this.onEdit} >
+                  <AppRegistration sx={{color:!this.state.edit?activeColor:'#ffffff', width:'130%' , height: '130%'}} />
+              </IconButton>
+            </div>
+            {this.state.edit?
+            <>
             <div className='buttonAdd' id='GridLayout-EditHeader-AddButton'>
               <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}} onClick={this.onAddChart} >
                   <Addchart sx={{color:activeColor, width:'130%' , height: '130%'}} />
@@ -255,8 +266,9 @@ export default class DashboardLayout extends React.Component {
               <IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.uploadHandle} >
                   <Save sx={{color:activeColor, width:'130%' , height: '130%'}} />
               </IconButton>
-            </div>
-          </div>:<></>}
+            </div></>:
+            <></>}
+          </div>
           <GridLayout className="grid" id='GridLayout-Grid'
               layout={this.state.layout}
               cols={16}

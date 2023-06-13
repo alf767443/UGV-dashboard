@@ -104,6 +104,13 @@
     transform: translate(-50%, -100%);
     z-index: 1199; 
   }
+  .gridLayout .editHeader .buttonEdit{
+    position: absolute;
+    top: -11px;
+    left: 0%;
+    transform: translate(52px, -100%);
+    z-index: 1199; 
+  }
   .gridLayout .editHeader .buttonUpload{
     position: absolute;
     top: -13px;
