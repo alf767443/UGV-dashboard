@@ -471,12 +471,12 @@
 						i: 'Plot',
 						x: 0, y: 0,
 						w: !compact?2:4, h: !compact?2:3,
-						item: this.state.data?<PlotTile {...this.state}/>:null
+						item: this.state.data?<PlotTile graphID={this.state.graphID} />:null
 					}, {
 						i: 'Data',
 						x: 0, y: 1,
 						w: !compact?2:4, h: !compact?2:3,
-						item: this.state.data?<PlotTile {...this.state} table={true}/>:null
+						item: this.state.data?<PlotTile graphID={this.state.graphID} table={true}/>:null
 					}, {
 						i: 'Form',
 						x: 2, y: !compact?0:3,
