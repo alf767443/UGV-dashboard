@@ -5,7 +5,7 @@
 		import { MenuItem, Select, Button } from '@mui/material';
 
 		import { IconButton } from '@mui/material';
-		import { Addchart, Delete, Save } from '@mui/icons-material';
+		import { Addchart, Delete, Save, ContentCopy } from '@mui/icons-material';
 		import { message } from 'antd';
 
 		import {
@@ -186,13 +186,48 @@
 				}))
 			}
 
+			copyChartClick = () => {
+				const messageID = randomString(5) + this.state.robotID
+				const sendJSON = {
+					query: this.state.query,
+					option: this.state.option,
+					tile: {
+						group: this.state.tile.group,
+						title: this.state.tile.title + '(copy)'
+					},
+					robot: this.state.robotID
+				}
+				message.open({
+					key: messageID,
+					type: 'loading',
+					content: 'Creating a chart',
+					duration: 0,
+				});
+				djangoFetch('/chart', '/', 'POST', JSON.stringify(sendJSON))
+				.then((response) => {
+					if(response.status === 201){
+						this.getList();
+						this.render()
+					}
+				})
+				.then(() => message.open({
+					key: messageID,
+					type: 'success',
+					content: 'Chart created',
+					duration: 2,
+				}))
+				.catch((e) => console.error(e))
+				.catch(() => message.open({
+					key: messageID,
+					type: 'error',
+					content: 'Error when creating',
+					duration: 2,
+				}))
+			}
+
 			handleSubmitForm = () => {
 				const form = document.getElementById('Internal-Button-Save-InForm');
-				console.log(form.click())
-				// form.submit()
-			// 	if (form) {
-			// 		form.dispatchEvent(new Event('submit', { cancelable: true }));
-			// 	}
+				form.click()
 			}
 
 			getList = () => {
@@ -292,8 +327,7 @@
 						collection: Yup.string().max(255).required('Robot is required'),
 					})}
 					onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-						console.log(this.state.pipeline)
-						console.log(JSON.parse(this.state.pipeline))
+						const messageID = randomString(5) + this.state.robotID
 						const sendJSON = {
 							"filter": {'name': this.state.graphID},
 							"update": 
@@ -313,7 +347,12 @@
 									}
 								}
 						};
-						console.log(this.state.pipeline)
+						message.open({
+							key: messageID,
+							type: 'loading',
+							content: 'Saving the chart',
+							duration: 0,
+						});
 						djangoFetch('/chart', '/?name='+this.state.graphID, 'PUT', JSON.stringify(sendJSON))
 							.then((response) => {
 								if (response.status === 202) {
@@ -328,7 +367,20 @@
 								return response.json();
 							})
 							.then(()=>this.getData())
-							.catch((e) => console.error(e));
+							.then(() => message.open({
+								key: messageID,
+								type: 'success',
+								content: 'Chart saved',
+								duration: 2,
+							}))
+							.catch((e) => console.error(e))
+							.catch(() => message.open({
+								key: messageID,
+								type: 'error',
+								content: 'Error when saving',
+								duration: 2,
+							}));
+							
 
 						try {
 							setStatus({ success: false });
@@ -517,6 +569,12 @@
 							<div className='Add' id='GraphEditor-Header-AddButton'>
 								<IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.addChartClick} >
 									<Addchart sx={{color:activeColor, width:'130%' , height: '130%'}} />
+								</IconButton>
+							</div>
+
+							<div className='Copy' id='GraphEditor-Header-CopyButton'>
+								<IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.copyChartClick} >
+									<ContentCopy sx={{color:activeColor, width:'130%' , height: '130%'}} />
 								</IconButton>
 							</div>
 

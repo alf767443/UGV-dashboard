@@ -14,35 +14,43 @@
   }
   
 .graphEditor .Header .Add{
-position: absolute;
-top: -11px;
-left: 50%;
-transform: translate(-145px, -100%);
-z-index: 1199; 
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(-145px, -100%);
+    z-index: 1199; 
 }
 
 .graphEditor .Header .SelectGraph {
-position: absolute;
-top: -11px;
-left: 50%;
-transform: translate(-50%, -100%);
-z-index: 1199; 
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    z-index: 1199; 
 }
 
 .graphEditor .Header .Remove{
-position: absolute;
-top: -11px;
-left: 50%;
-transform: translate(109px, -100%);
-z-index: 1199; 
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(109px, -100%);
+    z-index: 1199; 
 }
 
 .graphEditor .Header .Save{
-position: absolute;
-top: -11px;
-left: 50%;
-transform: translate(154px, -100%);
-z-index: 1199; 
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(154px, -100%);
+    z-index: 1199; 
+}
+
+.graphEditor .Header .Copy{
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(-190px, -100%);
+    z-index: 1199; 
 }
 
 .graphEditor-Form-Save{
@@ -51,4 +59,4 @@ z-index: 1199;
     left: 50%;
     transform: translate(154px, -100%);
     z-index: -1; 
-    }
+}
