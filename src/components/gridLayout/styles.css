@@ -92,14 +92,14 @@
 
   .gridLayout .editHeader .buttonAdd{
     position: absolute;
-    top: -13px;
+    top: -11px;
     left: 50%;
     transform: translate(-175%, -100%);
     z-index: 1199; 
   }
   .gridLayout .editHeader .buttonMove{
     position: absolute;
-    top: -13px;
+    top: -11px;
     left: 50%;
     transform: translate(-50%, -100%);
     z-index: 1199; 
@@ -108,12 +108,12 @@
     position: absolute;
     top: -11px;
     left: 0%;
-    transform: translate(52px, -100%);
+    transform: translate(60px, -100%);
     z-index: 1199; 
   }
   .gridLayout .editHeader .buttonUpload{
     position: absolute;
-    top: -13px;
+    top: -11px;
     left: 50%;
     transform: translate(75%, -100%);
     z-index: 1199; 

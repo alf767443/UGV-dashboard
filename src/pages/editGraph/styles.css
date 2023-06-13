@@ -4,7 +4,7 @@
 
 .Header .Add{
   position: absolute;
-  top: -13px;
+  top: -11px;
   left: 50%;
   transform: translate(-145px, -100%);
   z-index: 1501; 
@@ -12,7 +12,7 @@
 
 .Header .SelectGraph {
   position: absolute;
-  top: -13px;
+  top: -11px;
   left: 50%;
   transform: translate(-50%, -100%);
   z-index: 1502; 
@@ -20,7 +20,7 @@
 
 .Header .Remove{
   position: absolute;
-  top: -13px;
+  top: -11px;
   left: 50%;
   transform: translate(109px, -100%);
   z-index: 1503; 
@@ -28,7 +28,7 @@
 
 .Header .Save{
   position: absolute;
-  top: -13px;
+  top: -11px;
   left: 50%;
   transform: translate(154px, -100%);
   z-index: 1504; 

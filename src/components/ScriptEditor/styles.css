@@ -15,7 +15,7 @@
   
 .scriptEditor .Header .Add{
 position: absolute;
-top: -13px;
+top: -11px;
 left: 50%;
 transform: translate(-145px, -100%);
 z-index: 1199; 
@@ -23,7 +23,7 @@ z-index: 1199;
 
 .scriptEditor .Header .SelectGraph {
 position: absolute;
-top: -13px;
+top: -11px;
 left: 50%;
 transform: translate(-50%, -100%);
 z-index: 1199; 
@@ -31,7 +31,7 @@ z-index: 1199;
 
 .scriptEditor .Header .Remove{
 position: absolute;
-top: -13px;
+top: -11px;
 left: 50%;
 transform: translate(109px, -100%);
 z-index: 1199; 
@@ -39,7 +39,7 @@ z-index: 1199;
 
 .scriptEditor .Header .History{
     position: absolute;
-    top: -13px;
+    top: -11px;
     left: 50%;
     transform: translate(-190px, -100%);
     z-index: 1199; 
@@ -47,7 +47,7 @@ z-index: 1199;
 
 .scriptEditor .Header .Save{
 position: absolute;
-top: -13px;
+top: -11px;
 left: 50%;
 transform: translate(154px, -100%);
 z-index: 1199; 
@@ -55,7 +55,7 @@ z-index: 1199;
 
 .scriptEditor-Form-Save{
     position: absolute;
-    top: -13px;
+    top: -11px;
     left: 50%;
     transform: translate(154px, -100%);
     z-index: -1; 
