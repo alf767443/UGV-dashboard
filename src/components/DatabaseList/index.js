@@ -67,7 +67,7 @@ export default class DatabaseList extends React.Component {
                                 </Typography>
                             </div>
                             <div className='TableIconButton'>
-                                <Link to={'/information/dbs/detail?db='+database.database+'&coll='+database.collection+'&n=1000'}>
+                                <Link to={'/information/dbs/detail?db='+database.database+'&coll='+database.collection+'&n=100'}>
                                     <IconButton sx={{color:'dark', height:'100%', width:'100%', borderRadius:0}} >
                                         <TableChart sx={{color:'dark', width:'100%' , height: '100%'}}/>
                                     </IconButton>
