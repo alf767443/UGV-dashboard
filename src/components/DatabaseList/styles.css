@@ -1,0 +1,29 @@
+.loggerList{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    padding: 15px;
+    /* width: fit-content; */
+}
+
+.CardContent {
+    position: relative;
+    display: inline;
+    width: 100%;
+    height: 100%;
+}
+
+.CardContent .TableIconButton{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.CardContent .CollectionText{
+    position: relative;
+}
+
+.CardContent .DetailsText{
+    position: relative;
+}
