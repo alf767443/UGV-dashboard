@@ -30,7 +30,7 @@ const information = {
             id: 'action',
             title: 'Actions',
             type: 'item',
-            url: '/information/action',
+            url: '/information/actions',
             icon: icons.SendOutlined,
             breadcrumbs: false
         },
