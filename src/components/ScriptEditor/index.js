@@ -391,7 +391,7 @@
 							</div>
 
 							<div className='Remove' id='ScriptEditor-Header-RemoveButton'>
-								<IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.removeScriptClick} >
+								<IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.removeScriptClick} disabled={this.state.script?this.state.script.group == 'main':true}>
 									<Delete sx={{color:activeColor, width:'130%' , height: '130%'}} />
 								</IconButton>
 							</div>
