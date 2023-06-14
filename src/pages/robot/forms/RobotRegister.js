@@ -77,27 +77,34 @@ const RobotRegister = () => {
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
-                        const sendJSON = {
-                            'long_name': values.robotname,
-                            'project': values.projectname,
-                            'database': values.database,
-                            'ssh': values.ssh,
-                            'password': values.password,
-                            'robot': values.robot,
-                            'comment': null, 
-                            'img': null, 
-                        }
+                        setStatus({ success: false });
+                        setSubmitting(true);
 
-                        djangoFetch('/robot', '/', 'POST', JSON.stringify(sendJSON))
-                        .then((response) => {
-                            // //console.log(response)
-                            if(response.status === 201){
-                                window.location.href = '/CeDRI_dashboard/robot/login';
-                                setStatus({ success: true });
-                                setSubmitting(false);
-                            }
-                        })
-                        .catch((e) => console.error(e))
+                        var sendJSON = {}
+                        djangoFetch('/robot', '/?name=default', 'GET', '')
+                            .then((response) => response.json())
+                            .then((json) => {
+                                const _json = json
+                                sendJSON = _json
+                                console.log(sendJSON)
+                                delete sendJSON._id
+                                sendJSON.long_name = values.robotname
+                                sendJSON.project = values.projectname
+                                sendJSON.database = values.database
+                                sendJSON.ssh = values.ssh
+                                sendJSON.password = values.password
+                                sendJSON.robot = values.robot
+
+                                djangoFetch('/robot', '/', 'POST', JSON.stringify(sendJSON))
+                                    .then((response) => {
+                                        if(response.status === 201){
+                                            window.location.href = '/CeDRI_dashboard/robot/login';
+                                            setStatus({ success: true });
+                                            setSubmitting(false);
+                                        }
+                                    })
+                                    .catch((e) => console.error(e))
+                            })
 
                     } catch (err) {
                         //console.error(err);
