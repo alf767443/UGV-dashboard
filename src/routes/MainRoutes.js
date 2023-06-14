@@ -8,8 +8,8 @@ import MainLayout from 'layout/MainLayout';
 const Dashboard = Loadable(lazy(() => import('pages/dashboard')));
 
 // Render - Databases
-const DatabaseList = Loadable(lazy(() => import('pages/databaseList')));
-const DatabaseDetail = Loadable(lazy(() => import('pages/databaseDetail')));
+const DatabaseList = Loadable(lazy(() => import('pages/database/databaseList')));
+const DatabaseDetail = Loadable(lazy(() => import('pages/database/databaseDetail')));
 
 
 // Script
