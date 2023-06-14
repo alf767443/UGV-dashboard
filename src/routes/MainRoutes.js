@@ -17,8 +17,8 @@ const Logs = Loadable(lazy(() => import('pages/logs/logList')));
 const LogsHistory = Loadable(lazy(() => import('pages/logs/logHistory')));
 
 // Render - Edit
-const EditPlot = Loadable(lazy(() => import('pages/editGraph')));
-const EditorScript = Loadable(lazy(() => import('pages/editScript')));
+const EditPlot = Loadable(lazy(() => import('pages/graph/editGraph')));
+const EditorScript = Loadable(lazy(() => import('pages/graph/editScript')));
 
 
 // ==============================|| MAIN ROUTING ||============================== //

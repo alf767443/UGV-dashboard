@@ -1,11 +1,6 @@
 import React from "react";
 // import ReactDOM from 'react-dom';
-import GraphEditor from "components/GraphEditor/index";
-
-// import { EditOutlined } from '@mui/icons-material';
-
-import "./styles.css";
-
+import ScriptEditor from "components/ScriptEditor/index";
 
 
 export default class EditPage extends React.Component {
@@ -20,10 +15,8 @@ export default class EditPage extends React.Component {
     }
 
     render(){
-        return (
-            <div className="main" id="EditorMainPage">                
-                <GraphEditor graphID={this.state.selectedGraphID} />
-            </div>
+        return (           
+            <ScriptEditor graphID={this.state.selectedGraphID} />
         );
     }
 }
