@@ -4,8 +4,8 @@ import { Box, useMediaQuery } from '@mui/material';
 // project import
 // import Notification from './Notification';
 // import DBSwitch from 'components/Switch/DBSwitch';
-import BatteryIcon from 'graphs/battery/batteryIcon';
-import ConnectivityIcon from 'graphs/connectivity/connectivityIcon';
+import BatteryIcon from 'components/HeaderPictogram/batteryIcon';
+import ConnectivityIcon from 'components/HeaderPictogram/connectivityIcon';
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
