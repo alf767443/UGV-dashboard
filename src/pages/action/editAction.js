@@ -1,4 +1,4 @@
-import ActList from "components/editAction/index";
+import ActList from "components/ActionEditor/index";
 
 const ActionsList = () => {
     return(
