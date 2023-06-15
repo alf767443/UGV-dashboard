@@ -1,8 +1,8 @@
 // Imported Assets
-import { LogoutOutlined, BugOutlined, RadarChartOutlined, CodeOutlined } from '@ant-design/icons';
+import { LogoutOutlined, BugOutlined, RadarChartOutlined, CodeOutlined, SendOutlined } from '@ant-design/icons';
 {/* <CodeOutlined /> */}
 // Icons<LogoutOutlined />
-const icons = { LogoutOutlined, BugOutlined, RadarChartOutlined, CodeOutlined };
+const icons = { LogoutOutlined, BugOutlined, RadarChartOutlined, CodeOutlined, SendOutlined };
 
 // --------- SideBar - Information --------- \\
 const services = {
@@ -24,6 +24,14 @@ const services = {
             type: 'item',
             url: '/edit/script',
             icon: icons.CodeOutlined,
+            breadcrumbs: false
+        },
+        {
+            id: 'action',
+            title: 'Add/edit actions',
+            type: 'item',
+            url: '/edit/action',
+            icon: icons.SendOutlined,
             breadcrumbs: false
         },
         {

@@ -16,13 +16,10 @@ const DatabaseDetail = Loadable(lazy(() => import('pages/database/databaseDetail
 const Logs = Loadable(lazy(() => import('pages/logs/logList')));
 const LogsHistory = Loadable(lazy(() => import('pages/logs/logHistory')));
 
-// Actions
-const Actions = Loadable(lazy(() => import('pages/action/actionList')));
-const ActionsHistory = Loadable(lazy(() => import('pages/logs/logHistory')));
-
 // Render - Edit
-const EditPlot = Loadable(lazy(() => import('pages/graph/editGraph')));
+const EditorPlot = Loadable(lazy(() => import('pages/graph/editGraph')));
 const EditorScript = Loadable(lazy(() => import('pages/graph/editScript')));
+const EditorAction = Loadable(lazy(() => import('pages/action/editAction')));
 
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -61,19 +58,6 @@ const MainRoutes = {
                     ]
                 },
                 {
-                    path: 'actions',
-                    children: [
-                        {
-                            path: '',
-                            element: <Actions />
-                        },
-                        {
-                            path: 'history',
-                            element: <ActionsHistory />
-                        }
-                    ]
-                },
-                {
                     path: 'dashboard',
                     element: <Dashboard />
                 }
@@ -84,12 +68,16 @@ const MainRoutes = {
             children: [
                 {
                     path: 'chart',
-                    element: <EditPlot />
+                    element: <EditorPlot />
                 }, 
                 {
                     path: 'script',
                     element: <EditorScript />
                 }, 
+                {
+                    path: 'action',
+                    element: <EditorAction />
+                },
             ]
         },
     ]

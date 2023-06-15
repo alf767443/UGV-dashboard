@@ -1,0 +1,72 @@
+.actionEditor{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.actionEditor .Tile{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.actionEditor .Header {
+    position: relative;
+}
+  
+.actionEditor .Header .Add{
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(-145px, -100%);
+    z-index: 1199; 
+}
+
+.actionEditor .Header .SelectGraph {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    z-index: 1199; 
+}
+
+.actionEditor .Header .Remove{
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(109px, -100%);
+    z-index: 1199; 
+}
+
+.actionEditor .Header .History{
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(-190px, -100%);
+    z-index: 1199; 
+    }
+
+.actionEditor .Header .Save{
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(154px, -100%);
+    z-index: 1199; 
+}
+
+.actionEditor .Body{
+    position: relative;
+
+    padding: 10px;
+}
+
+.actionEditor .Body .FormEdit{
+    position: relative;
+}
+
+.actionEditor-Form-Save{
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(154px, -100%);
+    z-index: -1; 
+}
