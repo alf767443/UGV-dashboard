@@ -53,6 +53,14 @@
     z-index: 1199; 
 }
 
+.actionEditor .Header .Copy{
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(-190px, -100%);
+    z-index: 1199; 
+}
+
 .actionEditor .Body{
     position: relative;
 

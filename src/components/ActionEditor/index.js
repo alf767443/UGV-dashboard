@@ -5,7 +5,7 @@
 		import { MenuItem, Select, Button } from '@mui/material';
 
 		import { IconButton } from '@mui/material';
-		import { NoteAdd, Delete, Save, Article} from '@mui/icons-material';
+		import { NoteAdd, Delete, Save, ContentCopy} from '@mui/icons-material';
 		import { message } from 'antd';
 
 		import {
@@ -47,11 +47,7 @@
 				this.state = {
 					actionID: this.getParam(),
 					action: null,
-					code: null,
-					next: null,
-					last: null,
-					sample: null,
-					status: null,
+					command: null,
 					editor: false,
 					robotID: window.localStorage.getItem('robotID'),
 				};
@@ -122,6 +118,44 @@
 					key: messageID,
 					type: 'error',
 					content: 'Error when deleting',
+					duration: 2,
+				}))
+			}
+
+			copyActionClick = () => {
+				const messageID = randomString(5) + this.state.robotID
+				const sendJSON = {
+					command: this.state.command,
+					action: {
+						group: this.state.action.group,
+						title: this.state.action.title + '(copy)'
+					},
+					robot: this.state.robotID
+				}
+				message.open({
+					key: messageID,
+					type: 'loading',
+					content: 'Creating a action',
+					duration: 0,
+				});
+				djangoFetch('/action', '/', 'POST', JSON.stringify(sendJSON))
+				.then((response) => {
+					if(response.status === 201){
+						this.getList();
+						this.render()
+					}
+				})
+				.then(() => message.open({
+					key: messageID,
+					type: 'success',
+					content: 'Action created',
+					duration: 2,
+				}))
+				.catch((e) => console.error(e))
+				.catch(() => message.open({
+					key: messageID,
+					type: 'error',
+					content: 'Error when creating',
 					duration: 2,
 				}))
 			}
@@ -347,6 +381,12 @@
 							<div className='Add' id='ActionEditor-Header-AddButton'>
 								<IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.addActionClick} >
 									<NoteAdd sx={{color:activeColor, width:'130%' , height: '130%'}} />
+								</IconButton>
+							</div>
+
+							<div className='Copy' id='ActionEditor-Header-CopyButton'>
+								<IconButton sx={{ flexShrink: 0, backgroundColor: 'grey.100', color:'', height:36, width:36, borderRadius:2}}  onClick={this.copyActionClick} >
+									<ContentCopy sx={{color:activeColor, width:'130%' , height: '130%'}} />
 								</IconButton>
 							</div>
 
