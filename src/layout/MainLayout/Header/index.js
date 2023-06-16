@@ -11,7 +11,7 @@ import HeaderContent from './HeaderContent';
 // assets
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
-import SimpleGraph from 'components/GoToSelector/dropdown';
+import SimpleGraph from 'components/ActionSend/dropdown';
 
 // ==============================|| MAIN LAYOUT - HEADER ||============================== //
 
