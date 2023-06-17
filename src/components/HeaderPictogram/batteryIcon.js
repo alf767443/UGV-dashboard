@@ -37,7 +37,7 @@ export default class BatteryIcon extends React.Component {
     }
 
 	componentWillUnmount = () =>{
-		clearInterval(this.timer)
+		clearTimeout(this.timer)
 	}
 
 	timer = () => {
