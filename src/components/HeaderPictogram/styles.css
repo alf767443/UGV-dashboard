@@ -1,3 +1,7 @@
 .BatteryIcon{
   transform: rotate(90deg)
 }
+
+.connectionPictogram{
+  position: relative;
+}
