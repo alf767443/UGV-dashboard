@@ -1,4 +1,4 @@
-		/* eslint-disable no-unused-vars */
+		
 		import React, { Component  } from 'react';
 		import { djangoFetch } from 'API/url';
 		import GridLayout from 'react-grid-layout';

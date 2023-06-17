@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React from "react";
 import * as echarts from 'echarts';
 import { djangoFetch } from 'API/url';

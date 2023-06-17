@@ -1,19 +1,16 @@
-/* eslint-disable no-unused-vars */
-import React, { Component, useState } from 'react';
+
+import React from 'react';
 import { Link  } from 'react-router-dom';
 import GridLayout from 'react-grid-layout';
-import { Button } from 'antd';
-// import { Grid } from '@mui/material';
 import PlotTile from 'components/Tiles/plotTile';
 import { djangoFetch } from 'API/url';
 import { EditOutlined, Delete, Settings, Save, OpenWith, AddCircleRounded, RemoveCircleRounded, Addchart, Help, AppRegistration } from '@mui/icons-material';
-import { Dropdown, message, Menu  } from 'antd';
+import { Dropdown, message, Menu, Button  } from 'antd';
 import MainCard from 'components/MainCard';
 
 import { IconButton } from '@mui/material';
 
 import "./styles.css";
-
 
 const randomString = (length) => {
 	const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
