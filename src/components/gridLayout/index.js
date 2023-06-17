@@ -95,12 +95,10 @@ export default class DashboardLayout extends React.Component {
           case '+':
             tile.h += delta;
             newTiles.forEach((chart) => {chart.y += delta})
-            console.log('b+')
             break;
           case '-':
             tile.h -= delta;
             newTiles.forEach((chart) => {chart.y -= delta})
-            console.log('b-')
             break;
           default:
             break;
@@ -115,12 +113,10 @@ export default class DashboardLayout extends React.Component {
           case '+':
             tile.w += delta;
             newTiles.forEach((chart) => {chart.y += delta})
-            console.log('r+')
             break;
           case '-':
             tile.w -= delta;
             newTiles.forEach((chart) => {chart.y -= delta})
-            console.log('r-')
             break;
           default:
             break;
@@ -165,7 +161,6 @@ export default class DashboardLayout extends React.Component {
   onLayoutChange = (newLayout) => {
     const _graph = [...this.state.graph]
     const _layout = [...newLayout]
-    console.log(newLayout)
 
     for (let i = _layout.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -218,6 +213,7 @@ export default class DashboardLayout extends React.Component {
         const _json = json
         this.setState({list: _json})
       })
+      .catch((e) => console.error(e))
   }
 
   componentDidMount = () => {
@@ -226,7 +222,6 @@ export default class DashboardLayout extends React.Component {
   }
 
   render(){
-    console.log(this.state.list)
     const menu = (chart) => (
       <Menu onClick={(e) => this.handleMenuClick(chart,e)}>
         {this.state.list?this.state.list.map((option) => (
