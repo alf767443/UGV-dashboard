@@ -28,10 +28,12 @@ export default class BatteryIcon extends React.Component {
 			.then((response)=>response.json())
 			.then((json)=>this.setState({data: json.status}))
 			.catch((e) => console.error(e))
+			.finally(() => this.timer())
     }
 
     componentDidMount = () => {
-		this.timer()
+		while(!this.state.robotID){null}
+		this.refreshList()
     }
 
 	componentWillUnmount = () =>{
@@ -39,9 +41,7 @@ export default class BatteryIcon extends React.Component {
 	}
 
 	timer = () => {
-		setInterval(() => {
-			this.refreshList()
-		}, 1000)
+		setTimeout(()=>this.refreshList(), 1000)
 	}
 
 	pallet = ["#b60000","#b80600","#ba0b00","#bc1100","#bd1600","#bf1c00","#c12100","#c32700","#c52d00","#c73200","#c93800","#cb3d00","#cc4300","#ce4800","#d04e00","#d25300","#d45900","#d65f00","#d86400","#da6a00","#db6f00","#dd7500","#df7a00","#e18000","#e38600","#e58b00","#e79100","#e99600","#ea9c00","#eca100","#eea700","#f0ac00","#f2b200","#f4b800","#f6bd00","#f8c300","#f9c800","#fbce00","#fdd300","#ffd900","#ffd900","#f9d800","#f3d700","#ecd600","#e6d500","#e0d400","#dad300","#d4d200","#cdd100","#c7d000","#c1cf00","#bbce00","#b5cd00","#aecc00","#a8cb00","#a2ca00","#9cc900","#96c800","#8fc700","#89c600","#83c500","#7dc400","#76c300","#70c200","#6ac100","#64c000","#5ebf00","#57be00","#51bd00","#4bbc00","#45bb00","#3fba00","#38b900","#32b800","#2cb700","#26b600","#20b500","#19b400","#13b300","#0db200",];
