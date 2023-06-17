@@ -76,7 +76,7 @@ export default class PlotTile extends React.Component {
 
 	getData = () => {
 		this.setState({canRequest: false})
-		this.state.data && this.state.option?
+		this.props.data && this.props.option?
 			this.chart(this.state):
 			djangoFetch('/chart', '/?name=' + this.props.graphID, 'GET', '')
 			.then(response => response.json())
@@ -102,7 +102,6 @@ export default class PlotTile extends React.Component {
 	chart = (_config) => {
 		try{
 			var data = _config.data;
-			
 			if(this.props.table == undefined | this.props.table == null){
 				try{
 					var option = eval(_config.option);
@@ -123,8 +122,8 @@ export default class PlotTile extends React.Component {
 				this.setState({update: false})
 			}
 		}
-		catch{
-			return null
+		catch(err){
+			null
 		}
 	}
 
@@ -135,21 +134,19 @@ export default class PlotTile extends React.Component {
 
 	componentDidMount = () => {
 		this.update();
-	}
+    }
 
 	componentWillUnmount = () =>{
-		clearInterval(this.timer)
+		clearTimeout(this.timer)
 	}
 
 	timer = () => {
-		setTimeout(() => {
-			this.update();
-		}, 1000)
+		setTimeout(()=>this.getData(), 1000)
 	}
 
 	render() {
 		return (
-			<div className="graphTile" id={'tile' + this.state.ID}>
+			<div className="graphTile" id={'Tile-Plot-Chart-' + this.state.ID}>
 				<MainCard style={{ width: '100%', height: '100%' }}>	
 					{this.state.option && this.state.data ? 
 						(!this.props.table?
