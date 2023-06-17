@@ -35,7 +35,6 @@ export default class DatabaseList extends React.Component {
     .then((json) => {
         const _json = json
         this.setState({data: _json})
-        console.log(this.state)
     })
     .finally(()=>this.componentDidMount())
   }
@@ -67,7 +66,7 @@ export default class DatabaseList extends React.Component {
 
   render(){
     return (
-      <div className='loggerList'>  
+      <div className='loggerList' id="Database-Detail-Log-List">  
         <Grid container
             direction="row"
             justifyContent="center"
