@@ -91,8 +91,8 @@ export default class PlotTile extends React.Component {
 				if(this.props.option != undefined || this.props.option != null || !this.props.option){
 					this.setState({option: _json.option})
 				}
-			})	
-			.then(() => this.chart(this.state))
+				this.chart(this.state)
+			})
 			.then(() => this.timer())
 			.catch((e) => console.error(e))
 			.finally(() => this.setState({canRequest: true}))
@@ -101,8 +101,16 @@ export default class PlotTile extends React.Component {
 	chart = (_config) => {
 		try{
 			var data = _config.data;
-			if(this.props.table == undefined || this.props.table == null){
-				var option = eval(_config.option);
+			
+			if(this.props.table == undefined | this.props.table == null){
+				try{
+					var option = eval(_config.option);
+				}
+				catch(err){
+					console.error(err)
+				}
+				console.debug(data)
+				console.debug(option)
 				if(!_config.doc || !_config.chart){
 					var _doc =  document.getElementById(_config.ID)
 					var _chart =  echarts.init(_doc) 
