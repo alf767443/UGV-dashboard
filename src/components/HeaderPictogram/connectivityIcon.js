@@ -25,21 +25,21 @@ export default class ConnectivityIcon extends React.Component {
 			.then((response)=>response.json())
 			.then((json)=>this.setState({status: json.status}))
 			.catch((e) => console.error(e))
-			.finally(() => this.quality());
+			.finally(() => this.quality())
+			.finally(() => this.timer());
     }
 
 	componentDidMount = () => {
-		this.timer()
-	}
+		while(!this.state.robotID){null}
+		this.refreshList()
+    }
 
 	componentWillUnmount = () =>{
 		clearInterval(this.timer)
 	}
 
 	timer = () => {
-		setInterval(() => {
-			this.refreshList();
-		}, 1000)
+		setTimeout(()=>this.refreshList(), 1000)
 	}
 
 	quality = () => {
