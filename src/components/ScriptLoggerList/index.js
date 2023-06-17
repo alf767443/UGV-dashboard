@@ -55,9 +55,7 @@ export default class ScriptList extends React.Component {
     .then((response) => response.json())
     .then((json) => {
         const _json = json
-        console.log(_json)
         this.setState({script: _json})
-        console.log(this.state)
     })
   }
 
@@ -126,7 +124,7 @@ export default class ScriptList extends React.Component {
 
   render(){
     return (
-      <div className='loggerList'>  
+      <div className='loggerList' id='Script-Log-List'>  
         <Grid container
             direction="column"
             justifyContent="flex-start"
@@ -136,13 +134,13 @@ export default class ScriptList extends React.Component {
             {this.state.script?this.state.script.map((script) => 
             <Grid key={script.name} item>
                 <MainCard>
-                    <div className='CardContent'>
-                        <div className='StatusIcon'>  
+                    <div className='CardContent' id={'Script-Log-List-CardContent'+script.name}>
+                        <div className='StatusIcon' id={'Script-Log-List-CardContent-Icon-Status'+script.name}>
                             <IconButton sx={{backgroundColor: this.iconBackGround(script.status), color:'dark', height:'100%', width:'100%', borderRadius:0}} style={{pointerEvents: 'none'}}>
                                 {this.statusIcon(script.status)}
                             </IconButton>
                         </div>
-                        <div className='Text'>
+                        <div className='Text' id={'Script-Log-List-CardContent-Text'+script.name}>
                             <Grid container
                                 direction="column"
                                 justifyContent="space-between"
@@ -177,7 +175,7 @@ export default class ScriptList extends React.Component {
                             </Grid>
                         </div>
                         
-                        <div className='LogIcon'>
+                        <div className='LogIcon' id={'Script-Log-List-CardContent-Icon-Log'+script.name}>
                             <Link to={'/information/logs/history?id='+script.name}>
                                 <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} >
                                     <Description sx={{color:'dark', width:'100%' , height: '100%'}}/>

@@ -96,7 +96,6 @@ export default class ScriptList extends React.Component {
     .then((json) => {
         const _json = json
         this.setState({script: _json})
-        console.log(_json)
     })
   }
 
@@ -110,7 +109,6 @@ export default class ScriptList extends React.Component {
             return 0;
         })
         this.setState({log: _json})
-        console.log(_json)
     })
   }
 
@@ -180,7 +178,7 @@ export default class ScriptList extends React.Component {
 
   render(){
     return (
-      <div className='loggerDetail'>
+      <div className='scriptDetail' id='Script-Detail'>
         <Grid container
             direction="column"
             justifyContent="space-between"
@@ -190,13 +188,13 @@ export default class ScriptList extends React.Component {
             <Grid item>
                 <MainCard>
                     {this.state.script?
-                    <div className='CardContent'>
-                        <div className='StatusIcon'>  
+                    <div className='CardContent' id='Script-Detail-Card'>
+                        <div className='StatusIcon' id='Script-Detail-Card-Icon-Status'>  
                             <IconButton sx={{backgroundColor: this.iconBackGround(this.state.script.status), color:'dark', height:'100%', width:'100%', borderRadius:0}} style={{pointerEvents: 'none'}}>
                                 {this.statusIcon(this.state.script.status)}
                             </IconButton>
                         </div>
-                        <div className='Text'>
+                        <div className='Text' id='Script-Detail-Card-Text'>
                             <Grid container
                                 direction="column"
                                 justifyContent="space-between"
@@ -226,7 +224,7 @@ export default class ScriptList extends React.Component {
                                 </Grid>
                             </Grid>
                         </div>
-                        <div className='PlayStop' onClick={this.pausePlayClick}>   
+                        <div className='PlayStop' id='Script-Detail-Card-Icon-PlayStop' onClick={this.pausePlayClick}>   
                             <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}}>
                                 {this.state.script.status === 'run' || this.state.script.status === 'wait'?
                                     <PauseCircle sx={{color:'dark', width:'130%' , height: '130%'}}/>:
@@ -234,7 +232,7 @@ export default class ScriptList extends React.Component {
                                 }
                             </IconButton>
                         </div>
-                        <div className='Edit'>  
+                        <div className='Edit' id='Script-Detail-Card-Icon-Edit'>  
                             <Link to={'/edit/script?id='+this.state._id}>
                                 <IconButton sx={{backgroundColor: 'grey.100', color:'dark', height:'100%', width:'100%', borderRadius:0}} >
                                     <Edit sx={{color:'dark', width:'130%' , height: '130%'}}/>
@@ -255,7 +253,7 @@ export default class ScriptList extends React.Component {
                             spacing={0}
                             >
                             <Grid item>
-                                <div style={{backgroundColor: this.fontLogColor(log.type)}}>
+                                <div style={{backgroundColor: this.fontLogColor(log.type)}} id={'Script-Detail-Log-Text-'+log._id}>
                                     <Typography  align='center' variant='h5' color={'#ffff'} width={65}>
                                         ({log.type})
                                     </Typography>
