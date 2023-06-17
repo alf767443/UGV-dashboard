@@ -39,7 +39,6 @@ export default class DatabaseList extends React.Component {
     .then((json) => {
         const _json = json
         this.setState({dbs: _json})
-        console.log(_json)
     })
   }
 
@@ -50,7 +49,7 @@ export default class DatabaseList extends React.Component {
 
   render(){
     return (
-      <div className='loggerList'>  
+      <div className='loggerList' id='Database-List'>  
         <Grid container
             direction="row"
             justifyContent="flex-start"
@@ -60,20 +59,20 @@ export default class DatabaseList extends React.Component {
             {this.state.dbs?this.state.dbs.map((database) => 
                 <Grid key={database.collection} item xs={6} md={2}>
                     <MainCard>
-                        <div className='CardContent'>
-                            <div className='CollectionText'>
+                        <div className='CardContent' id={'Database-List-Card-' + database.collection}>
+                            <div className='CollectionText' id={'Database-List-Card-Text-' + database.collection}>
                                 <Typography align='center' variant='h3' color='textSecondary'>
                                     {database.collection}
                                 </Typography>
                             </div>
-                            <div className='TableIconButton'>
+                            <div className='TableIconButton' id={'Database-List-Card-TableIcon' + database.collection}>
                                 <Link to={'/information/dbs/detail?db='+database.database+'&coll='+database.collection+'&n=100'}>
                                     <IconButton sx={{color:'dark', height:'100%', width:'100%', borderRadius:0}} >
                                         <TableChart sx={{color:'dark', width:'100%' , height: '100%'}}/>
                                     </IconButton>
                                 </Link>
                             </div>
-                            <div className='DetailsText'>
+                            <div className='DetailsText' id={'Database-List-Card-Text-Detail' + database.collection}>
                                 <Grid container
                                     direction="row"
                                     justifyContent="flex-start"
