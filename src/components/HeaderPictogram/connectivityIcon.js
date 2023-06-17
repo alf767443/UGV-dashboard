@@ -25,7 +25,7 @@ export default class ConnectivityIcon extends React.Component {
 			.then((response)=>response.json())
 			.then((json)=>this.setState({status: json.status}))
 			.catch((e) => console.error(e))
-			.finally(() => this.quality())
+			.finally(() => this.quality());
     }
 
 	componentDidMount = () => {
@@ -37,7 +37,7 @@ export default class ConnectivityIcon extends React.Component {
 	}
 
 	timer = () => {
-		setTimeout(() => {
+		setInterval(() => {
 			this.refreshList();
 		}, 1000)
 	}
