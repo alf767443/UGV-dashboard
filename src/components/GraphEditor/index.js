@@ -256,8 +256,6 @@
 				.then((json) => {
 					var _json = json
 					_json.sort((function(a, b) {
-						console.log(a)
-						console.log(b)
 						var aValue = a.label ; // Convert to lowercase for case-insensitive sorting
 						var bValue = b.label; // Convert to lowercase for case-insensitive sorting						
 						if (aValue < bValue) {
@@ -269,20 +267,17 @@
 						return 0;
 					}))
 					this.setState({list: _json})
-					console.log(_json)
 				})
 			}
 
 			handleGraphIDChange = (event) => {
 				this.setState({graphID: event.target.value})
-				console.log(event)
 				window.location.href = `/CeDRI_dashboard/edit/chart?id=${event.target.value}`;
 			}
 			
 			getParam = () => {
 				const searchParams = new URLSearchParams(location.search);
 				const graphIDParam = searchParams.get('id');
-				console.log(graphIDParam)
 				return graphIDParam
 			}
 
@@ -454,7 +449,7 @@
 										fullWidth
 										error={Boolean(touched.collection && errors.collection)} />
 								</Grid>
-								<div className='graphEditor-Form-Save'>
+								<div className='graphEditor-Form-Save' id='Graph-Editor-Form-Button-Save'>
 									<Button
 										id='Internal-Button-Save-InForm'
 										disableElevation
