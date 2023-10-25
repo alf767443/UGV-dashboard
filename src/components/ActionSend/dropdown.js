@@ -24,6 +24,11 @@ export default class SimpleGraph extends React.Component {
     const sendJSON = {
         "pipeline": [
             {
+                '$sort': {
+                    'action.group': 1, 
+                    'action.title': 1
+                }
+            }, {
                 "$match": {
                     "robot": this.state.robotID
                 }
@@ -67,7 +72,7 @@ export default class SimpleGraph extends React.Component {
 			type: 'loading',
 			content: 'Sending command',
 			duration: 0,
-            
+            zIndex: 9999
 		});
         djangoFetch('/robot', '/?name='+this.state.robotID, 'GET', '')
             .then((response) => response.json())
@@ -77,6 +82,7 @@ export default class SimpleGraph extends React.Component {
                     "database": _json.database,
                     "action": e.key
                 }
+                console.log(sendJSON)
                 djangoFetch('/action', '/?query=0', 'OPTIONS', JSON.stringify(sendJSON))
                     .then((response) => response.json())
                     .then((json) => {

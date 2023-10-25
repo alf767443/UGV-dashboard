@@ -10,6 +10,14 @@ import MainCard from 'components/MainCard';
 
 import { IconButton } from '@mui/material';
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Force Magni Map {temp}
+import Magni_Position_Map from "graphs/maps/pointmaps/positionMap"
+import Magni_Track_Map from "graphs/maps/pointmaps/trackMap"
+import Magni_RTT_HeatMap from "graphs/maps/heatmaps/RTTHeatmap"
+import Magni_Connectity_HeatMap from "graphs/maps/heatmaps/connectivityHeatmap"
+import Magni_Position_HeatMap from "graphs/maps/heatmaps/positionHeatmap"
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 import "./styles.css";
 
 const randomString = (length) => {
@@ -307,6 +315,11 @@ export default class DashboardLayout extends React.Component {
                   </>:<></>
                   }
                   {chart.chart && chart.chart!=='null'?
+                    chart.chart == 'magni_connection_heatmap'? <MainCard className='void'><Magni_Connectity_HeatMap/></MainCard>:
+                    chart.chart == 'magni_postion_heatmap'? <MainCard className='void'><Magni_Position_HeatMap/></MainCard>:
+                    chart.chart == 'magni_position_map'? <MainCard className='void'><Magni_Position_Map/></MainCard>:
+                    chart.chart == 'magni_rtt_heatmap'? <MainCard className='void'><Magni_RTT_HeatMap/></MainCard>:
+                    chart.chart == 'magni_track_map'? <MainCard className='void'><Magni_Track_Map/></MainCard>:
                     <PlotTile graphID={chart.chart} />:
                     <MainCard className='void'>
                       <Help style={{height:'100%', width:'100%', color:'#f5f5f5'}} />

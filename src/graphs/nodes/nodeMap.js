@@ -7,8 +7,8 @@ import { url, requestOptions } from 'API/url';
 import styles from "graphs/styles";
 
 var nodes = JSON.stringify({
-	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_datalake",
+	"dataSource": "CeDRI_Magni",
+	"database": "CeDRI_Magni",
 	"collection": "Nodes",
 	"pipeline": [
     {
@@ -53,8 +53,8 @@ var nodes = JSON.stringify({
 });
 
 var edges = JSON.stringify({
-	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_datalake",
+	"dataSource": "CeDRI_Magni",
+	"database": "CeDRI_Magni",
 	"collection": "Nodes",
 	"pipeline": [
     {
@@ -140,8 +140,9 @@ export default class NodeMap extends React.Component {
     }
 
   refreshNodes() {
-		fetch(url(), requestOptions(nodes))
+		fetch('http://192.168.217.183:8000/query/', requestOptions(nodes))
 		.then((response) => response.json())
+    .then((json)=>console.log(json))
 		.then((json) => {
 			this.setState({ nodes: json});
       this.refreshEdges();
@@ -152,8 +153,9 @@ export default class NodeMap extends React.Component {
     }
   
   refreshEdges() {
-    fetch(url(), requestOptions(edges))
+    fetch('http://192.168.217.183:8000/query/', requestOptions(edges))
     .then((response) => response.json())
+    .then((json)=>console.log(json))
     .then((json) => {
       this.setState({ edges: json});
       this.setState( {data: {edges: this.state.edges, nodes: this.state.nodes}})
@@ -257,7 +259,7 @@ export default class NodeMap extends React.Component {
 		return (
       <FlowAnalysisGraph 
         {...this.config}
-        {...styles.map}
+       
         data={this.state.data}
       />
 		);

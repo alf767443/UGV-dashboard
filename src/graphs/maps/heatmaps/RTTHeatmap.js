@@ -2,13 +2,11 @@ import React from 'react';
 import { Heatmap } from '@ant-design/plots';
 import cedri from '../images/cedri.png'
 import { url, requestOptions } from 'API/url';
-import styles from 'graphs/styles';
-
 
 var rawPosition = JSON.stringify({
-	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_AMCL",
+	"dataSource": "CeDRI_Magni",
+	"database": "CeDRI_Magni",
+	"collection": "/amcl_pose",
 	"pipeline": [
 		{
 			'$project': {
@@ -25,6 +23,7 @@ var rawPosition = JSON.stringify({
 		}
 	]
 });
+
 
 var raw = JSON.stringify({
     "dataSource": "CeDRI",
@@ -165,7 +164,7 @@ export default class ConnectivityIcon extends React.Component {
 
     refreshPos() {
         // Last point
-		fetch(url(), requestOptions(rawPosition))
+		fetch('http://192.168.217.183:8000/query/', requestOptions(rawPosition))
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ last: json[0] });
@@ -174,28 +173,31 @@ export default class ConnectivityIcon extends React.Component {
             clearInterval(this.timer)
         })
 		.catch((error) => {
-			//console.log(error)
-		});
+			console.log(error)
+		})
+        .finally(()=>console.log(this.state.data));
+        
     }
 
     refreshMap(){
         //History of points
-        fetch(url(), requestOptions(raw))
+        fetch('http://192.168.217.183:8000/query/', requestOptions(raw))
         .then((response) => response.json())
         .then((json) => {
+            console.log('hello')
+            console.log(json)
             this.setState({ data: [...json, {x:-30.20, y:-30.60, RTT:0},{x:40.20, y:28.60, RTT:0}] });
         })
         .then(()=>{
             this.refreshPos()
         })
         .catch((error) => {
-            //console.log(error)
+            console.log(error)
         });
     }
 
     componentDidMount = () => {
 		this.refreshMap();
-		this.timer();
     }
 
 	componentWillUnmount = () =>{
@@ -205,6 +207,7 @@ export default class ConnectivityIcon extends React.Component {
 	timer = () => {
 		setInterval(() => {
             this.refreshPos()
+            console.log(this.state)
 		}, 5000)
 	}
   
@@ -249,7 +252,7 @@ export default class ConnectivityIcon extends React.Component {
                 rotate: this.state.last.yaw,
             }, {
                 type: 'text',
-                content: `(${Math.round(this.state.last.x)},${Math.round(this.state.last.y)})`,
+                content: `RTT heatmap - Actual position(${Math.round(this.state.last.x)},${Math.round(this.state.last.y)})`,
                 style:{
                     fontSize: 22,
                     fill: '#fff',
@@ -259,7 +262,7 @@ export default class ConnectivityIcon extends React.Component {
             }
         ]
         return(
-            <Heatmap {...this.config} {...styles.map} data={this.state.data} annotations={position} />
+            <Heatmap {...this.config} data={this.state.data} annotations={position} />
         );
     }
 }

@@ -2,12 +2,11 @@ import React from 'react';
 import { Heatmap } from '@ant-design/plots';
 import cedri from '../images/cedri.png'
 import { url, requestOptions } from 'API/url';
-import styles from 'graphs/styles';
 
 var rawPosition = JSON.stringify({
-	"dataSource": "CeDRI",
-	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_AMCL",
+	"dataSource": "CeDRI_Magni",
+	"database": "CeDRI_Magni",
+	"collection": "/amcl_pose",
 	"pipeline": [
 		{
 			'$project': {
@@ -26,9 +25,9 @@ var rawPosition = JSON.stringify({
 });
 
 var raw = JSON.stringify({
-    "dataSource": "CeDRI",
-	"database": "CeDRI_UGV_datalake",
-	"collection": "Position_AMCL",
+    "dataSource": "CeDRI_Magni",
+	"database": "CeDRI_Magni",
+	"collection": "/amcl_pose",
 	"pipeline": [
     {
         '$project': {
@@ -51,9 +50,19 @@ var raw = JSON.stringify({
         }
     }, {
         '$unionWith': {
-            'coll': 'Connection', 
+            'coll': '/connectionStatus', 
             'pipeline': [
                 {
+                    '$unwind': {
+                        'path': '$list', 
+                        'preserveNullAndEmptyArrays': false
+                    }
+                }, {
+                    '$addFields': {
+                        'Connect': '$list.is_alive', 
+                        'RTT': '$list.rtt_avg'
+                    }
+                }, {
                     '$project': {
                         'dateTime': {
                             '$dateTrunc': {
@@ -139,7 +148,7 @@ var raw = JSON.stringify({
                     ]
                 }
             }
-        }, 
+        }
     ]
 })
 
@@ -158,7 +167,7 @@ export default class ConnectivityIcon extends React.Component {
 
     refreshPos() {
         // Last point
-		fetch(url(), requestOptions(rawPosition))
+		fetch('http://192.168.217.183:8000/query/', requestOptions(rawPosition))
 		.then((response) => response.json())
 		.then((json) => {
 			this.setState({ last: json[0] });
@@ -168,13 +177,16 @@ export default class ConnectivityIcon extends React.Component {
         })
 		.catch((error) => {
 			//console.log(error)
-		});
+		})
+        .finally(this.refreshPos());
+        
     }
 
     refreshMap(){
         //History of points
-        fetch(url(), requestOptions(raw))
+        fetch('http://192.168.217.183:8000/query/', requestOptions(raw))
         .then((response) => response.json())
+        .then((json)=>console.log(json))
         .then((json) => {
             this.setState({ data: [...json, {x:-30.20, y:-30.60, RTT:0},{x:40.20, y:28.60, RTT:0}] });
             ////console.log(this.state.data)
@@ -183,23 +195,17 @@ export default class ConnectivityIcon extends React.Component {
             this.refreshPos()
 		})
         .catch((error) => {
-            //console.log(error)
+            console.log(error)
         });
     }
 
     componentDidMount = () => {
         this.refreshMap();
-		this.timer();
+		// this.timer();
     }
 
 	componentWillUnmount = () =>{
 		clearInterval(this.timer)
-	}
-
-	timer = () => {
-		setInterval(() => {
-            this.refreshPos();
-		}, 5000)
 	}
   
     config = {
@@ -253,7 +259,7 @@ export default class ConnectivityIcon extends React.Component {
             }
         ]
         return(
-            <Heatmap {...this.config} {...styles.map} data={this.state.data} annotations={position} />
+            <Heatmap {...this.config} data={this.state.data} annotations={position} />
         );
     }
 }

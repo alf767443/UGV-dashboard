@@ -1,4 +1,4 @@
-export const requestOptions = function(raw = "", method = 'GET'){
+export const requestOptions = function(raw = "", method = 'POST'){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
